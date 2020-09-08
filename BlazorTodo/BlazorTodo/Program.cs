@@ -14,6 +14,7 @@ namespace BlazorTodo
     {
         public static async Task Main(string[] args)
         {
+            //testcomment
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
