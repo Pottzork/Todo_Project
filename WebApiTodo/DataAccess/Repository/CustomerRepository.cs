@@ -16,14 +16,40 @@ namespace DataAccess.Repository
         {
             this._connectionString = connectionString;
         }
-        public Task<bool> AddCustomer(Customers customer)
+        public async Task<bool> AddCustomer(Customers customer)
         {
-            throw new NotImplementedException();
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    await c.ExecuteAsync("INSERT INTO Customers (CusName, CusEmail, CusPhone, CusCompany, AddressId) VALUES (@CusName, @CusEmail, @CusPhone, @CusCompany, @AddressId)",
+                        new { customer.CusName, customer.CusEmail, customer.CusPhone, customer.CusCompany, customer.AddressId });
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
         }
 
-        public Task<bool> DeleteCustomer(int id)
+        public async Task<bool> DeleteCustomer(int id)
         {
-            throw new NotImplementedException();
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    await c.ExecuteAsync("DELETE Customers WHERE CusId = @Id", new { id });
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                    throw;
+                }
+            }
         }
 
         public async Task<IEnumerable<Customers>> GetAllCustomers()
@@ -58,9 +84,22 @@ namespace DataAccess.Repository
             }
         }
 
-        public Task<Customers> UpdateCustomer(Customers customer)
+        public async Task<bool> UpdateCustomer(Customers customer)
         {
-            throw new NotImplementedException();
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    await c.ExecuteAsync("UPDATE Customers SET CusName = @CusName, CusEmail = @CusEmail, CusPhone = @CusPhone, CusCompany = @CusCompany, AddressId = @AddressId WHERE CusId = @CusId",
+                        new { customer.CusName, customer.CusEmail, customer.CusPhone, customer.CusCompany, customer.AddressId, customer.CusId });
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
         }
     }
 }
