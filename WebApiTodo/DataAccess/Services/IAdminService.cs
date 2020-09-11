@@ -8,10 +8,10 @@ namespace DataAccess.Services
 {
     public interface IAdminService
     {
-        Task<IEnumerable<Admin>> GetAllAdmins();
-        Task<Admin> GetAdmin(int id);
-        Task<Admin> AddAdmin(Admin admin);
-        Task<Admin> UpdateAdmin(Admin admin);
+        Task<IEnumerable<Admins>> GetAllAdmins();
+        Task<Admins> GetAdmin(int id);
+        Task<Admins> AddAdmin(Admins admin);
+        Task<Admins> UpdateAdmin(Admins admin);
         void DeleteAdmin(int id);
     }
 }

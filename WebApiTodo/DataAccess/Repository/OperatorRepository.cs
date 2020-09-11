@@ -8,7 +8,7 @@ namespace DataAccess.Repository
 {
     public class OperatorRepository : IOperatorRepository
     {
-        public Task<Operator> AddWorkingOperator(Operator workingOperator)
+        public Task<Operators> AddWorkingOperator(Operators workingOperator)
         {
             throw new NotImplementedException();
         }
@@ -18,17 +18,17 @@ namespace DataAccess.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Operator>> GetAllWorkingOperators()
+        public Task<IEnumerable<Operators>> GetAllWorkingOperators()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Operator> GetWorkingOperator(int id)
+        public Task<Operators> GetWorkingOperator(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Operator> UpdateWorkingOperator(Operator workingOperator)
+        public Task<Operators> UpdateWorkingOperator(Operators workingOperator)
         {
             throw new NotImplementedException();
         }

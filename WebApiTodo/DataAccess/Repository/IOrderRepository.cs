@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public interface IWorkOrderRepository
+    public interface IOrderRepository
     {
-        Task<IEnumerable<Order>> GetWorkOrders();
-        Task<Order> GetWorkOrder(int id);
+        Task<IEnumerable<Orders>> GetOrders();
+        Task<Orders> GetOrder(int id);
     }
 }

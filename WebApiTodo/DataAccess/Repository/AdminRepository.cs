@@ -14,7 +14,7 @@ namespace DataAccess.Repository
         {
             this._connectionString = connectionString;
         }
-        public Task<Admin> AddAdmin(Admin admin)
+        public Task<Admins> AddAdmin(Admins admin)
         {
             throw new NotImplementedException();
         }
@@ -24,17 +24,17 @@ namespace DataAccess.Repository
             throw new NotImplementedException();
         }
 
-        public Task<Admin> GetAdmin(int id)
+        public Task<Admins> GetAdmin(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Admin>> GetAllAdmins()
+        public Task<IEnumerable<Admins>> GetAllAdmins()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Admin> UpdateAdmin(Admin admin)
+        public Task<Admins> UpdateAdmin(Admins admin)
         {
             throw new NotImplementedException();
         }

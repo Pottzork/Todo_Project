@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Services
 {
-    public interface IWorkOrderService
+    public interface IOrderService
     {
-        Task<IEnumerable<Order>> GetWorkOrders();
-        Task<Order> GetWorkOrder(int id);
+        Task<IEnumerable<Orders>> GetWorkOrders();
+        Task<Orders> GetWorkOrder(int id);
     }
 }

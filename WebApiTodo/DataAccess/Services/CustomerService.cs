@@ -15,7 +15,7 @@ namespace DataAccess.Services
             this._customerService = customerService;
         }
 
-        public Task<Customer> AddCustomer(Customer customer)
+        public Task<Customers> AddCustomer(Customers customer)
         {
             throw new NotImplementedException();
         }
@@ -25,17 +25,17 @@ namespace DataAccess.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Customer>> GetAllCustomers()
+        public Task<IEnumerable<Customers>> GetAllCustomers()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Customer> GetCustomer(int id)
+        public Task<Customers> GetCustomer(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Customer> UpdateCustomer(Customer customer)
+        public Task<Customers> UpdateCustomer(Customers customer)
         {
             throw new NotImplementedException();
         }

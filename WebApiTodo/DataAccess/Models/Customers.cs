@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataAccess.Models
 {
-    public class Customer
+    public class Customers
     {
         public int CusId { get; set; }
         public string CusName { get; set; }

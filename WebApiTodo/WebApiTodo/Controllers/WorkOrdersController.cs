@@ -12,9 +12,9 @@ namespace WebApiTodo.Controllers
     [ApiController]
     public class WorkOrdersController : Controller
     {
-        private readonly IWorkOrderService _workOrderService;
+        private readonly IOrderService _workOrderService;
 
-        public WorkOrdersController(IWorkOrderService workOrderService)
+        public WorkOrdersController(IOrderService workOrderService)
         {
             this._workOrderService = workOrderService;
         }

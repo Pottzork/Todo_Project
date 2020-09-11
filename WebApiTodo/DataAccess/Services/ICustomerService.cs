@@ -8,10 +8,10 @@ namespace DataAccess.Services
 {
     public interface ICustomerService
     {
-        Task<IEnumerable<Customer>> GetAllCustomers();
-        Task<Customer> GetCustomer(int id);
-        Task<Customer> AddCustomer(Customer customer);
-        Task<Customer> UpdateCustomer(Customer customer);
+        Task<IEnumerable<Customers>> GetAllCustomers();
+        Task<Customers> GetCustomer(int id);
+        Task<Customers> AddCustomer(Customers customer);
+        Task<Customers> UpdateCustomer(Customers customer);
         void DeleteCustomer(int id);
     }
 }
