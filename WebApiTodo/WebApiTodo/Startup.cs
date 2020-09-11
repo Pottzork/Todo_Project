@@ -31,6 +31,10 @@ namespace WebApiTodo
         {
             services.AddSingleton<IOrderService, OrderService>();
             services.AddSingleton<IOrderRepository>(c => new OrderRepository(Configuration["ConnectionString"]));
+
+            services.AddSingleton<IAdminService, AdminService>();
+            services.AddSingleton<IAdminRepository>(c => new AdminRepository(Configuration["ConnectionString"]));
+
             services.AddControllers();
         }
 

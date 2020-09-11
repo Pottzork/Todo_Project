@@ -10,8 +10,8 @@ namespace DataAccess.Repository
     {
         Task<IEnumerable<Admins>> GetAllAdmins();
         Task<Admins> GetAdmin(int id);
-        Task<Admins> AddAdmin(Admins admin);
+        Task<bool> AddAdmin(Admins admin);
         Task<Admins> UpdateAdmin(Admins admin);
-        void DeleteAdmin(int id);
+        Task<bool> DeleteAdmin(int id);
     }
 }

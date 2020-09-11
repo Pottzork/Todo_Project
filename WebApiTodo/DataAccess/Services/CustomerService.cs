@@ -15,7 +15,7 @@ namespace DataAccess.Services
             this._customerService = customerService;
         }
 
-        public Task<Customers> AddCustomer(Customers customer)
+        public Task<bool> AddCustomer(Customers customer)
         {
             throw new NotImplementedException();
         }

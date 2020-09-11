@@ -1,6 +1,8 @@
-﻿using DataAccess.Models;
+﻿using Dapper;
+using DataAccess.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,24 +16,72 @@ namespace DataAccess.Repository
         {
             this._connectionString = connectionString;
         }
-        public Task<Admins> AddAdmin(Admins admin)
+        public async Task<bool> AddAdmin(Admins admin)
         {
-            throw new NotImplementedException();
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    await c.ExecuteAsync("INSERT INTO Admins (UserName, Password, FirstName, LastName, Email, Phone) VALUES (@UserName, @Password, @FirstName, @LastName, @Email, @Phone)",
+                        new { admin.UserName, admin.Password, admin.FirstName, admin.LastName, admin.Email, admin.Phone });
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
         }
 
-        public void DeleteAdmin(int id)
+        public async Task<bool> DeleteAdmin(int id)
         {
-            throw new NotImplementedException();
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    await c.ExecuteAsync("DELETE Admins WHERE ID = @id", new { id });
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                    throw;
+                }
+            }
         }
 
-        public Task<Admins> GetAdmin(int id)
+        public async Task<Admins> GetAdmin(int id)
         {
-            throw new NotImplementedException();
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    return await c.QueryFirstOrDefaultAsync<Admins>("SELECT * FROM Admins WHERE ID = @id", new { id });
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
         }
 
-        public Task<IEnumerable<Admins>> GetAllAdmins()
+        public async Task<IEnumerable<Admins>> GetAllAdmins()
         {
-            throw new NotImplementedException();
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    return await c.QueryAsync<Admins>("SELECT * FROM Admins");
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
         }
 
         public Task<Admins> UpdateAdmin(Admins admin)

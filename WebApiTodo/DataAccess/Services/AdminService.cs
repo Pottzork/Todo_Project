@@ -1,4 +1,5 @@
 ﻿using DataAccess.Models;
+using DataAccess.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,31 +9,31 @@ namespace DataAccess.Services
 {
     public class AdminService : IAdminService
     {
-        private readonly IAdminService _adminService;
+        private readonly IAdminRepository _adminRepository;
 
-        public AdminService(IAdminService adminService)
+        public AdminService(IAdminRepository adminRepository)
         {
-            this._adminService = adminService;
+            this._adminRepository = adminRepository;
         }
 
-        public Task<Admins> AddAdmin(Admins admin)
+        public async Task<bool> AddAdmin(Admins admin)
         {
-            throw new NotImplementedException();
+            return await _adminRepository.AddAdmin(admin);
         }
 
-        public void DeleteAdmin(int id)
+        public async Task<bool> DeleteAdmin(int id)
         {
-            throw new NotImplementedException();
+            return await _adminRepository.DeleteAdmin(id);
         }
 
-        public Task<Admins> GetAdmin(int id)
+        public async Task<Admins> GetAdmin(int id)
         {
-            throw new NotImplementedException();
+            return await _adminRepository.GetAdmin(id);
         }
 
-        public Task<IEnumerable<Admins>> GetAllAdmins()
+        public async Task<IEnumerable<Admins>> GetAllAdmins()
         {
-            throw new NotImplementedException();
+            return await _adminRepository.GetAllAdmins();
         }
 
         public Task<Admins> UpdateAdmin(Admins admin)
