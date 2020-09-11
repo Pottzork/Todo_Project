@@ -145,7 +145,7 @@ GO
 CREATE TABLE [dbo].[Customers](
 	[CusId] [int] IDENTITY(1,1) NOT NULL,
 	[CusName] [nvarchar](max) NOT NULL,
-	[CusInfo] [nvarchar](max) NOT NULL,
+	
 	[CusEmail] [nvarchar](max) NOT NULL,
 	[CusPhone] [nvarchar](max) NOT NULL,
 	[CusCompany] [nvarchar](max) NULL,
@@ -215,6 +215,7 @@ CREATE TABLE [dbo].[Orders](
 	[OrderEnd] [datetime2](7) NULL,
 	[OrderComplete] [bit] NOT NULL,
 	[OrderPrice] [float] NULL,
+	[OrderInfo] [nvarchar] NULL,
 	[CustomerCusId] [int] NULL,
 	[AddressId] [int] NULL,
  CONSTRAINT [PK_Orders] PRIMARY KEY CLUSTERED 
