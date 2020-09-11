@@ -18,12 +18,12 @@ namespace DataAccess.Services
             this._workRepository = workRepository;
         }
 
-        public async Task<WorkOrder> GetWorkOrder(int id)
+        public async Task<Order> GetWorkOrder(int id)
         {
             return await _workRepository.GetWorkOrder(id);
         }
 
-        public async Task<IEnumerable<WorkOrder>> GetWorkOrders()
+        public async Task<IEnumerable<Order>> GetWorkOrders()
         {
             return await _workRepository.GetWorkOrders();
         }

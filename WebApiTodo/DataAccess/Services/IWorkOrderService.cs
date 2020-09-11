@@ -8,7 +8,7 @@ namespace DataAccess.Services
 {
     public interface IWorkOrderService
     {
-        Task<IEnumerable<WorkOrder>> GetWorkOrders();
-        Task<WorkOrder> GetWorkOrder(int id);
+        Task<IEnumerable<Order>> GetWorkOrders();
+        Task<Order> GetWorkOrder(int id);
     }
 }

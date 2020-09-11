@@ -17,13 +17,13 @@ namespace DataAccess.Repository
             this._connectionString = connectionString;
         }
 
-        public async Task<WorkOrder> GetWorkOrder(int id)
+        public async Task<Order> GetWorkOrder(int id)
         {
             using (var c = new SqlConnection(_connectionString))
             {
                 try
                 {
-                    return await c.QueryFirstOrDefaultAsync<WorkOrder>("SELECT * FROM WorkOrders WHERE WorkOrderId = @id", new { id });
+                    return await c.QueryFirstOrDefaultAsync<Order>("SELECT * FROM WorkOrders WHERE WorkOrderId = @id", new { id });
                 }
                 catch (Exception)
                 {
@@ -33,13 +33,13 @@ namespace DataAccess.Repository
             }
         }
 
-        public async Task<IEnumerable<WorkOrder>> GetWorkOrders()
+        public async Task<IEnumerable<Order>> GetWorkOrders()
         {
             using (var c = new SqlConnection(_connectionString))
             {
                 try
                 {
-                    return await c.QueryAsync<WorkOrder>("SELECT * FROM WorkOrders");
+                    return await c.QueryAsync<Order>("SELECT * FROM WorkOrders");
                 }
                 catch (Exception)
                 {

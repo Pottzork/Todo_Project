@@ -15,7 +15,7 @@ namespace DataAccess.Services
             this._operatorService = operatorService;
         }
 
-        public Task<WorkingOperator> AddWorkingOperator(WorkingOperator workingOperator)
+        public Task<Operator> AddWorkingOperator(Operator workingOperator)
         {
             throw new NotImplementedException();
         }
@@ -25,17 +25,17 @@ namespace DataAccess.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<WorkingOperator>> GetAllWorkingOperators()
+        public Task<IEnumerable<Operator>> GetAllWorkingOperators()
         {
             throw new NotImplementedException();
         }
 
-        public Task<WorkingOperator> GetWorkingOperator(int id)
+        public Task<Operator> GetWorkingOperator(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<WorkingOperator> UpdateWorkingOperator(WorkingOperator workingOperator)
+        public Task<Operator> UpdateWorkingOperator(Operator workingOperator)
         {
             throw new NotImplementedException();
         }
