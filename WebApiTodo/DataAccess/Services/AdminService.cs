@@ -36,9 +36,9 @@ namespace DataAccess.Services
             return await _adminRepository.GetAllAdmins();
         }
 
-        public Task<Admins> UpdateAdmin(Admins admin)
+        public async Task<bool> UpdateAdmin(Admins admin)
         {
-            throw new NotImplementedException();
+            return await _adminRepository.UpdateAdmin(admin);
         }
     }
 }

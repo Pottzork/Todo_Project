@@ -12,6 +12,6 @@ namespace DataAccess.Services
         Task<Customers> GetCustomer(int id);
         Task<bool> AddCustomer(Customers customer);
         Task<Customers> UpdateCustomer(Customers customer);
-        void DeleteCustomer(int id);
+        Task<bool> DeleteCustomer(int id);
     }
 }

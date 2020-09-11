@@ -43,5 +43,11 @@ namespace WebApiTodo.Controllers
         {
             return Ok(await _adminService.DeleteAdmin(id));
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] Admins admin)
+        {
+            return Ok(await _adminService.UpdateAdmin(admin));
+        }
     }
 }

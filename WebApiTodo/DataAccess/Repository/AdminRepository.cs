@@ -84,9 +84,22 @@ namespace DataAccess.Repository
             }
         }
 
-        public Task<Admins> UpdateAdmin(Admins admin)
+        public async Task<bool> UpdateAdmin(Admins admin)
         {
-            throw new NotImplementedException();
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    await c.ExecuteAsync("UPDATE Admins SET UserName = @UserName, Password = @Password, FirstName = @FirstName, LastName = @LastName, Email = @Email, Phone = @Phone WHERE ID = @id",
+                        new { admin.UserName, admin.Password, admin.FirstName, admin.LastName, admin.Email, admin.Phone, admin.Id });
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ namespace DataAccess.Services
         Task<IEnumerable<Admins>> GetAllAdmins();
         Task<Admins> GetAdmin(int id);
         Task<bool> AddAdmin(Admins admin);
-        Task<Admins> UpdateAdmin(Admins admin);
+        Task<bool> UpdateAdmin(Admins admin);
         Task<bool> DeleteAdmin(int id);
     }
 }

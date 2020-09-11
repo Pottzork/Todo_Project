@@ -15,29 +15,29 @@ namespace DataAccess.Services
             this._customerService = customerService;
         }
 
-        public Task<bool> AddCustomer(Customers customer)
+        public async Task<bool> AddCustomer(Customers customer)
         {
-            throw new NotImplementedException();
+            return await _customerService.AddCustomer(customer);
         }
 
-        public void DeleteCustomer(int id)
+        public async Task<bool> DeleteCustomer(int id)
         {
-            throw new NotImplementedException();
+            return await _customerService.DeleteCustomer(id);
         }
 
-        public Task<IEnumerable<Customers>> GetAllCustomers()
+        public async Task<IEnumerable<Customers>> GetAllCustomers()
         {
-            throw new NotImplementedException();
+            return await _customerService.GetAllCustomers();
         }
 
-        public Task<Customers> GetCustomer(int id)
+        public async Task<Customers> GetCustomer(int id)
         {
-            throw new NotImplementedException();
+            return await _customerService.GetCustomer(id);
         }
 
-        public Task<Customers> UpdateCustomer(Customers customer)
+        public async Task<Customers> UpdateCustomer(Customers customer)
         {
-            throw new NotImplementedException();
+            return await _customerService.UpdateCustomer(customer);
         }
     }
 }
