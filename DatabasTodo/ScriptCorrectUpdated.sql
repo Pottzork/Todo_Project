@@ -206,6 +206,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Orders](
 	[OrderId] [int] IDENTITY(1,1) NOT NULL,
+	[OpId] [int] NOT NULL,
 	[OrderDescription] [nvarchar](max) NOT NULL,
 	[OrderResponse] [nvarchar](max) NOT NULL,
 	[OrderAccept] [bit] NULL,
