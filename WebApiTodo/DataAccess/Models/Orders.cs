@@ -8,7 +8,7 @@ namespace DataAccess.Models
     {
         public int OrderId { get; set; }
         public string Address { get; set; }
-        public string CusInfo { get; set; }
+        public string OrderInfo { get; set; }
         public string OrderDescription { get; set; }
         public string OrderResponse { get; set; }
         public bool OrderAccept { get; set; } = false;
