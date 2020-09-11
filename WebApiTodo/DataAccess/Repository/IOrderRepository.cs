@@ -10,5 +10,6 @@ namespace DataAccess.Repository
     {
         Task<IEnumerable<Orders>> GetOrders();
         Task<Orders> GetOrder(int id);
+        Task<bool> AddOrder(Orders order);
     }
 }

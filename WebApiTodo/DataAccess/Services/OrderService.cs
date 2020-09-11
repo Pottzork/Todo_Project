@@ -23,9 +23,14 @@ namespace DataAccess.Services
             return await _orderRepository.GetOrder(id);
         }
 
-        public async Task<IEnumerable<Orders>> GetWorkOrders()
+        public async Task<IEnumerable<Orders>> GetOrders()
         {
             return await _orderRepository.GetOrders();
+        }
+
+        public async Task<bool> AddOrder(Orders order)
+        {
+            return await _orderRepository.AddOrder(order);
         }
     }
 }
