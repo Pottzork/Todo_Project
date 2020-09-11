@@ -10,16 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace XamarinTodo.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OrderOverviewPage : ContentPage
+    public partial class OrderDoneAddInfoPage : ContentPage
     {
-        public OrderOverviewPage()
+        public OrderDoneAddInfoPage()
         {
             InitializeComponent();
-        }
-
-        private void OrderTapped(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new AcceptOrderPage());
         }
     }
 }

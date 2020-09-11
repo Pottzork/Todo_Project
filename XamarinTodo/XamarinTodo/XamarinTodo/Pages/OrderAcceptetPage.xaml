@@ -1,18 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinTodo.Pages.AcceptOrderPage">
+             x:Class="XamarinTodo.Pages.OrderAcceptetPage">
     <ContentPage.Content>
         <SwipeView>
-            <SwipeView.LeftItems>
-                <SwipeItems Mode="Reveal">
-                    <SwipeItem Text="Avböj"
-                               BackgroundColor="Red" />
-                </SwipeItems>
-            </SwipeView.LeftItems>
             <SwipeView.RightItems>
                 <SwipeItems Mode="Reveal">
-                    <SwipeItem Text="Acceptera"
+                    <SwipeItem Text="Lägg till info"
                                BackgroundColor="Green" />
                 </SwipeItems>
             </SwipeView.RightItems>

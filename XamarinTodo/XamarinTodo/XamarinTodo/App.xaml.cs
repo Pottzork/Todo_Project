@@ -11,7 +11,7 @@ namespace XamarinTodo
         {
             InitializeComponent();
 
-            MainPage = new AcceptOrderPage();
+            MainPage = new NavigationPage(new OrderDoneAddInfoPage());
         }
 
         protected override void OnStart()
