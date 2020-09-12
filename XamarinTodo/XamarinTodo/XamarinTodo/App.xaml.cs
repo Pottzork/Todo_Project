@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinTodo.Pages;
 
 namespace XamarinTodo
 {
@@ -10,7 +11,7 @@ namespace XamarinTodo
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new OrderDoneAddInfoPage());
         }
 
         protected override void OnStart()
