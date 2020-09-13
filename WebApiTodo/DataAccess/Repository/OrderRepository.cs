@@ -56,7 +56,7 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("INSERT INTO Orders (OpId, OrderDescription, OrderResponse, OrderAccept, OrderEstTime, OrderDate, OrderStart, OrderEnd, OrderComplete, OrderPrice, OrderInfo, CustomerCusId, AddressId) VALUES (@OpId, @OrderDescription, @OrderResponse, @OrderAccept, @OrderEstTime, @OrderDate, @OrderStart, @OrderEnd, @OrderComplete, @OrderPrice, @OrderInfo, @CustomerCusId, @AddressId)",
+                    await c.ExecuteAsync("INSERT INTO Orders (Opid, OrderDescription, OrderResponse, OrderAccept, OrderEstTime, OrderDate, OrderStart, OrderEnd, OrderComplete, OrderPrice, OrderInfo, CustomerCusId, AddressId) VALUES (@OpId, @OrderDescription, @OrderResponse, @OrderAccept, @OrderEstTime, @OrderDate, @OrderStart, @OrderEnd, @OrderComplete, @OrderPrice, @OrderInfo, @CustomerCusId, @AddressId)",
                         new { order.OpId, order.OrderDescription, order.OrderResponse, order.OrderAccept, order.OrderEstTime, order.OrderDate, order.OrderStart, order.OrderEnd, order.OrderComplete, order.OrderPrice, order.OrderInfo, order.CustomerCusId, order.AddressId });
 
                     return true;
@@ -64,6 +64,42 @@ namespace DataAccess.Repository
                 catch (Exception)
                 {
                     return false;
+                }
+            }
+        }
+
+        public async Task<bool> UpdateOrder(Orders order)
+        {
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    await c.ExecuteAsync("UPDATE Orders SET OpId = @OpId, OrderDescription = @OrderDescription, OrderResponse = @OrderResponse, OrderAccept = @OrderAccept, OrderEstTime = @OrderEstTime, OrderDate = @OrderDate, OrderStart = @OrderStart, OrderEnd = @OrderEnd, OrderComplete = @OrderComplete, OrderPrice = @OrderPrice, OrderInfo = @OrderInfo, CustomerCusId = @CustomerCusId, AddressId = @AddressId WHERE OrderId = @OrderId",
+                        new { order.OpId, order.OrderDescription, order.OrderResponse, order.OrderAccept, order.OrderEstTime, order.OrderDate, order.OrderStart, order.OrderEnd, order.OrderComplete, order.OrderPrice, order.OrderInfo, order.CustomerCusId, order.AddressId, order.OrderId });
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public async Task<bool> DeleteOrder(int id)
+        {
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    await c.ExecuteAsync("DELETE Orders WHERE OrderId = @id", new { id });
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                    throw;
                 }
             }
         }

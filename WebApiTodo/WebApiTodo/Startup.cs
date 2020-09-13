@@ -38,6 +38,15 @@ namespace WebApiTodo
             services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<ICustomerRepository>(c => new CustomerRepository(Configuration["ConnectionString"]));
 
+            services.AddSingleton<IAddressService, AddressService>();
+            services.AddSingleton<IAddressRepository>(c => new AddressRepository(Configuration["ConnectionString"]));
+
+            services.AddSingleton<IHistoryOrderService, HistoryOrderService>();
+            services.AddSingleton<IHistoryOrderRepository>(c => new HistoryOrderRepository(Configuration["ConnectionString"]));
+
+            services.AddSingleton<IOperatorService, OperatorService>();
+            services.AddSingleton<IOperatorRepository>(c => new OperatorRepository(Configuration["ConnectionString"]));
+
             services.AddControllers();
         }
 

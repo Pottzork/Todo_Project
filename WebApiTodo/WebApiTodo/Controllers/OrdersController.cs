@@ -6,6 +6,7 @@ using DataAccess.Models;
 using DataAccess.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace WebApiTodo.Controllers
 {
@@ -36,6 +37,18 @@ namespace WebApiTodo.Controllers
         public async Task<IActionResult> Add([FromBody] Orders Orders)
         {
             return Ok(await _OrderService.AddOrder(Orders));
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] Orders orders)
+        {
+            return Ok(await _OrderService.UpdateOrder(orders));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return Ok(await _OrderService.DeleteOrder(id));
         }
     }
 }
