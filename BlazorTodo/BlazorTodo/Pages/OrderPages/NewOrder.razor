@@ -1,4 +1,6 @@
 ﻿@page "/neworder"
+@inject HttpClient Http
+@using BlazorTodo.Models
 
 <h1>New Order</h1>
 
@@ -12,32 +14,44 @@
     <fieldset>
         <label>Select a operator</label>
         <p>
-            <select id="myList">
-                <option value="1">Greger Andersson</option>
-                <option value="2">Lina Haraldsson</option>
-                <option value="3">Niklas Nilsson</option>
-                <option value="4">Patricia Isaksson</option>
+            <select id="myList" @bind="SelectOperator">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
             </select>
         </p>
     </fieldset>
     <label for="adress">Adress</label><br />
-    <input type="text" id="lname" name="lname"><br><br>
+    <input type="text"><br><br>
     <label for="adress">Adress Information(Gate number etc)</label><br />
-    <input type="text" id="lname" name="lname"><br><br>
+    <input type="text"><br><br>
     <label for="description">Description(Max 150 characters)</label><br />
-    <textarea rows="4" cols="50" maxlength="150" placeholder="Max 150 characters">
+    <textarea @bind="descriptionInput" rows="4" cols="50" maxlength="150" placeholder="Max 150 characters">
 
     </textarea>
 </form>
 
-<button class="btn btn-primary" @onclick="SubmitOrder">Submit</button>
+<button class="btn btn-primary" @onclick="AddOrder">Submit</button>
 
 @code {
 
-    void SubmitOrder()
+    DateTime FeaturesDateTime = DateTime.Now;
+    public string descriptionInput { get; set; }
+    public int SelectOperator { get; set; }
+    private async Task AddOrder()
     {
-
+        var addOrder = new Orders {
+            opId = SelectOperator,
+            orderDescription = descriptionInput,
+            orderResponse = "Test input",
+            orderDate = FeaturesDateTime,
+            orderComplete = false
+        };
+        await Http.PostAsJsonAsync("https://localhost:44374/api/Orders", addOrder);
+        descriptionInput = string.Empty;
     }
-    DateTime? FeaturesDateTime = DateTime.Now;
+
+
 
 }
