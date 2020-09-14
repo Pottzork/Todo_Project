@@ -19,7 +19,7 @@ namespace XamarinTodo.Pages
 
         private void OrderTapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new OrderAcceptetPage());
+            Navigation.PushAsync(new OrderPendingPage());
         }
     }
 }

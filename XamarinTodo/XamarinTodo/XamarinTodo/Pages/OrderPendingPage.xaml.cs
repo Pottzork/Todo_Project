@@ -16,5 +16,15 @@ namespace XamarinTodo.Pages
         {
             InitializeComponent();
         }
+
+        private async void AcceptOrderSwipe_Invoked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new OrderAcceptetPage());
+        }
+
+        private async void DeclineOrderSwipe_Invoked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new OrderDeclinePage());
+        }
     }
 }

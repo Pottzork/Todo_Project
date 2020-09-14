@@ -17,9 +17,9 @@ namespace XamarinTodo.Pages
             InitializeComponent();
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private async void SendReason_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Alert", "Vill du skicka detta fasansfulla?", "Yes!", "No");
+            await DisplayAlert("Alert", "Är du säker på att du vill avböja order?", "Nej.", "Ja!");
         }
     }
 }

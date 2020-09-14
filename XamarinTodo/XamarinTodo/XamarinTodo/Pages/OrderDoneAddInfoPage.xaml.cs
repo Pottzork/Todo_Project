@@ -16,5 +16,10 @@ namespace XamarinTodo.Pages
         {
             InitializeComponent();
         }
+
+        private async void ConfirmInfo_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Alert", "Är du säker på att du vill markera order som klar?", "Nej.", "Ja!");
+        }
     }
 }

@@ -6,8 +6,9 @@
         <SwipeView>
             <SwipeView.RightItems>
                 <SwipeItems Mode="Reveal">
-                    <SwipeItem Text="Lägg till info"
-                               BackgroundColor="Green" />
+                    <SwipeItem Text="Info"
+                               BackgroundColor="Green"
+                               Invoked="AddInfoSwipe_Invoked" />
                 </SwipeItems>
             </SwipeView.RightItems>
 

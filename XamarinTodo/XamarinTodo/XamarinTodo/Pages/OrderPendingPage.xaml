@@ -7,13 +7,15 @@
             <SwipeView.RightItems>
                 <SwipeItems Mode="Reveal">
                     <SwipeItem Text="Acceptera Order"
-                               BackgroundColor="Green" />
+                               BackgroundColor="Green"
+                               Invoked="AcceptOrderSwipe_Invoked" />
                 </SwipeItems>
             </SwipeView.RightItems>
             <SwipeView.LeftItems>
                 <SwipeItems Mode="Reveal">
                     <SwipeItem Text="Avböj"
-                               BackgroundColor="Red" />
+                               BackgroundColor="Red"
+                               Invoked="DeclineOrderSwipe_Invoked" />
                 </SwipeItems>
             </SwipeView.LeftItems>
 

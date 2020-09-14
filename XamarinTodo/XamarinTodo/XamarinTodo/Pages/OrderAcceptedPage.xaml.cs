@@ -16,5 +16,10 @@ namespace XamarinTodo.Pages
         {
             InitializeComponent();
         }
+
+        private async void AddInfoSwipe_Invoked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new OrderDoneAddInfoPage());
+        }
     }
 }

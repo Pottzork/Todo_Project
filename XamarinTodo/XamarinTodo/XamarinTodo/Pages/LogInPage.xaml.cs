@@ -16,5 +16,10 @@ namespace XamarinTodo.Pages
         {
             InitializeComponent();
         }
+
+        private async void LogIn_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new OrderOverviewPage()));
+        }
     }
 }
