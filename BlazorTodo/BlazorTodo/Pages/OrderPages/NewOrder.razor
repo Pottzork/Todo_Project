@@ -1,0 +1,43 @@
+﻿@page "/neworder"
+
+<h1>New Order</h1>
+
+<form action="/action_page.php">
+    <label for="fname">Customer ID</label><br />
+    <input type="text" id="custID" name="custID"><br><br>
+
+    <label>Select start date</label><br />
+    <MatDatePicker @bind-Value="FeaturesDateTime" EnableTime="true" Enable24hours="true"></MatDatePicker>
+
+    <fieldset>
+        <label>Select a operator</label>
+        <p>
+            <select id="myList">
+                <option value="1">Greger Andersson</option>
+                <option value="2">Lina Haraldsson</option>
+                <option value="3">Niklas Nilsson</option>
+                <option value="4">Patricia Isaksson</option>
+            </select>
+        </p>
+    </fieldset>
+    <label for="adress">Adress</label><br />
+    <input type="text" id="lname" name="lname"><br><br>
+    <label for="adress">Adress Information(Gate number etc)</label><br />
+    <input type="text" id="lname" name="lname"><br><br>
+    <label for="description">Description(Max 150 characters)</label><br />
+    <textarea rows="4" cols="50" maxlength="150" placeholder="Max 150 characters">
+
+    </textarea>
+</form>
+
+<button class="btn btn-primary" @onclick="SubmitOrder">Submit</button>
+
+@code {
+
+    void SubmitOrder()
+    {
+
+    }
+    DateTime? FeaturesDateTime = DateTime.Now;
+
+}
