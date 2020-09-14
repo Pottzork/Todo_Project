@@ -21,5 +21,13 @@ namespace XamarinTodo.Pages
         {
             Navigation.PushAsync(new OrderPendingPage());
         }
+
+
+
+        //Om OrderAccept = false så ska den visas här
+        //Samt att OrderComplete är false.
+        //Visa accepterade orders knutna till rätt OpId
+
+
     }
 }

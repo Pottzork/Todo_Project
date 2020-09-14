@@ -44,6 +44,5 @@
 
   <ItemGroup>
     <Folder Include="Data\Services\" />
-    <Folder Include="Models\" />
   </ItemGroup>
 </Project>
