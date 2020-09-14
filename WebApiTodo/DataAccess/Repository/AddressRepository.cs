@@ -85,6 +85,21 @@ namespace DataAccess.Repository
             }
         }
 
+        //public async Task<Addresss> SearchAddress(string name)
+        //{
+        //    using (var c = new SqlConnection(_connectionString))
+        //    {
+        //        try
+        //        {
+        //            return await c.QueryFirstOrDefaultAsync("SELECT * FROM Addresss WHERE Street  = @Street", new { name });
+        //        }
+        //        catch (Exception)
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //}
+
         public async Task<bool> UpdateAddress(Addresss address)
         {
             using (var c = new SqlConnection(_connectionString))

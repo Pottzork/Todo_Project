@@ -35,6 +35,11 @@ namespace DataAccess.Services
             return await _addressRepository.GetAddresses();
         }
 
+        //public async Task<Addresss> SearchAddress(string name)
+        //{
+        //    return await _addressRepository.SearchAddress(name);
+        //}
+
         public async Task<bool> UpdateAddress(Addresss address)
         {
             return await _addressRepository.UpdateAddress(address);

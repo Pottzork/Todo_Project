@@ -10,6 +10,7 @@ namespace DataAccess.Repository
     {
         Task<IEnumerable<Addresss>> GetAddresses();
         Task<Addresss> GetAddress(int id);
+        //Task<Addresss> SearchAddress(string name);
         Task<bool> AddAddress(Addresss address);
         Task<bool> UpdateAddress(Addresss address);
         Task<bool> DeleteAddress(int id);
