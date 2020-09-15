@@ -34,8 +34,8 @@ else
                     <td>@admin.FirstName</td>
                     <td>@admin.LastName</td>
                     <td>
-                        <a class="btn btn-success" href="admin/details/@admin.Id">View</a>
-                        <a class="btn btn-success" href="admin/edit/@admin.Id">Edit</a>
+                        <a class="btn btn-success" href="admin/details/@admin.Id">View/Edit</a>
+                        @*<a class="btn btn-success" href="admin/edit/@admin.Id">Edit</a>*@
                         <button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>
 
                     </td>

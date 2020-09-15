@@ -14,9 +14,11 @@
         <tr><th>Password: @admin.Password</th></tr>
 
     </table>
-<div class="BackButton">
-    <button class="btn btn-dark" @onclick="@GetBackOnePage">Back to admins</button>
-</div>
+
+    <div class="BackButton">
+        <button class="btn btn-dark" @onclick="@GetBackOnePage">Back to admins</button>
+        <a class="btn btn-success" href="admin/edit/@admin.Id">Edit</a>
+    </div>
 
 
 @code{
@@ -28,9 +30,10 @@
         admin = await client.GetFromJsonAsync<Admins>($"https://localhost:44374/api/admins/ {adminId}");
     }
 
-    void GetBackOnePage()
+    public void GetBackOnePage()
     {
         uriHelper.NavigateTo("admin");
     }
+
 
 }

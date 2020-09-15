@@ -1,4 +1,5 @@
-﻿<EditForm Model="@admin" OnValidSubmit="@OnValidSubmit">
+﻿@inject NavigationManager uriHelper
+<EditForm Model="@admin" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <div class="form-group">
         <label>Username :</label>
@@ -52,6 +53,7 @@
     <button type="submit" class="btn btn-success">
         @ButtonText
     </button>
+    <button class="btn btn-dark" @onclick="@GetBackOnePage">Back to admins</button>
 
 </EditForm>
 
@@ -60,4 +62,10 @@
     [Parameter] public Admins admin { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    public void GetBackOnePage()
+    {
+        uriHelper.NavigateTo("admin");
+    }
 }
+
