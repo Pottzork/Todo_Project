@@ -45,5 +45,11 @@ namespace WebApiTodo.Controllers
         {
             return Ok(await _operatorService.UpdateOperator(operators));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] Operators operators)
+        {
+            return Ok(await _operatorService.AddOperator(operators));
+        }
     }
 }

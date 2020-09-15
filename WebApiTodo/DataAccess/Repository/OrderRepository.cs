@@ -56,8 +56,8 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("INSERT INTO Orders (Opid, OrderDescription, OrderResponse, OrderAccept, OrderEstTime, OrderDate, OrderStart, OrderEnd, OrderComplete, OrderPrice, OrderInfo, CustomerCusId, AddressId) VALUES (@OpId, @OrderDescription, @OrderResponse, @OrderAccept, @OrderEstTime, @OrderDate, @OrderStart, @OrderEnd, @OrderComplete, @OrderPrice, @OrderInfo, @CustomerCusId, @AddressId)",
-                        new { order.OpId, order.OrderDescription, order.OrderResponse, order.OrderAccept, order.OrderEstTime, order.OrderDate, order.OrderStart, order.OrderEnd, order.OrderComplete, order.OrderPrice, order.OrderInfo, order.CustomerCusId, order.AddressId });
+                    await c.ExecuteAsync("INSERT INTO Orders (Opid, OrderDescription, OrderAccept, OrderDate, OrderStart, OrderEnd, OrderComplete, OrderPrice, OrderInfo, CustomerCusId) VALUES (@OpId, @OrderDescription, @OrderAccept, @OrderDate, @OrderStart, @OrderEnd, @OrderComplete, @OrderPrice, @OrderInfo, @CustomerCusId)",
+                        new { order.OpId, order.OrderDescription, order.OrderAccept, order.OrderDate, order.OrderStart, order.OrderEnd, order.OrderComplete, order.OrderPrice, order.OrderInfo, order.CustomerCusId});
 
                     return true;
                 }
@@ -74,8 +74,8 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("UPDATE Orders SET OpId = @OpId, OrderDescription = @OrderDescription, OrderResponse = @OrderResponse, OrderAccept = @OrderAccept, OrderEstTime = @OrderEstTime, OrderDate = @OrderDate, OrderStart = @OrderStart, OrderEnd = @OrderEnd, OrderComplete = @OrderComplete, OrderPrice = @OrderPrice, OrderInfo = @OrderInfo, CustomerCusId = @CustomerCusId, AddressId = @AddressId WHERE OrderId = @OrderId",
-                        new { order.OpId, order.OrderDescription, order.OrderResponse, order.OrderAccept, order.OrderEstTime, order.OrderDate, order.OrderStart, order.OrderEnd, order.OrderComplete, order.OrderPrice, order.OrderInfo, order.CustomerCusId, order.AddressId, order.OrderId });
+                    await c.ExecuteAsync("UPDATE Orders SET OpId = @OpId, OrderDescription = @OrderDescription, OrderAccept = @OrderAccept, OrderDate = @OrderDate, OrderStart = @OrderStart, OrderEnd = @OrderEnd, OrderComplete = @OrderComplete, OrderPrice = @OrderPrice, OrderInfo = @OrderInfo, CustomerCusId = @CustomerCusId WHERE OrderId = @OrderId",
+                        new { order.OpId, order.OrderDescription, order.OrderAccept, order.OrderDate, order.OrderStart, order.OrderEnd, order.OrderComplete, order.OrderPrice, order.OrderInfo, order.CustomerCusId, order.OrderId });
 
                     return true;
                 }

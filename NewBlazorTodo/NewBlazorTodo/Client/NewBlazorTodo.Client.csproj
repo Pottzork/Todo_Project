@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Order\History\" />
     <Folder Include="Pages\Order\New\" />
   </ItemGroup>
 

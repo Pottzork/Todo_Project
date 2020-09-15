@@ -22,8 +22,8 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("INSERT INTO Customers (CusName, CusEmail, CusPhone, CusCompany, AddressId) VALUES (@CusName, @CusEmail, @CusPhone, @CusCompany, @AddressId)",
-                        new { customer.CusName, customer.CusEmail, customer.CusPhone, customer.CusCompany, customer.AddressId });
+                    await c.ExecuteAsync("INSERT INTO Customers (Name, Email, Phone, Company, Address) VALUES (@Name, @Email, @Phone, @Company, @Address)",
+                        new { customer.Name, customer.Email, customer.Phone, customer.Company, customer.Address });
 
                     return true;
                 }
@@ -40,7 +40,7 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("DELETE Customers WHERE CusId = @Id", new { id });
+                    await c.ExecuteAsync("DELETE Customers WHERE Id = @Id", new { id });
 
                     return true;
                 }
@@ -74,7 +74,7 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    return await c.QueryFirstOrDefaultAsync<Customers>("SELECT * FROM Customers WHERE CusId = @Id", new { id });
+                    return await c.QueryFirstOrDefaultAsync<Customers>("SELECT * FROM Customers WHERE Id = @Id", new { id });
                 }
                 catch (Exception)
                 {
@@ -90,8 +90,8 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("UPDATE Customers SET CusName = @CusName, CusEmail = @CusEmail, CusPhone = @CusPhone, CusCompany = @CusCompany, AddressId = @AddressId WHERE CusId = @CusId",
-                        new { customer.CusName, customer.CusEmail, customer.CusPhone, customer.CusCompany, customer.AddressId, customer.CusId });
+                    await c.ExecuteAsync("UPDATE Customers SET Name = @Name, Email = @Email, Phone = @Phone, Company = @Company, Address = @Address WHERE Id = @Id",
+                        new { customer.Name, customer.Email, customer.Phone, customer.Company, customer.Address, customer.Id });
 
                     return true;
                 }

@@ -15,7 +15,7 @@
     async Task EditAdmin()
     {
         await http.PutAsJsonAsync("https://localhost:44374/api/admins", admin);
-        await js.InvokeVoidAsync("alert", $"Updated Successfully!");
+        await js.InvokeVoidAsync("alert", $"Updated admin {admin.FirstName} {admin.LastName} Successfully!");
         uriHelper.NavigateTo("admin");
     }
 }

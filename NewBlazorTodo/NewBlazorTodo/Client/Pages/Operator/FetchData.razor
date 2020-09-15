@@ -1,0 +1,73 @@
+﻿@page "/operatorlist"
+@inject HttpClient client
+@inject IJSRuntime js
+
+<h3>Operator</h3>
+<small>Add Operator</small>
+<div class="form-group">
+    <a class="btn btn-success" href="operator/create"><i class="oi oi-plus"></i> Create New</a>
+</div>
+<br>
+
+@if (techOp == null)
+{
+    <text>Loading...</text>
+}
+else if (techOp.Length == 0)
+{
+    <text>No Records Found.</text>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>UserName</th>
+                <th>Password</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Operators _operator in techOp)
+            {
+            <tr>
+                <td>@_operator.OpId</td>
+                <td>@_operator.UserName</td>
+                <td>@_operator.Password</td>
+                <td>@_operator.FirstName</td>
+                <td>@_operator.LastName</td>
+                <td>@_operator.Email</td>
+                <td>@_operator.Phone</td>
+                <td>@_operator.Location</td>
+                <td>
+                    <a class="btn btn-success" href="#">Edit</a>
+            <button class="btn btn-danger" @onclick="@(() => Delete(_operator.OpId))">Delete</button>
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+}
+@code {
+    Operators[] techOp { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        techOp = await client.GetFromJsonAsync<Operators[]>("https://localhost:44374/api/operators");
+    }
+
+    async Task Delete(int id)
+    {
+        var _operators = this.techOp.First(x => x.OpId == id);
+        if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {_operators.FirstName}'s with ID: ({_operators.OpId}) Record?"))
+        {
+            await client.DeleteAsync($"https://localhost:44374/api/operators/ {id}");
+            await OnInitializedAsync();
+        }
+    }
+}

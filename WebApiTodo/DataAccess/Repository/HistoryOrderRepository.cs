@@ -22,7 +22,7 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("INSERT INTO OrderHistorys (OrderDescription, OrderResponse, OrderAccept, OrderStart, OrderEnd, OrderTime, OrderComplete, OrderPrice, OrderId, AddressId) VALUES (@OrderDescription, @OrderResponse, @OrderAccept, @OrderStart, @OrderEnd, @OrderTime, @OrderComplete, @OrderPrice, @OrderId, @AddressId)",
+                    await c.ExecuteAsync("INSERT INTO OrderHistorys (OrderDescription, OrderResponse, OrderAccept, OrderStart, OrderEnd, OrderTime, OrderComplete, OrderPrice, OrderId) VALUES (@OrderDescription, @OrderResponse, @OrderAccept, @OrderStart, @OrderEnd, @OrderTime, @OrderComplete, @OrderPrice, @OrderId)",
                                         new { orderHistory.OrderDescription,
                                             orderHistory.OrderResponse,
                                             orderHistory.OrderAccept,
@@ -31,8 +31,7 @@ namespace DataAccess.Repository
                                             orderHistory.OrderTime,
                                             orderHistory.OrderComplete,
                                             orderHistory.OrderPrice,
-                                            orderHistory.OrderId,
-                                            orderHistory.AddressId });
+                                            orderHistory.OrderId});
                     return true;
                 }
                 catch (Exception)

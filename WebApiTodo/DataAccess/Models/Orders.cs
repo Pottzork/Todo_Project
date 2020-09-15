@@ -9,9 +9,7 @@ namespace DataAccess.Models
         public int OrderId { get; set; }
         public int OpId { get; set; }
         public string OrderDescription { get; set; }
-        public string OrderResponse { get; set; }
         public bool OrderAccept { get; set; }
-        public DateTime OrderEstTime { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime OrderStart { get; set; }
         public DateTime OrderEnd { get; set; }
@@ -19,6 +17,5 @@ namespace DataAccess.Models
         public float OrderPrice { get; set; }
         public string OrderInfo { get; set; }
         public int CustomerCusId { get; set; }
-        public int AddressId { get; set; }
     }
 }
