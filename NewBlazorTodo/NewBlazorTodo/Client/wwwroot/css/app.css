@@ -180,6 +180,7 @@ app {
         /* Never collapse the sidebar for wide screens */
         display: block;
     }
+   
 }
 #customers th {
     padding-top: 12px;
