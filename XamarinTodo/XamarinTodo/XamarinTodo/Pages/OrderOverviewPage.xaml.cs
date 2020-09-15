@@ -25,8 +25,8 @@ namespace XamarinTodo.Pages
 
         private void GetOrders()
         {
-            var path = "/Orders";
-            var order = ToDoServices.GetRequest(path);
+            var path = "Orders";
+            var response = ToDoServices.GetRequest(path);
         }
 
         //Om OrderAccept = false så ska den visas här
