@@ -29,8 +29,24 @@ namespace WebApiTodo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IWorkOrderService, WorkOrderService>();
-            services.AddSingleton<IWorkOrderRepository>(c => new WorkOrderRepository(Configuration["ConnectionString"]));
+            services.AddSingleton<IOrderService, OrderService>();
+            services.AddSingleton<IOrderRepository>(c => new OrderRepository(Configuration["ConnectionString"]));
+
+            services.AddSingleton<IAdminService, AdminService>();
+            services.AddSingleton<IAdminRepository>(c => new AdminRepository(Configuration["ConnectionString"]));
+
+            services.AddSingleton<ICustomerService, CustomerService>();
+            services.AddSingleton<ICustomerRepository>(c => new CustomerRepository(Configuration["ConnectionString"]));
+
+            services.AddSingleton<IAddressService, AddressService>();
+            services.AddSingleton<IAddressRepository>(c => new AddressRepository(Configuration["ConnectionString"]));
+
+            services.AddSingleton<IHistoryOrderService, HistoryOrderService>();
+            services.AddSingleton<IHistoryOrderRepository>(c => new HistoryOrderRepository(Configuration["ConnectionString"]));
+
+            services.AddSingleton<IOperatorService, OperatorService>();
+            services.AddSingleton<IOperatorRepository>(c => new OperatorRepository(Configuration["ConnectionString"]));
+
             services.AddControllers();
         }
 
