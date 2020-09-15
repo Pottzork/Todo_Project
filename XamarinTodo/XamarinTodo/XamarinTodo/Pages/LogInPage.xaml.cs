@@ -10,16 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace XamarinTodo.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OrderDoneAddInfoPage : ContentPage
+    public partial class LogInPage : ContentPage
     {
-        public OrderDoneAddInfoPage()
+        public LogInPage()
         {
             InitializeComponent();
         }
 
-        private async void ConfirmInfo_Clicked(object sender, EventArgs e)
+        private async void LogIn_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Alert", "Är du säker på att du vill markera order som klar?", "Nej.", "Ja!");
+            await Navigation.PushModalAsync(new NavigationPage(new OrderOverviewPage()));
         }
     }
 }

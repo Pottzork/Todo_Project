@@ -10,11 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace XamarinTodo.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AcceptOrderPage : ContentPage
+    public partial class OrderDeclinePage : ContentPage
     {
-        public AcceptOrderPage()
+        public OrderDeclinePage()
         {
             InitializeComponent();
+        }
+
+        private async void SendReason_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Alert", "Är du säker på att du vill avböja order?", "Nej.", "Ja!");
         }
     }
 }

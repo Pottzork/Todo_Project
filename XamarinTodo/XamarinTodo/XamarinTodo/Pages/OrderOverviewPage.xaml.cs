@@ -19,7 +19,15 @@ namespace XamarinTodo.Pages
 
         private void OrderTapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new AcceptOrderPage());
+            Navigation.PushAsync(new OrderPendingPage());
         }
+
+
+
+        //Om OrderAccept = false så ska den visas här
+        //Samt att OrderComplete är false.
+        //Visa accepterade orders knutna till rätt OpId
+
+
     }
 }
