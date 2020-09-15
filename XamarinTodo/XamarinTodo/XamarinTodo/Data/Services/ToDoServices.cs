@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-
-
-
 namespace XamarinTodo.Data.Services
 {
     public class ToDoServices
     {
-
-        private const string HOST = "https://localhost:44374/api/orders";
+        private const string HOST = "https://localhost:44374/api";
 
         public static string GetRequest(string path)
         {
@@ -20,9 +16,9 @@ namespace XamarinTodo.Data.Services
             var data = client.GetAsync(HOST + path);
             var result = data.Result;
 
-            string jsonData = result.Content.ReadAsStringAsync().Result;
+            string jsonResult = result.Content.ReadAsStringAsync().Result;
 
-            return jsonData;
+            return jsonResult;
         }
     }
 }
