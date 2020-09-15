@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace XamarinTodo.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OrderAcceptetPage : ContentPage
+    public partial class OrderAcceptedPage : ContentPage
     {
-        public OrderAcceptetPage()
+        public OrderAcceptedPage()
         {
             InitializeComponent();
         }
