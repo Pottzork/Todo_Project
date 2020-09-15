@@ -1,4 +1,5 @@
 ﻿using DataAccess.Models;
+using DataAccess.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,38 +7,37 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Services
 {
-   public class OperatorService : IOperatorService
+    public class OperatorService : IOperatorService
     {
-        private readonly IOperatorService _operatorService;
+        private readonly IOperatorRepository _operatorRepository;
 
-        public OperatorService(IOperatorService operatorService)
+        public OperatorService(IOperatorRepository operatorRepository)
         {
-            this._operatorService = operatorService;
+            this._operatorRepository = operatorRepository;
+        }
+        public async Task<bool> AddOperator(Operators Operator)
+        {
+            return await _operatorRepository.AddOperator(Operator);
         }
 
-        public Task<Operators> AddWorkingOperator(Operators Operator)
+        public async Task<bool> DeleteOperator(int id)
         {
-            throw new NotImplementedException();
+            return await _operatorRepository.DeleteOperator(id);
         }
 
-        public void DeleteWorkingOperator(int id)
+        public async Task<IEnumerable<Operators>> GetAllOperators()
         {
-            throw new NotImplementedException();
+            return await _operatorRepository.GetAllOperators();
         }
 
-        public Task<IEnumerable<Operators>> GetAllWorkingOperators()
+        public async Task<Operators> GetOperator(int id)
         {
-            throw new NotImplementedException();
+            return await _operatorRepository.GetOperator(id);
         }
 
-        public Task<Operators> GetWorkingOperator(int id)
+        public async Task<bool> UpdateOperator(Operators Operator)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Operators> UpdateWorkingOperator(Operators Operator)
-        {
-            throw new NotImplementedException();
+            return await _operatorRepository.UpdateOperator(Operator);
         }
     }
 }

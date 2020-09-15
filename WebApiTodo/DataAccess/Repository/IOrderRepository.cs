@@ -11,5 +11,7 @@ namespace DataAccess.Repository
         Task<IEnumerable<Orders>> GetOrders();
         Task<Orders> GetOrder(int id);
         Task<bool> AddOrder(Orders order);
+        Task<bool> UpdateOrder(Orders order);
+        Task<bool> DeleteOrder(int id);
     }
 }

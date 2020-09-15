@@ -8,10 +8,10 @@ namespace DataAccess.Repository
 {
     public interface IOperatorRepository
     {
-        Task<IEnumerable<Operators>> GetAllWorkingOperators();
-        Task<Operators> GetWorkingOperator(int id);
-        Task<Operators> AddWorkingOperator(Operators workingOperator);
-        Task<Operators> UpdateWorkingOperator(Operators workingOperator);
-        void DeleteWorkingOperator(int id);
+        Task<IEnumerable<Operators>> GetAllOperators();
+        Task<Operators> GetOperator(int id);
+        Task<bool> AddOperator(Operators Operator);
+        Task<bool> UpdateOperator(Operators Operator);
+        Task<bool> DeleteOperator(int id);
     }
 }

@@ -32,5 +32,15 @@ namespace DataAccess.Services
         {
             return await _orderRepository.AddOrder(order);
         }
+
+        public async Task<bool> UpdateOrder(Orders order)
+        {
+            return await _orderRepository.UpdateOrder(order);
+        }
+
+        public async Task<bool> DeleteOrder(int id)
+        {
+            return await _orderRepository.DeleteOrder(id);
+        }
     }
 }
