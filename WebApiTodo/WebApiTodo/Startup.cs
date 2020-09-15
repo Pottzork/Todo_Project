@@ -46,7 +46,12 @@ namespace WebApiTodo
 
             services.AddSingleton<IOperatorService, OperatorService>();
             services.AddSingleton<IOperatorRepository>(c => new OperatorRepository(Configuration["ConnectionString"]));
-
+            services.AddCors(o => {
+                o.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
             services.AddControllers();
         }
 
@@ -59,10 +64,11 @@ namespace WebApiTodo
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("CorsPolicy");
             app.UseRouting();
 
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {

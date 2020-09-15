@@ -1,0 +1,17 @@
+﻿@page "/admin/create"
+@inject HttpClient http
+@inject NavigationManager uriHelper
+
+<h3>Create</h3>
+
+<Form ButtonText="Create Developer" admin="@admin"
+      OnValidSubmit="@CreateAdmin" />
+
+@code {
+    Admins admin = new Admins();
+    async Task CreateAdmin()
+    {
+        await http.PostAsJsonAsync("https://localhost:44374/api/admins", admin);
+        uriHelper.NavigateTo("admin");
+    }
+}
