@@ -46,7 +46,7 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("DELETE FROM Operators WHERE OpId = @id", new { id });
+                    await c.ExecuteAsync("DELETE FROM Operators WHERE Id = @id", new { id });
                     return true;
                 }
                 catch (Exception)
@@ -83,7 +83,7 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    return await c.QueryFirstOrDefaultAsync<Operators>("SELECT * FROM Operators WHERE OpId = @Id", new { id });
+                    return await c.QueryFirstOrDefaultAsync<Operators>("SELECT * FROM Operators WHERE Id = @Id", new { id });
                 }
                 catch (Exception)
                 {
@@ -102,8 +102,8 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("UPDATE Operators SET UserName = @UserName, Password = @Password, FirstName = @FirstName, LastName = @LastName, Email = @Email, Phone = @Phone, Location = @Location WHERE OpId = @OpId",
-                        new { Operator.UserName, Operator.Password, Operator.FirstName, Operator.LastName, Operator.Email, Operator.Phone, Operator.Location, Operator.OpId });
+                    await c.ExecuteAsync("UPDATE Operators SET UserName = @UserName, Password = @Password, FirstName = @FirstName, LastName = @LastName, Email = @Email, Phone = @Phone, Location = @Location WHERE Id = @Id",
+                        new { Operator.UserName, Operator.Password, Operator.FirstName, Operator.LastName, Operator.Email, Operator.Phone, Operator.Location, Operator.Id });
 
                     return true;
                 }

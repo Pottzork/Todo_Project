@@ -1,6 +1,7 @@
 ﻿@page "/admin/create"
 @inject HttpClient http
 @inject NavigationManager uriHelper
+@inject IJSRuntime js
 
 <h3>Create</h3>
 
@@ -12,6 +13,7 @@
     async Task CreateAdmin()
     {
         await http.PostAsJsonAsync("https://localhost:44374/api/admins", admin);
+        await js.InvokeVoidAsync("alert", $"Created admin {admin.FirstName} Successfully!");
         uriHelper.NavigateTo("admin");
     }
 }

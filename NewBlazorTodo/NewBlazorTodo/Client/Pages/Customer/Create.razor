@@ -1,6 +1,7 @@
 ﻿@page "/customer/create"
 @inject HttpClient http
 @inject NavigationManager uriHelper
+@inject IJSRuntime js
 
 <h3>Create</h3>
 
@@ -12,6 +13,7 @@
     async Task CreateCustomer()
     {
         await http.PostAsJsonAsync("https://localhost:44374/api/customers", customer);
+        await js.InvokeVoidAsync("alert", $"Created customer {customer.Name} Successfully!");
         uriHelper.NavigateTo("customerlist");
     }
 }

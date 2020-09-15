@@ -1,32 +1,32 @@
-﻿<EditForm Model="@techOp" OnValidSubmit="@OnValidSubmit">
+﻿<EditForm Model="@o" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <div class="form-group">
-        <label>Username :</label>
+        <label>UserName :</label>
         <div>
-            <InputText @bind-Value="@techOp.UserName" />
-            <ValidationMessage For="@(() => techOp.UserName)" />
+            <InputText @bind-Value="@o.UserName" />
+            <ValidationMessage For="@(() => o.UserName)" />
         </div>
     </div>
     <div class="form-group">
         <label>Password :</label>
         <div>
-            <InputText @bind-Value="@techOp.Password" />
-            <ValidationMessage For="@(() => techOp.Password)" />
+            <InputText @bind-Value="@o.Password" />
+            <ValidationMessage For="@(() => o.Password)" />
         </div>
     </div>
     <div class="form-group">
-        <label>First Name :</label>
+        <label>FirstName :</label>
         <div>
-            <InputText @bind-Value="@techOp.FirstName" />
-            <ValidationMessage For="@(() => techOp.FirstName)" />
+            <InputText @bind-Value="@o.FirstName" />
+            <ValidationMessage For="@(() => o.FirstName)" />
         </div>
     </div>
     <div class="form-group ">
         <div>
-            <label>Last Name :</label>
+            <label>Last :</label>
             <div>
-                <InputText @bind-Value="@techOp.LastName" />
-                <ValidationMessage For="@(() => techOp.LastName)" />
+                <InputText @bind-Value="@o.LastName" />
+                <ValidationMessage For="@(() => o.LastName)" />
             </div>
         </div>
     </div>
@@ -34,17 +34,18 @@
         <div>
             <label>Email :</label>
             <div>
-                <InputText @bind-Value="@techOp.Email" />
-                <ValidationMessage For="@(() => techOp.Email)" />
+                <InputText @bind-Value="@o.Email" />
+                <ValidationMessage For="@(() => o.Email)" />
             </div>
         </div>
     </div>
+
     <div class="form-group ">
         <div>
-            <label>Phone Number :</label>
+            <label>Phone :</label>
             <div>
-                <InputText @bind-Value="@techOp.Phone" />
-                <ValidationMessage For="@(() => techOp.Phone)" />
+                <InputText @bind-Value="@o.Phone" />
+                <ValidationMessage For="@(() => o.Phone)" />
             </div>
         </div>
     </div>
@@ -53,8 +54,8 @@
         <div>
             <label>Location :</label>
             <div>
-                <InputText @bind-Value="@techOp.Location" />
-                <ValidationMessage For="@(() => techOp.Location)" />
+                <InputText @bind-Value="@o.Location" />
+                <ValidationMessage For="@(() => o.Location)" />
             </div>
         </div>
     </div>
@@ -67,7 +68,7 @@
 
 
 @code {
-    [Parameter] public Operators techOp { get; set; }
+    [Parameter] public Operators o { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
 }

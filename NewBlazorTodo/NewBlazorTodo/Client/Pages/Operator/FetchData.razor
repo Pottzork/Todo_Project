@@ -33,20 +33,20 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (Operators _operator in techOp)
+            @foreach (Operators o in techOp)
             {
             <tr>
-                <td>@_operator.OpId</td>
-                <td>@_operator.UserName</td>
-                <td>@_operator.Password</td>
-                <td>@_operator.FirstName</td>
-                <td>@_operator.LastName</td>
-                <td>@_operator.Email</td>
-                <td>@_operator.Phone</td>
-                <td>@_operator.Location</td>
+                <td>@o.Id</td>
+                <td>@o.UserName</td>
+                <td>@o.Password</td>
+                <td>@o.FirstName</td>
+                <td>@o.LastName</td>
+                <td>@o.Email</td>
+                <td>@o.Phone</td>
+                <td>@o.Location</td>
                 <td>
-                    <a class="btn btn-success" href="#">Edit</a>
-            <button class="btn btn-danger" @onclick="@(() => Delete(_operator.OpId))">Delete</button>
+                    <a class="btn btn-success" href="operator/edit/@o.Id">Edit</a>
+            <button class="btn btn-danger" @onclick="@(() => Delete(o.Id))">Delete</button>
                 </td>
             </tr>
             }
@@ -63,8 +63,8 @@ else
 
     async Task Delete(int id)
     {
-        var _operators = this.techOp.First(x => x.OpId == id);
-        if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {_operators.FirstName}'s with ID: ({_operators.OpId}) Record?"))
+        var _operators = this.techOp.First(x => x.Id == id);
+        if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {_operators.FirstName}'s with ID: ({_operators.Id}) Record?"))
         {
             await client.DeleteAsync($"https://localhost:44374/api/operators/ {id}");
             await OnInitializedAsync();
