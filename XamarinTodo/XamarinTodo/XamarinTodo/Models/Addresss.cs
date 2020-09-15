@@ -12,6 +12,5 @@ namespace XamarinTodo.Models
         public string City { get; set; }
         public string PostalCode { get; set; }
         public String Country { get; set; }
-
     }
 }
