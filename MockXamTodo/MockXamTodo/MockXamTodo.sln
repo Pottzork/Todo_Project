@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockXamTodo.Android", "MockXamTodo.Android\MockXamTodo.Android.csproj", "{28D7C277-533C-4F74-A0BA-D5DE14B1526D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockXamTodo", "MockXamTodo\MockXamTodo.csproj", "{3E4DD778-5543-4925-B8CE-609ECC05C2F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28D7C277-533C-4F74-A0BA-D5DE14B1526D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D7C277-533C-4F74-A0BA-D5DE14B1526D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28D7C277-533C-4F74-A0BA-D5DE14B1526D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{28D7C277-533C-4F74-A0BA-D5DE14B1526D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28D7C277-533C-4F74-A0BA-D5DE14B1526D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28D7C277-533C-4F74-A0BA-D5DE14B1526D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3E4DD778-5543-4925-B8CE-609ECC05C2F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E4DD778-5543-4925-B8CE-609ECC05C2F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E4DD778-5543-4925-B8CE-609ECC05C2F0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3E4DD778-5543-4925-B8CE-609ECC05C2F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E4DD778-5543-4925-B8CE-609ECC05C2F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E4DD778-5543-4925-B8CE-609ECC05C2F0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {52A56CF5-CFDF-4970-9843-461C5FFBD664}
+	EndGlobalSection
+EndGlobal
