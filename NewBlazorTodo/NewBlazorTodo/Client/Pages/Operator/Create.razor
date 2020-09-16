@@ -1,0 +1,19 @@
+﻿@page "/operator/create"
+@inject HttpClient http
+@inject NavigationManager uriHelper
+@inject IJSRuntime js
+
+<h3>Create</h3>
+
+<Form ButtonText="Create Operator" o="@o"
+      OnValidSubmit="@CreateOperator" />
+
+@code {
+    Operators o = new Operators();
+    async Task CreateOperator()
+    {
+        await http.PostAsJsonAsync("https://localhost:44374/api/operators", o);
+        await js.InvokeVoidAsync("alert", $"Created operator {o.FirstName} {o.LastName} Successfully!");
+        uriHelper.NavigateTo("operatorlist");
+    }
+}

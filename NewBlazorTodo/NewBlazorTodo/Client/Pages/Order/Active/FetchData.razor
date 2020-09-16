@@ -1,0 +1,72 @@
+﻿@page "/activeorders"
+@inject HttpClient client
+@inject IJSRuntime js
+
+<h3>Active Orders</h3>
+<small>Here you can see all active orders</small>
+
+
+<br>
+
+@if (orders == null)
+{
+    <text>Loading...</text>
+}
+else if (orders.Length == 0)
+{
+    <text>No Records Found.</text>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Operator ID</th>
+                <th>Description</th>
+                <th>Order start</th>
+                <th>Specific information</th>
+                <th>Customer ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Orders order in orders)
+            {
+                if (order.orderComplete == false)
+                {
+                    <tr>
+                        <td>@order.orderId</td>
+                        <td>@order.opId</td>
+                        <td>@order.orderDescription</td>
+                        <td>@order.orderStart</td>
+                        <td>@order.orderInfo</td>
+                        <td>@order.customerCusId</td>
+                        <td>
+                            @*<a class="btn btn-success" href="admin/edit/@order.Id">Edit</a>
+                        <button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>*@
+                        </td>
+                    </tr>
+                }
+
+            }
+
+        </tbody>
+    </table>
+}
+@code {
+    Orders[] orders { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        orders = await client.GetFromJsonAsync<Orders[]>("https://localhost:44374/api/orders");
+    }
+
+    //async Task Delete(int adminId)
+    //{
+    //    var order = orders.First(x => x.Id == adminId);
+    //    if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {order.FirstName}'s ({order.Id}) Record?"))
+    //    {
+    //        await client.DeleteAsync($"https://localhost:44374/api/admins/ {adminId}");
+    //        await OnInitializedAsync();
+    //    }
+    //}
+}

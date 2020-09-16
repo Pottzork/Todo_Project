@@ -1,0 +1,19 @@
+﻿@page "/customer/create"
+@inject HttpClient http
+@inject NavigationManager uriHelper
+@inject IJSRuntime js
+
+<h3>Create</h3>
+
+<Form ButtonText="Create Customer" customer="@customer"
+      OnValidSubmit="@CreateCustomer" />
+
+@code {
+    Customers customer = new Customers();
+    async Task CreateCustomer()
+    {
+        await http.PostAsJsonAsync("https://localhost:44374/api/customers", customer);
+        await js.InvokeVoidAsync("alert", $"Created customer {customer.Name} Successfully!");
+        uriHelper.NavigateTo("customerlist");
+    }
+}
