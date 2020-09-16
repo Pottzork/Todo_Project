@@ -12,15 +12,34 @@
                 <Label Text="2020-09-11" FontSize="25" Margin="10,0,0,0" />
                 <Frame BackgroundColor="#f6f6f6" CornerRadius="15">
                     <Grid Margin="5">
-                        <ScrollView>
+                        
+                        <!--<Label x:Name="admintxt" HorizontalOptions="EndAndExpand" FontSize="30"/>
+                        <Button Text="Add admin name" Clicked="Button_Clicked" Margin="150,30,30,30"/>-->
+
+
+                        <ListView>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout>
+                                            <Label Text="{Binding UserName}"></Label>
+                                            <Label Text="{Binding FirstName}"></Label>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        
+                        
+                        <!--<ScrollView>
                         <Label Text="Energiverket" Grid.Column="0" Grid.Row="0" FontSize="25" FontAttributes="Bold" VerticalTextAlignment="Start" />
                         <Label Text="#731432" Grid.Column="1" Grid.Row="0" FontSize="18" VerticalTextAlignment="Start" />
                         <Label Text="Johan Willins gata 3, 416 64 Göteborg" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" />
                         <Label Text="Anders Andersson" Grid.Row="2" FontSize="18" Grid.ColumnSpan="2" />
                         <Label Text="0730-436536" Grid.Row="3" FontSize="18" Grid.ColumnSpan="2" />
                         <Label Text="En katalysator behöver fixas i kundens generator." Grid.Row="4" FontSize="18" Grid.ColumnSpan="2" />
-                        <Label Text="Tryck för mer info" Grid.Row="5" Grid.ColumnSpan="2" HorizontalOptions="Center" Opacity=".7" VerticalOptions="End" />
-                    </ScrollView>
+                        <Label Text="Tryck för mer info" Grid.Row="5" Grid.ColumnSpan="2" HorizontalOptions="Center" Opacity=".7" VerticalOptions="End" />-->
+                    <!--</ScrollView>-->
                     </Grid>
                 </Frame>
             </StackLayout>
