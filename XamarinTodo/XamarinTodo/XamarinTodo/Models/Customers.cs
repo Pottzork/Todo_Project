@@ -14,5 +14,7 @@ namespace XamarinTodo.Models
         public string Company { get; set; }
         public string Address { get; set; }
         public int OrderID { get; set; }
+
+
     }
 }

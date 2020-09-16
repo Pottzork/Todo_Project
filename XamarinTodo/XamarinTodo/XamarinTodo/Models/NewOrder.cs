@@ -6,46 +6,30 @@ using System.Text;
 
 namespace XamarinTodo.Models
 {
-    public class NewOrder
+    class NewOrder
     {
         Customers customers = new Customers();
         Orders orders = new Orders();
         Operators operators = new Operators();
 
+        public string company;
+        public int orderId;
+        public string address;
+        public string name;
+        public string phone;
+        public string orderDescription
 
-        private string company;
-
-        public string Company
+        public NewOrder(string Company, int OrderId, string Address, string Name, string Phone, string OrderDescription )
         {
-            get { return customers.Company; }
-            set { customers.Company = company; }
+            company = Company;
+            orderId = OrderId;
+            address = Address;
+            name = Name;
+            phone = Phone;
+            orderDescription = OrderDescription;
         }
 
-        private int orderId;
-
-        public int OrderId
-        {
-            get { return orders.OrderId; }
-            set { orders.OrderId = orderId; }
-        }
-
-        private string address;
-
-        public string Address
-        {
-            get { return customers.Address; }
-            set { customers.Address = address; }
-        }
-
-
-        //public string Company { get; set; }
-        //public int OrderId { get; set; }
-        //public string Address { get; set; }
-        public string CustomerName { get; set; }
-        public string Phone { get; set; }
-        public string  OrderDescription { get; set; }
-
-
-
+    
+       
     }
 }
