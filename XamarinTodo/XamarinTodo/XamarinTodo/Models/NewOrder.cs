@@ -17,7 +17,7 @@ namespace XamarinTodo.Models
         public string address;
         public string name;
         public string phone;
-        public string orderDescription
+        public string orderDescription;
 
         public NewOrder(string Company, int OrderId, string Address, string Name, string Phone, string OrderDescription )
         {
