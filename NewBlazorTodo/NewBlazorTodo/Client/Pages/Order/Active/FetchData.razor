@@ -34,18 +34,18 @@ else
             {
                 if (order.orderComplete == false)
                 {
-                    <tr>
-                        <td>@order.orderId</td>
-                        <td>@order.opId</td>
-                        <td>@order.orderDescription</td>
-                        <td>@order.orderStart</td>
-                        <td>@order.orderInfo</td>
-                        <td>@order.customerCusId</td>
-                        <td>
-                            @*<a class="btn btn-success" href="admin/edit/@order.Id">Edit</a>
-                        <button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>*@
-                        </td>
-                    </tr>
+            <tr>
+                <td>@order.orderId</td>
+                <td>@order.OperatorID</td>               
+                <td>@order.orderDescription</td>
+                <td>@order.orderStart</td>
+                <td>@order.orderInfo</td>
+                <td>@order.customerCusId</td>
+                <td>
+                    @*<a class="btn btn-success" href="admin/edit/@order.Id">Edit</a>
+            <button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>*@
+                </td>
+            </tr>
                 }
 
             }
@@ -55,9 +55,12 @@ else
 }
 @code {
     Orders[] orders { get; set; }
+    Operators[] _operator { get; set; }
     protected override async Task OnInitializedAsync()
     {
         orders = await client.GetFromJsonAsync<Orders[]>("https://localhost:44374/api/orders");
+        _operator = await client.GetFromJsonAsync<Operators[]>("https://localhost:44374/api/operators");
+
     }
 
     //async Task Delete(int adminId)
