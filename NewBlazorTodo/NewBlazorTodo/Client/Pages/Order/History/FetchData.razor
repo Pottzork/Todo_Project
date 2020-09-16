@@ -57,6 +57,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         orders = await client.GetFromJsonAsync<Orders[]>("https://localhost:44374/api/orders");
+        
     }
 
     //async Task Delete(int adminId)

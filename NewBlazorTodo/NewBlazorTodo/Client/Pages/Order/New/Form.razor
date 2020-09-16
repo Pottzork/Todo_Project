@@ -2,8 +2,8 @@
 <EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <div class="form-group">
-        <label>Operator :</label>
-
+        @*<label>Operator :</label>*@
+        <label>Select Operator</label>
         <div>
             <InputNumber @bind-Value="@order.OperatorID" />
             <ValidationMessage For="@(() => order.OperatorID)" />
@@ -70,7 +70,7 @@
             </div>
         </div>
     </div>*@
-
+    
     <div class="form-group ">
         <div>
             <label>Information :</label>
@@ -100,6 +100,14 @@
 
 
 @code {
+
+    Operators[] _operator { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        HttpClient client = new HttpClient();
+        _operator = await client.GetFromJsonAsync<Operators[]>("https://localhost:44374/api/Operators");
+    }
+
     [Parameter] public Orders order { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }

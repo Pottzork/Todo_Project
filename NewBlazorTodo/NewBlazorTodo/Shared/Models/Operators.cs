@@ -15,4 +15,7 @@ namespace NewBlazorTodo.Shared.Models
         public string Phone { get; set; }
         public string Location { get; set; }
     }
+
+    
 }
+
