@@ -1,0 +1,19 @@
+﻿@page "/order/create"
+@inject HttpClient http
+@inject NavigationManager uriHelper
+@inject IJSRuntime js
+
+<h3>Create</h3>
+
+<Form ButtonText="Create Order" order="@order"
+      OnValidSubmit="@CreateOrder" />
+
+@code {
+    Orders order = new Orders();
+    async Task CreateOrder()
+    {
+        await http.PostAsJsonAsync("https://localhost:44374/api/orders", order);
+        await js.InvokeVoidAsync("alert", $"Created order Successfully!");
+        uriHelper.NavigateTo("activelist");
+    }
+}

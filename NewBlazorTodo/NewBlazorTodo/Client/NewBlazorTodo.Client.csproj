@@ -16,8 +16,4 @@
     <ProjectReference Include="..\Shared\NewBlazorTodo.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Order\New\" />
-  </ItemGroup>
-
 </Project>

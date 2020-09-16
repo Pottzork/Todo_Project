@@ -1,0 +1,111 @@
+﻿@inject NavigationManager uriHelper
+<EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label>Operator :</label>
+        <div>
+            <InputNumber @bind-Value="@order.OperatorID" />
+            <ValidationMessage For="@(() => order.OperatorID)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Description :</label>
+        <div>
+            <InputText @bind-Value="@order.orderDescription" />
+            <ValidationMessage For="@(() => order.orderDescription)" />
+        </div>
+    </div>
+    @*<div class="form-group">
+        <label>Order Accepted? :</label>
+        <div>
+            <InputCheckbox @bind-Value="@order.orderAccept" >YES</InputCheckbox>
+            <ValidationMessage For="@(() => order.orderAccept)" />
+        </div>
+    </div>*@
+    @*<div class="form-group ">
+        <div>
+            <label>Order Date :</label>
+            <div>
+                <InputDate @bind-Value="@order.orderDate" />
+                <ValidationMessage For="@(() => order.orderDate)" />
+            </div>
+        </div>
+    </div>*@
+    <div class="form-group ">
+        <div>
+            <label>StartDate of WorkOrder :</label>
+            <div>
+                <InputDate @bind-Value="@order.orderStart" />
+                <ValidationMessage For="@(() => order.orderStart)" />
+            </div>
+        </div>
+    </div>
+    @*<div class="form-group ">
+        <div>
+            <label>Order EndDate :</label>
+            <div>
+                <InputDate @bind-Value="@order.orderEnd" />
+                <ValidationMessage For="@(() => order.orderEnd)" />
+            </div>
+        </div>
+    </div>*@
+
+    @*<div class="form-group ">
+        <div>
+            <label>Order Complete? :</label>
+            <div>
+                <InputCheckbox @bind-Value="@order.orderComplete" />
+                <ValidationMessage For="@(() => order.orderComplete)" />
+            </div>
+        </div>
+    </div>*@
+
+    @*<div class="form-group ">
+        <div>
+            <label>Price :</label>
+            <div>
+                <InputNumber @bind-Value="@order.orderPrice" />
+                <ValidationMessage For="@(() => order.orderPrice)" />
+            </div>
+        </div>
+    </div>*@
+
+    <div class="form-group ">
+        <div>
+            <label>Information :</label>
+            <div>
+                <InputText @bind-Value="@order.orderInfo" />
+                <ValidationMessage For="@(() => order.orderInfo)" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group ">
+        <div>
+            <label>Customer ID :</label>
+            <div>
+                <InputNumber @bind-Value="@order.customerCusId" />
+                <ValidationMessage For="@(() => order.customerCusId)" />
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        @ButtonText
+    </button>
+    <button class="btn btn-dark" @onclick="@GetBackOnePage">Back to admins</button>
+
+</EditForm>
+
+
+@code {
+    [Parameter] public Orders order { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    public void GetBackOnePage()
+    {
+        uriHelper.NavigateTo("order");
+    }
+}
+

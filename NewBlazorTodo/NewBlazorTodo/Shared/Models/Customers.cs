@@ -23,5 +23,7 @@ namespace NewBlazorTodo.Shared.Models
 
         public string Address { get; set; }
 
+        public int OrderID { get; set; }
+
     }
 }
