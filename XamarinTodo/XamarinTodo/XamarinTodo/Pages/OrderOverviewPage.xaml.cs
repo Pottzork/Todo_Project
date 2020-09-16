@@ -6,12 +6,20 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinTodo.Models;
 
 namespace XamarinTodo.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderOverviewPage : ContentPage
     {
+        public List<NewOrder> NewOrder { get; set; }
+
+        public OrderOverviewPage(List<NewOrder> newOrder)
+        {
+            this.NewOrder = newOrder;
+        }
+
         public OrderOverviewPage()
         {
             InitializeComponent();
@@ -30,4 +38,6 @@ namespace XamarinTodo.Pages
 
 
     }
+
+  
 }

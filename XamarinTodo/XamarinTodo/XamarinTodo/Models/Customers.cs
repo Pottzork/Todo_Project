@@ -12,7 +12,17 @@ namespace XamarinTodo.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Company { get; set; }
-        public string Address { get; set; }
+        public string Street { get; set; }
+        public string PostalCode { get; set; }
+        public string City { get; set; }
+
+        public string FullAddress (string Street, string PostalCode, string City)
+        {
+            
+            string fullAddresss = ($"{Street}, {PostalCode}, {City}");
+            return fullAddresss;
+        }
+
         public int OrderID { get; set; }
     }
 }
