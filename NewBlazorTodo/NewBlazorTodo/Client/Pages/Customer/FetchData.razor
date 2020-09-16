@@ -27,7 +27,9 @@ else
                 <th>Email</th>
                 <th>PhoneNumber</th>
                 <th>Company</th>
-                <th>Address</th>
+                <th>Street</th>
+                <th>PostalCode</th>
+                <th>City</th>
             </tr>
         </thead>
         <tbody>
@@ -39,7 +41,9 @@ else
                 <td>@customer.Email</td>
                 <td>@customer.Phone</td>
                 <td>@customer.Company</td>
-                <td>@customer.Address</td>
+                <td>@customer.Street</td>
+                <td>@customer.PostalCode</td>
+                <td>@customer.City</td>
                 <td>
                     <a class="btn btn-success" href="customer/edit/@customer.Id">Edit</a>
                     <button class="btn btn-danger" @onclick="@(() => Delete(customer.Id))">Delete</button>

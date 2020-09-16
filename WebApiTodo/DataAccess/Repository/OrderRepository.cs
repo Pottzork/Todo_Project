@@ -56,8 +56,8 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("INSERT INTO Orders (OrderDescription, OrderAccept, OrderDate, OrderStart, OrderEnd, OrderComplete, OrderPrice, OrderInfo, CustomerCusId, OperatorID) VALUES (@OrderDescription, @OrderAccept, @OrderDate, @OrderStart, @OrderEnd, @OrderComplete, @OrderPrice, @OrderInfo, @CustomerCusId, @OperatorID)",
-                        new {order.OrderDescription, order.OrderAccept, order.OrderDate, order.OrderStart, order.OrderEnd, order.OrderComplete, order.OrderPrice, order.OrderInfo, order.CustomerCusId, order.OperatorID});
+                    await c.ExecuteAsync("INSERT INTO Orders (OrderDescription, OrderAccept, OrderDate, OrderStart, OrderEnd, OrderComplete, OrderPrice, OrderInfo, CustomerId, OperatorID) VALUES (@OrderDescription, @OrderAccept, @OrderDate, @OrderStart, @OrderEnd, @OrderComplete, @OrderPrice, @OrderInfo, @CustomerId, @OperatorID)",
+                        new {order.OrderDescription, order.OrderAccept, order.OrderDate, order.OrderStart, order.OrderEnd, order.OrderComplete, order.OrderPrice, order.OrderInfo, order.CustomerId, order.OperatorID});
 
                     return true;
                 }
@@ -74,8 +74,8 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("UPDATE Orders SET OrderDescription = @OrderDescription, OrderAccept = @OrderAccept, OrderDate = @OrderDate, OrderStart = @OrderStart, OrderEnd = @OrderEnd, OrderComplete = @OrderComplete, OrderPrice = @OrderPrice, OrderInfo = @OrderInfo, CustomerCusId = @CustomerCusId, OperatorID = @OperatorID WHERE OrderId = @OrderId",
-                        new {order.OrderDescription, order.OrderAccept, order.OrderDate, order.OrderStart, order.OrderEnd, order.OrderComplete, order.OrderPrice, order.OrderInfo, order.CustomerCusId, order.OperatorID, order.OrderId });
+                    await c.ExecuteAsync("UPDATE Orders SET OrderDescription = @OrderDescription, OrderAccept = @OrderAccept, OrderDate = @OrderDate, OrderStart = @OrderStart, OrderEnd = @OrderEnd, OrderComplete = @OrderComplete, OrderPrice = @OrderPrice, OrderInfo = @OrderInfo, CustomerId = @CustomerId, OperatorID = @OperatorID WHERE OrderId = @OrderId",
+                        new {order.OrderDescription, order.OrderAccept, order.OrderDate, order.OrderStart, order.OrderEnd, order.OrderComplete, order.OrderPrice, order.OrderInfo, order.CustomerId, order.OperatorID, order.OrderId });
 
                     return true;
                 }

@@ -3,12 +3,6 @@
     <DataAnnotationsValidator />
     <div class="form-group">
         <label>Operator :</label>
-        <label for="operator">Choose Operator:</label>
-
-        <select name="operator" id="operator">
-            <option value="@order.OperatorID">4</option>
-            <option value="@order.OperatorID">7</option>
-        </select>
 
         <div>
             <InputNumber @bind-Value="@order.OperatorID" />
@@ -91,8 +85,8 @@
         <div>
             <label>Customer ID :</label>
             <div>
-                <InputNumber @bind-Value="@order.customerCusId" />
-                <ValidationMessage For="@(() => order.customerCusId)" />
+                <InputNumber @bind-Value="@order.customerId" />
+                <ValidationMessage For="@(() => order.customerId)" />
             </div>
         </div>
     </div>

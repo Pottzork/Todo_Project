@@ -22,8 +22,8 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("INSERT INTO Customers (Name, Email, Phone, Company, Address, OrderID) VALUES (@Name, @Email, @Phone, @Company, @Address @OrderID)",
-                        new { customer.Name, customer.Email, customer.Phone, customer.Company, customer.Address, customer.OrderId });
+                    await c.ExecuteAsync("INSERT INTO Customers (Name, Email, Phone, Company, Street, PostalCode, City, OrderID) VALUES (@Name, @Email, @Phone, @Company, @Street, @PostalCode, @City, @OrderID)",
+                        new { customer.Name, customer.Email, customer.Phone, customer.Company, customer.Street, customer.PostalCode, customer.City, customer.OrderId });
 
                     return true;
                 }
@@ -90,8 +90,8 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("UPDATE Customers SET Name = @Name, Email = @Email, Phone = @Phone, Company = @Company, Address = @Address, OrderID = @OrderID WHERE Id = @Id",
-                        new { customer.Name, customer.Email, customer.Phone, customer.Company, customer.Address, customer.Id });
+                    await c.ExecuteAsync("UPDATE Customers SET Name = @Name, Email = @Email, Phone = @Phone, Company = @Company, Street = @Street, PostalCode = @PostalCode, City = @City, OrderID = @OrderID WHERE Id = @Id",
+                        new { customer.Name, customer.Email, customer.Phone, customer.Company, customer.Street, customer.PostalCode, customer.City, customer.Id });
 
                     return true;
                 }

@@ -32,10 +32,30 @@
     </div>
     <div class="form-group ">
         <div>
-            <label>Address :</label>
+            <label>Street :</label>
             <div>
-                <InputText @bind-Value="@customer.Address" />
-                <ValidationMessage For="@(() => customer.Address)" />
+                <InputText @bind-Value="@customer.Street" />
+                <ValidationMessage For="@(() => customer.Street)" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group ">
+        <div>
+            <label>PostalCode :</label>
+            <div>
+                <InputText @bind-Value="@customer.PostalCode" />
+                <ValidationMessage For="@(() => customer.PostalCode)" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group ">
+        <div>
+            <label>City :</label>
+            <div>
+                <InputText @bind-Value="@customer.City" />
+                <ValidationMessage For="@(() => customer.City)" />
             </div>
         </div>
     </div>

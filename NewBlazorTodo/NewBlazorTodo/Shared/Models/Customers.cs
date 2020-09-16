@@ -21,7 +21,14 @@ namespace NewBlazorTodo.Shared.Models
         [Required(ErrorMessage = "Customers CompanyName is required.")]
         public string Company { get; set; }
 
-        public string Address { get; set; }
+        [Required(ErrorMessage = "Customers StreetAddress is required.")]
+        public string Street { get; set; }
+
+        [Required(ErrorMessage = "Customers PostalCode is required.")]
+        public string PostalCode { get; set; }
+
+        [Required(ErrorMessage = "Customers City is required.")]
+        public string City { get; set; }
 
         public int OrderID { get; set; }
 
