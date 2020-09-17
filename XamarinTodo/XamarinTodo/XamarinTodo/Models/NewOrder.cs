@@ -15,12 +15,13 @@ namespace XamarinTodo.Models
         Operators operators = new Operators();
 
 
-        public string company;
-        public int orderId;
-        public string address;
-        public string name;
-        public string phone;
-        public string orderDescription;
+        public string company; //Cus
+        public int orderId;   //Ord
+        public string address; //Cus
+        public string name;     //Cus
+        public string phone;    //Cus
+        public string orderDescription; //Ord
+        public int Id; //Ope
 
         public NewOrder(string Company, int OrderId, string Address, string Name, string Phone, string OrderDescription)
         {
