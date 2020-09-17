@@ -10,22 +10,6 @@
                 <Entry Placeholder="Password" Margin="60, 10" />
                 <Button Text="Log In" Margin="60, 10" CornerRadius="15"
                         Clicked="LogIn_Clicked" />
-
-
-                <ListView>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout>
-                                    <Label Text="{Binding UserName}"></Label>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                
-                
-                
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -9,28 +9,28 @@
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OrderTapped" />
                 </StackLayout.GestureRecognizers>
-                <Label Text="2020-09-11" FontSize="25" Margin="10,0,0,0" />
-                <Frame BackgroundColor="#f6f6f6" CornerRadius="15">
-                    <Grid Margin="5">
-                        <ListView>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <Grid>
-                                            <Label Text="{Binding Name}" Grid.Column="0" Grid.Row="0" FontSize="25" FontAttributes="Bold" VerticalTextAlignment="Start"></Label>
-                                            <Label Text="{Binding OrderId}" Grid.Column="1" Grid.Row="0" FontSize="18" VerticalTextAlignment="Start"></Label>
-                                            <Label Text="{Binding Address}" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" />
-                                            <Label Text="{Binding CustomerName}" Grid.Row="2" FontSize="18" Grid.ColumnSpan="2" />
-                                            <Label Text="{Binding Phone}" Grid.Row="3" FontSize="18" Grid.ColumnSpan="2" />
-                                            <Label Text="{Binding OrderDescription}" Grid.Row="4" FontSize="18" Grid.ColumnSpan="2" />
-                                            <Label Text="Tryck för mer info" Grid.Row="5" Grid.ColumnSpan="2" HorizontalOptions="Center" Opacity=".7" VerticalOptions="End" />
-                                        </Grid>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                        
-                        <!--<ScrollView>
+                <!--<Label Text="2020-09-11" FontSize="25" Margin="10,0,0,0" />-->
+
+                <ListView x:Name="orderOverviewList">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Label Text="Energiverket" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" />
+                                    <Label Text="{Binding OrderId}" Grid.Row="1" Grid.Column="0" FontSize="25" FontAttributes="Bold" />
+                                    <Label Text="{Binding OrderDescription}" Grid.Row="2" Grid.Column="1" FontSize="18" />
+                                    <!--<Label Text="{Binding Address}" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" />
+                                        <Label Text="{Binding CustomerName}" Grid.Row="2" FontSize="18" Grid.ColumnSpan="2" />
+                                        <Label Text="{Binding Phone}" Grid.Row="3" FontSize="18" Grid.ColumnSpan="2" />
+                                        <Label Text="{Binding OrderInfo}" Grid.Row="4" FontSize="18" Grid.ColumnSpan="2" />
+                                        <Label Text="Tryck för mer info" Grid.Row="5" Grid.ColumnSpan="2" HorizontalOptions="Center" Opacity=".7" VerticalOptions="End" />-->
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <!--<ScrollView>
                         <Label Text="Energiverket" Grid.Column="0" Grid.Row="0" FontSize="25" FontAttributes="Bold" VerticalTextAlignment="Start" />
                         <Label Text="#731432" Grid.Column="1" Grid.Row="0" FontSize="18" VerticalTextAlignment="Start" />
                         <Label Text="Johan Willins gata 3, 416 64 Göteborg" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" />
@@ -38,9 +38,7 @@
                         <Label Text="0730-436536" Grid.Row="3" FontSize="18" Grid.ColumnSpan="2" />
                         <Label Text="En katalysator behöver fixas i kundens generator." Grid.Row="4" FontSize="18" Grid.ColumnSpan="2" />
                         <Label Text="Tryck för mer info" Grid.Row="5" Grid.ColumnSpan="2" HorizontalOptions="Center" Opacity=".7" VerticalOptions="End" />-->
-                    <!--</ScrollView>-->
-                    </Grid>
-                </Frame>
+                <!--</ScrollView>-->
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
