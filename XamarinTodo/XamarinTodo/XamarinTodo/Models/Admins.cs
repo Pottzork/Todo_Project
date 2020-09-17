@@ -4,7 +4,7 @@ using System.Text;
 
 namespace XamarinTodo.Models
 {
-    internal class Admins
+    public class Admins
     {
         public int Id { get; set; }
         public string UserName { get; set; }

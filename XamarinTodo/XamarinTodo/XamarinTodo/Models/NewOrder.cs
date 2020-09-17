@@ -14,7 +14,6 @@ namespace XamarinTodo.Models
         Orders orders = new Orders();
         Operators operators = new Operators();
 
-        Array[] newOrder;
 
         public string company;
         public int orderId;

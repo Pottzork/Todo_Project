@@ -11,7 +11,7 @@ namespace XamarinTodo.Data.Services
     public class ToDoServices
     {
 
-        private const string HOST = "https://www.obvibase.com/app/?location=%7B%22type%22%3A%22token%22%2C%22token%22%3A%7B%22type%22%3A%22rw%22%2C%22databaseId%22%3A%22Ai6SRcFaWkVQsMce%22%2C%22token%22%3A%22UHjGeG2JFizZNCCD%22%7D%7D";
+        private const string HOST = "Server=(localdb)\\mssqllocaldb;Database=aspnet-53bc9b9d-9d6a-45d4-8429-2a2761773502;Trusted_Connection=True;MultipleActiveResultSets=true";
 
         public static string GetRequest(string path)
         {
