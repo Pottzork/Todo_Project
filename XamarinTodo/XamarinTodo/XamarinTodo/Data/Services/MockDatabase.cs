@@ -8,9 +8,9 @@ namespace XamarinTodo.Data.Services
 {
     public class MockDatabase
     {
-        public static List<Orders> OrderList;
-        public static List<Customers> CustomerList;
-        public static List<Operators> OperatorList;
+        public List<Orders> OrderList;
+        public List<Customers> CustomerList;
+        public List<Operators> OperatorList;
 
         public MockDatabase()
         {
