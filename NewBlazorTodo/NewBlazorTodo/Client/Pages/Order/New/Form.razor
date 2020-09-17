@@ -2,7 +2,6 @@
 <EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <div class="form-group">
-        @*<label>Operator :</label>*@
         <label>Select Operator</label>
         <div>
             <InputNumber @bind-Value="@order.OperatorID" />

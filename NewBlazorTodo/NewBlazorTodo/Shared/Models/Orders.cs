@@ -16,7 +16,6 @@ namespace NewBlazorTodo.Shared.Models
         public float orderPrice { get; set; } = 0;
         public string orderInfo { get; set; }
         public int customerId { get; set; } = 0;
-
         public int OperatorID { get; set; }
     }
 }

@@ -8,11 +8,11 @@
 
 <br>
 
-@if (orders == null)
+@if (activeOrderView == null)
 {
     <text>Loading...</text>
 }
-else if (orders.Length == 0)
+else if (activeOrderView.Length == 0)
 {
     <text>No Records Found.</text>
 }
@@ -21,30 +21,25 @@ else
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Operator ID</th>
-                <th>Description</th>
-                <th>Order start</th>
-                <th>Specific information</th>
-                <th>Customer ID</th>
+                <th>Operator Name</th>
+                <th>Description </th>
+                <th>Order Start</th>
+                <th>Order Info</th>
+                <th>Customer Name</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (Orders order in orders)
+            @foreach (ActiveOrderView order in activeOrderView)
             {
-                if (order.orderComplete == false)
+                if (order.OrderComplete == false)
                 {
             <tr>
-                <td>@order.orderId</td>
-                <td>@order.OperatorID</td>               
-                <td>@order.orderDescription</td>
-                <td>@order.orderStart</td>
-                <td>@order.orderInfo</td>
-                <td>@order.customerId</td>
-                <td>
-                    @*<a class="btn btn-success" href="admin/edit/@order.Id">Edit</a>
-            <button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>*@
-                </td>
+                <td>@order.OpFirstName @order.OpLastName</td>
+                <td>@order.OrderDescription</td>
+                <td>@order.OrderStart</td>
+                <td>@order.OrderInfo</td>
+                <td>@order.Customer</td>
+                <td></td>
             </tr>
                 }
 
@@ -54,20 +49,11 @@ else
     </table>
 }
 @code {
-    Orders[] orders { get; set; }
-    Operators[] _operator { get; set; }
+        
+    ActiveOrderView[] activeOrderView { get; set; }
     protected override async Task OnInitializedAsync()
-    {
-        orders = await client.GetFromJsonAsync<Orders[]>("https://localhost:44374/api/orders");
-    }
+    {       
+        activeOrderView = await client.GetFromJsonAsync<ActiveOrderView[]>("https://localhost:44374/api/activeorderview");
 
-    //async Task Delete(int adminId)
-    //{
-    //    var order = orders.First(x => x.Id == adminId);
-    //    if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {order.FirstName}'s ({order.Id}) Record?"))
-    //    {
-    //        await client.DeleteAsync($"https://localhost:44374/api/admins/ {adminId}");
-    //        await OnInitializedAsync();
-    //    }
-    //}
+    }
 }

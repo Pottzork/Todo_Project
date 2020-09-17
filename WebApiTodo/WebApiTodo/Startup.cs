@@ -41,8 +41,12 @@ namespace WebApiTodo
             services.AddSingleton<IHistoryOrderService, HistoryOrderService>();
             services.AddSingleton<IHistoryOrderRepository>(c => new HistoryOrderRepository(Configuration["ConnectionString"]));
 
+            services.AddSingleton<IActiveOrderViewService, ActiveOrderViewService>();
+            services.AddSingleton<IActiveOrderViewRepository>(c => new ActiveOrderViewRepository(Configuration["ConnectionString"]));
+
             services.AddSingleton<IOperatorService, OperatorService>();
             services.AddSingleton<IOperatorRepository>(c => new OperatorRepository(Configuration["ConnectionString"]));
+
             services.AddCors(o => {
                 o.AddPolicy("CorsPolicy",
                     builder => builder.AllowAnyOrigin()
