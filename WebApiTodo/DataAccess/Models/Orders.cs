@@ -17,5 +17,6 @@ namespace DataAccess.Models
         public string OrderInfo { get; set; }
         public int CustomerId { get; set; }
         public int OperatorID { get; set; }
+        public Operators Operator { get; set; }
     }
 }

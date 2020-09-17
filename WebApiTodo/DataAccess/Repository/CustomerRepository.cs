@@ -91,7 +91,7 @@ namespace DataAccess.Repository
                 try
                 {
                     await c.ExecuteAsync("UPDATE Customers SET Name = @Name, Email = @Email, Phone = @Phone, Company = @Company, Street = @Street, PostalCode = @PostalCode, City = @City, OrderID = @OrderID WHERE Id = @Id",
-                        new { customer.Name, customer.Email, customer.Phone, customer.Company, customer.Street, customer.PostalCode, customer.City, customer.Id });
+                        new { customer.Name, customer.Email, customer.Phone, customer.Company, customer.Street, customer.PostalCode, customer.City, customer.OrderId, customer.Id });
 
                     return true;
                 }
