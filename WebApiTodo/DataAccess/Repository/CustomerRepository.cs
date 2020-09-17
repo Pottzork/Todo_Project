@@ -40,7 +40,7 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("DELETE Customers WHERE Id = @Id", new { id });
+                    await c.ExecuteAsync("DELETE Customers WHERE Id = @id", new { id });
 
                     return true;
                 }
