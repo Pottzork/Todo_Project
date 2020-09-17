@@ -7,7 +7,7 @@ using XamarinTodo.Models;
 
 namespace XamarinTodo.Data.Services
 {
-    public class MockDatabase
+    public class MockDatabase : JoinStuffThingy
     {
         //public List<Orders> OrderList;
         //public List<Customers> CustomerList;
@@ -84,6 +84,9 @@ namespace XamarinTodo.Data.Services
                     Phone = "0046004004", Location = "Göteborg" }
             };
         }
+
+        
+
     }
 
 
@@ -91,16 +94,17 @@ namespace XamarinTodo.Data.Services
     public class JoinStuffThingy
     {
         public string thisOrder { get; set; }
+        public static string orderThis { get; set; }
 
         public static void Demo()
         {
             string thisOrder = null;
-            
+
             JoinDemo(thisOrder);
 
         }
 
-        public static void JoinDemo(string thisOrder)
+        public static string JoinDemo(string thisOrder)
         {
             var theOrders = MockDatabase.OrderList();
             //var theOperators = MockDatabase.OperatorList();
@@ -120,14 +124,18 @@ namespace XamarinTodo.Data.Services
 
             foreach (var no in join)
             {
-                string recievedOrder = $"{no.Company},{no.Address}," +
-                                    $"{no.Name},{no.Phone},{no.OrderId}," +
-                                    $"{no.OrderId},{no.OrderDescription}," +
+                string recievedOrder = $"{no.Company}!{no.Address}!" +
+                                    $"{no.Name}!{no.Phone}!{no.OrderId}!" +
+                                    $"{no.OrderId}!{no.OrderDescription}!" +
                                     $"{no.OrderInfo}";
-                thisOrder = recievedOrder;
+                thisOrder = recievedOrder.ToString();
+
             }
 
+            return thisOrder;
         }
+        
+        
 
     }
 

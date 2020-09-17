@@ -2,40 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-
+using XamarinTodo.Data.Services;
 
 namespace XamarinTodo.Models
 {
-    class NewOrder
+    public class NewOrder
     {
+        public string OrderThis { get; set; }
 
-        Customers customers = new Customers();
-        Orders orders = new Orders();
-        Operators operators = new Operators();
-
-
-        public string company; //Cus
-        public int orderId;   //Ord
-        public string address; //Cus
-        public string name;     //Cus
-        public string phone;    //Cus
-        public string orderDescription; //Ord
-        public int Id; //Ope
-
-        public NewOrder(string Company, int OrderId, string Address, string Name, string Phone, string OrderDescription)
+        public static string OrderBlabla(string thisOrder)
         {
-            company = Company;
-            orderId = OrderId;
-            address = Address;
-            name = Name;
-            phone = Phone;
-            orderDescription = OrderDescription;
-
-
+            string tempy = JoinStuffThingy.JoinDemo(thisOrder);
+            return tempy;
         }
 
+        public void hej()
+        {
+            JoinStuffThingy newDemo = new JoinStuffThingy();
+            OrderThis = newDemo.thisOrder;
 
+        }
 
     }
 }
