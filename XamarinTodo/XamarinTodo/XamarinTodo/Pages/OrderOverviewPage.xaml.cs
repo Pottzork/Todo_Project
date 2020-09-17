@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinTodo.Data.Services;
 using XamarinTodo.Models;
 
 namespace XamarinTodo.Pages
@@ -13,27 +14,23 @@ namespace XamarinTodo.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderOverviewPage : ContentPage
     {
-
-        
+        public IDataService<Orders> DataService => DependencyService.Get<IDataService<Orders>>();
 
         public OrderOverviewPage()
         {
             InitializeComponent();
         }
 
-        private void OrderTapped(object sender, EventArgs e)
+        private async void OrderTapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new OrderPendingPage());
+            await Navigation.PushAsync(new OrderPendingPage());
+            List<Orders> ordersList = new List<Orders>();
+
+            ordersList = await DataService.GetItemsAsync() as List<Orders>;
         }
-
-
 
         //Om OrderAccept = false så ska den visas här
         //Samt att OrderComplete är false.
         //Visa accepterade orders knutna till rätt OpId
-
-
     }
-
-  
 }

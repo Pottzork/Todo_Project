@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinTodo.Data.Services;
 using XamarinTodo.Pages;
 
 namespace XamarinTodo
@@ -10,6 +11,8 @@ namespace XamarinTodo
         public App()
         {
             InitializeComponent();
+
+            DependencyService.Register<DataService>();
 
             MainPage = new LogInPage();
         }
