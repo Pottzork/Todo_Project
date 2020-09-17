@@ -14,8 +14,6 @@ namespace XamarinTodo.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderOverviewPage : ContentPage
     {
-        public IDataService<Orders> DataService => DependencyService.Get<IDataService<Orders>>();
-
         public OrderOverviewPage()
         {
             InitializeComponent();
@@ -24,9 +22,6 @@ namespace XamarinTodo.Pages
         private async void OrderTapped(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new OrderPendingPage());
-            List<Orders> ordersList = new List<Orders>();
-
-            ordersList = await DataService.GetItemsAsync() as List<Orders>;
         }
 
         //Om OrderAccept = false så ska den visas här

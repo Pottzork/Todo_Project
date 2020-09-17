@@ -28,9 +28,9 @@ namespace XamarinTodo.Pages
             await Navigation.PushModalAsync(new NavigationPage(new OrderOverviewPage()));
 
             //Detta ska inte ligga här. Bara för att testa hämtning av MockData
-            //List<Orders> ordersList = new List<Orders>();
+            List<Orders> ordersList = new List<Orders>();
 
-            //ordersList = await DataService.GetItemsAsync() as List<Orders>;
+            ordersList = await DataService.GetItemsAsync() as List<Orders>;
         }
     }
 }
