@@ -4,7 +4,7 @@ using System.Text;
 
 namespace XamarinTodo.Models
 {
-    public class OrderHistorys
+    public class OrderHistorys     //Behövs egentligen ej i appen
     {
         public int OrderHistoryId { get; set; }
         public string OrderDescription { get; set; }

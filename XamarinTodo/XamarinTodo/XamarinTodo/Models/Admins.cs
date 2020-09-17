@@ -4,7 +4,7 @@ using System.Text;
 
 namespace XamarinTodo.Models
 {
-    public class Admins
+    public class Admins  //Behövs egentligen ej i appen
     {
         public int Id { get; set; }
         public string UserName { get; set; }
