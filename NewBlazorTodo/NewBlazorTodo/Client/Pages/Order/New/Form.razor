@@ -2,10 +2,14 @@
 <EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <div class="form-group">
-        <label>Select Operator</label>
-        <div>
-            <InputNumber @bind-Value="@order.OperatorID" />
-            <ValidationMessage For="@(() => order.OperatorID)" />
+        <label for="operatorTest">Choose Operator</label>
+        <div class="col-sm-3">
+            <InputSelect id="operatorTest" @bind-Value="OperatorTempId" class="form-control">
+                @foreach (var op in operatorsList)
+                {
+                    <option value="@op.Id">@op.FirstName</option>
+                }
+            </InputSelect>
         </div>
     </div>
     <div class="form-group">
@@ -15,61 +19,17 @@
             <ValidationMessage For="@(() => order.orderDescription)" />
         </div>
     </div>
-    @*<div class="form-group">
-        <label>Order Accepted? :</label>
-        <div>
-            <InputCheckbox @bind-Value="@order.orderAccept" >YES</InputCheckbox>
-            <ValidationMessage For="@(() => order.orderAccept)" />
-        </div>
-    </div>*@
-    @*<div class="form-group ">
-        <div>
-            <label>Order Date :</label>
-            <div>
-                <InputDate @bind-Value="@order.orderDate" />
-                <ValidationMessage For="@(() => order.orderDate)" />
-            </div>
-        </div>
-    </div>*@
+
     <div class="form-group ">
         <div>
-            <label>StartDate of WorkOrder :</label>
+            <label>StartDate of Order :</label>
             <div>
                 <InputDate @bind-Value="@order.orderStart" />
                 <ValidationMessage For="@(() => order.orderStart)" />
             </div>
         </div>
     </div>
-    @*<div class="form-group ">
-        <div>
-            <label>Order EndDate :</label>
-            <div>
-                <InputDate @bind-Value="@order.orderEnd" />
-                <ValidationMessage For="@(() => order.orderEnd)" />
-            </div>
-        </div>
-    </div>*@
 
-    @*<div class="form-group ">
-        <div>
-            <label>Order Complete? :</label>
-            <div>
-                <InputCheckbox @bind-Value="@order.orderComplete" />
-                <ValidationMessage For="@(() => order.orderComplete)" />
-            </div>
-        </div>
-    </div>*@
-
-    @*<div class="form-group ">
-        <div>
-            <label>Price :</label>
-            <div>
-                <InputNumber @bind-Value="@order.orderPrice" />
-                <ValidationMessage For="@(() => order.orderPrice)" />
-            </div>
-        </div>
-    </div>*@
-    
     <div class="form-group ">
         <div>
             <label>Information :</label>
@@ -80,31 +40,43 @@
         </div>
     </div>
 
-    <div class="form-group ">
-        <div>
-            <label>Customer ID :</label>
-            <div>
-                <InputNumber @bind-Value="@order.customerId" />
-                <ValidationMessage For="@(() => order.customerId)" />
-            </div>
+    <div class="form-group">
+        <label for="operatorTest">Choose Company</label>
+        <div class="col-sm-3">
+            <InputSelect id="customers" @bind-Value="CustomerTempId" class="form-control">
+                @foreach (var op in customersList)
+                {
+                    <option value="@op.Id">@op.Company</option>
+                }
+            </InputSelect>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-success">
+    <button type="submit" class="btn btn-success" @onclick="@ChangeValue">
+
         @ButtonText
     </button>
-    <button class="btn btn-dark" @onclick="@GetBackOnePage">Back to admins</button>
+    @*<button class="btn btn-dark" @onclick="@GetBackOnePage">Back to admins</button>*@
 
 </EditForm>
 
 
 @code {
+    public List<Operators> operatorsList { get; set; } = new List<Operators>();
+    public string OperatorTempId { get; set; }
 
-    Operators[] _operator { get; set; }
+    public List<Customers> customersList { get; set; } = new List<Customers>();
+    public string CustomerTempId { get; set; }
+
+
     protected override async Task OnInitializedAsync()
     {
         HttpClient client = new HttpClient();
-        _operator = await client.GetFromJsonAsync<Operators[]>("https://localhost:44374/api/Operators");
+        operatorsList = await client.GetFromJsonAsync<List<Operators>>("https://localhost:44374/api/Operators");
+        customersList = await client.GetFromJsonAsync<List<Customers>>("https://localhost:44374/api/Customers");
+        OperatorTempId = order.OperatorID.ToString();
+        CustomerTempId = order.customerId.ToString();
+
     }
 
     [Parameter] public Orders order { get; set; }
@@ -114,6 +86,14 @@
     public void GetBackOnePage()
     {
         uriHelper.NavigateTo("order");
+    }
+    /// <summary>
+    /// Rechange value of order.OperatorID back to int
+    /// </summary>
+    public void ChangeValue()
+    {
+        order.OperatorID = (int.Parse(OperatorTempId));
+        order.customerId = (int.Parse(CustomerTempId));
     }
 }
 

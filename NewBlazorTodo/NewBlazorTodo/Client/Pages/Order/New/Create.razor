@@ -2,6 +2,7 @@
 @inject HttpClient http
 @inject NavigationManager uriHelper
 @inject IJSRuntime js
+ 
 
 <h3>Create</h3>
 
@@ -12,8 +13,9 @@
     Orders order = new Orders();
     async Task CreateOrder()
     {
+        
         await http.PostAsJsonAsync("https://localhost:44374/api/orders", order);
         await js.InvokeVoidAsync("alert", $"Created order Successfully!");
-        uriHelper.NavigateTo("activelist");
+        uriHelper.NavigateTo("activeorders");
     }
 }
