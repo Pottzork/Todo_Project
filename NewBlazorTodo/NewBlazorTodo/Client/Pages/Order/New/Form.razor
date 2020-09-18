@@ -2,7 +2,7 @@
 <EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <div class="form-group">
-        <label for="operatorTest">Choose Operator</label>
+        <label for="operatorTest">Välj en operatör</label>
         <div class="col-sm-3">
             <InputSelect id="operatorTest" @bind-Value="OperatorTempId" class="form-control">
                 @foreach (var op in operatorsList)
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label>Description :</label>
+        <label>Arbetsbeskrivning :</label>
         <div>
             <InputText @bind-Value="@order.orderDescription" />
             <ValidationMessage For="@(() => order.orderDescription)" />
@@ -22,7 +22,7 @@
 
     <div class="form-group ">
         <div>
-            <label>StartDate of Order :</label>
+            <label>Startdatum för arbetsorder :</label>
             <div>
                 <InputDate @bind-Value="@order.orderStart" />
                 <ValidationMessage For="@(() => order.orderStart)" />
@@ -32,7 +32,7 @@
 
     <div class="form-group ">
         <div>
-            <label>Information :</label>
+            <label>Övrig information :</label>
             <div>
                 <InputText @bind-Value="@order.orderInfo" />
                 <ValidationMessage For="@(() => order.orderInfo)" />
@@ -41,7 +41,7 @@
     </div>
 
     <div class="form-group">
-        <label for="operatorTest">Choose Company</label>
+        <label for="operatorTest">Välj Företagskund</label>
         <div class="col-sm-3">
             <InputSelect id="customers" @bind-Value="CustomerTempId" class="form-control">
                 @foreach (var op in customersList)
@@ -80,7 +80,7 @@
     }
 
     [Parameter] public Orders order { get; set; }
-    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public string ButtonText { get; set; } = "Spara";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
 
     public void GetBackOnePage()

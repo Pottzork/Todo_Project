@@ -15,7 +15,7 @@
     async Task EditOperator()
     {
         await http.PutAsJsonAsync("https://localhost:44374/api/operators", o);
-        await js.InvokeVoidAsync("alert", $"Updated {o.FirstName} {o.LastName} With ID: {o.Id} Successfully!");
+        await js.InvokeVoidAsync("alert", $"Operatör {o.FirstName} {o.LastName} med ID: {o.Id} Uppdaterades perfekt!");
         uriHelper.NavigateTo("operatorlist");
     }
 }

@@ -3,9 +3,9 @@
 @inject NavigationManager uriHelper
 @inject IJSRuntime js
 
-<h3>Create</h3>
+<h3>Lägg till ny operatör</h3>
 
-<Form ButtonText="Create Operator" o="@o"
+<Form ButtonText="Lägg till Operatör" o="@o"
       OnValidSubmit="@CreateOperator" />
 
 @code {
@@ -13,7 +13,7 @@
     async Task CreateOperator()
     {
         await http.PostAsJsonAsync("https://localhost:44374/api/operators", o);
-        await js.InvokeVoidAsync("alert", $"Created operator {o.FirstName} {o.LastName} Successfully!");
+        await js.InvokeVoidAsync("alert", $"Vad kul! Operatör {o.FirstName} {o.LastName} Skapades!");
         uriHelper.NavigateTo("operatorlist");
     }
 }

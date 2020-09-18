@@ -2,10 +2,9 @@
 @inject HttpClient client
 @inject IJSRuntime js
 
-<h3>Operator</h3>
-<small>Add Operator</small>
+<h3>Operatör</h3>
 <div class="form-group">
-    <a class="btn btn-success" href="operator/create"><i class="oi oi-plus"></i> Create New</a>
+    <a class="btn btn-success" href="operator/create"><i class="oi oi-plus"></i> Skapa ny Operatör</a>
 </div>
 <br>
 
@@ -22,26 +21,22 @@ else
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
+                <th>Förnamn</th>
+                <th>Efternamn</th>
+                <th>Epost</th>
+                <th>Telefonnummer</th>
             </tr>
         </thead>
         <tbody>
             @foreach (Operators o in techOp)
             {
                 <tr>
-                    <td>@o.Id</td>
                     <td>@o.FirstName</td>
                     <td>@o.LastName</td>
                     <td>@o.Email</td>
                     <td>@o.Phone</td>
                     <td>
-                        <a class="btn btn-success" href="operator/details/@o.Id">View</a>
-                        @*<a class="btn btn-success" href="operator/edit/@o.Id">Edit</a>*@
-                        @*<button class="btn btn-danger" @onclick="@(() => Delete(o.Id))">Delete</button>*@
+                        <a class="btn btn-success" href="operator/details/@o.Id">Mer Info</a>                 
 
                 </td>
                 </tr>
@@ -56,14 +51,5 @@ else
     {
         techOp = await client.GetFromJsonAsync<Operators[]>("https://localhost:44374/api/operators");
     }
-
-    //async Task Delete(int id)
-    //{
-    //    var _operators = this.techOp.First(x => x.Id == id);
-    //    if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {_operators.FirstName}'s with ID: ({_operators.Id}) Record?"))
-    //    {
-    //        await client.DeleteAsync($"https://localhost:44374/api/operators/ {id}");
-    //        await OnInitializedAsync();
-    //    }
-    //}
+   
 }

@@ -2,38 +2,38 @@
 <EditForm Model="@admin" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <div class="form-group">
-        <label>Username :</label>
-        <div>
-            <InputText @bind-Value="@admin.UserName" />
-            <ValidationMessage For="@(() => admin.UserName)" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label>Password :</label>
-        <div>
-            <InputText @bind-Value="@admin.Password" />
-            <ValidationMessage For="@(() => admin.Password)" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label>First Name :</label>
+        <label>Förnamn :</label>
         <div>
             <InputText @bind-Value="@admin.FirstName" />
             <ValidationMessage For="@(() => admin.FirstName)" />
         </div>
     </div>
+    <div class="form-group">
+        <label>Efternamn :</label>
+        <div>
+            <InputText @bind-Value="@admin.LastName" />
+            <ValidationMessage For="@(() => admin.LastName)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Användarnamn :</label>
+        <div>
+            <InputText @bind-Value="@admin.UserName" />
+            <ValidationMessage For="@(() => admin.UserName)" />
+        </div>
+    </div>
     <div class="form-group ">
         <div>
-            <label>Last Name :</label>
+            <label>Lösenord :</label>
             <div>
-                <InputText @bind-Value="@admin.LastName" />
-                <ValidationMessage For="@(() => admin.LastName)" />
+                <InputText @bind-Value="@admin.Password" />
+                <ValidationMessage For="@(() => admin.Password)" />
             </div>
         </div>
     </div>
     <div class="form-group ">
         <div>
-            <label>Email :</label>
+            <label>Epost :</label>
             <div>
                 <InputText @bind-Value="@admin.Email" />
                 <ValidationMessage For="@(() => admin.Email)" />
@@ -42,7 +42,7 @@
     </div>
     <div class="form-group ">
         <div>
-            <label>Phone Number :</label>
+            <label>Telefonnummer :</label>
             <div>
                 <InputText @bind-Value="@admin.Phone" />
                 <ValidationMessage For="@(() => admin.Phone)" />
@@ -53,14 +53,14 @@
     <button type="submit" class="btn btn-success">
         @ButtonText
     </button>
-    <button class="btn btn-dark" @onclick="@GetBackOnePage">Back to admins</button>
+    <button class="btn btn-dark" @onclick="@GetBackOnePage">Ångra</button>
 
 </EditForm>
 
 
 @code {
     [Parameter] public Admins admin { get; set; }
-    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public string ButtonText { get; set; } = "Spara";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
 
     public void GetBackOnePage()

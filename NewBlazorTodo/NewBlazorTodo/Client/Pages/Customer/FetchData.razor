@@ -2,10 +2,10 @@
 @inject HttpClient client
 @inject IJSRuntime js
 
-<h3>Customers</h3>
-<small>Add Customers</small>
+<h3>Företagskunder</h3>
+
 <div class="form-group">
-    <a class="btn btn-success" href="customer/create"><i class="oi oi-plus"></i> Create New</a>
+    <a class="btn btn-success" href="customer/create"><i class="oi oi-plus"></i> Lägg till ny kund</a>
 </div>
 <br>
 
@@ -22,30 +22,22 @@ else
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>PhoneNumber</th>
-                <th>Company</th>
-                <th>Street</th>
-                <th>PostalCode</th>
-                <th>City</th>
+                <th>Företagskund</th>
+                <th>KontaktPerson</th>
+                <th>Telefonnummer</th>
+                <th>Stad</th>
             </tr>
         </thead>
         <tbody>
             @foreach (Customers customer in customers)
             {
             <tr>
-                <td>@customer.Id</td>
-                <td>@customer.Name</td>
-                <td>@customer.Email</td>
-                <td>@customer.Phone</td>
                 <td>@customer.Company</td>
-                <td>@customer.Street</td>
-                <td>@customer.PostalCode</td>
+                <td>@customer.Name</td>
+                <td>@customer.Phone</td>
                 <td>@customer.City</td>
                 <td>
-                    <a class="btn btn-success" href="customer/details/@customer.Id">View</a>
+                    <a class="btn btn-success" href="customer/details/@customer.Id">Mer Info</a>
                     @*<button class="btn btn-danger" @onclick="@(() => Delete(customer.Id))">Delete</button>*@
                 </td>
             </tr>

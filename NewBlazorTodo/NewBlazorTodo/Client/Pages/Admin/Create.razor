@@ -5,7 +5,7 @@
 
 <h3>Create</h3>
 
-<Form ButtonText="Create Admin" admin="@admin"
+<Form ButtonText="Lägg till Admin" admin="@admin"
       OnValidSubmit="@CreateAdmin" />
 
 @code {
@@ -13,7 +13,7 @@
     async Task CreateAdmin()
     {
         await http.PostAsJsonAsync("https://localhost:44374/api/admins", admin);
-        await js.InvokeVoidAsync("alert", $"Created admin {admin.FirstName} Successfully!");
+        await js.InvokeVoidAsync("alert", $"Admin {admin.FirstName} Skapades!");
         uriHelper.NavigateTo("admin");
     }
 }

@@ -3,9 +3,9 @@
 @inject NavigationManager uriHelper
 @inject IJSRuntime js
 
-<h3>Create</h3>
+<h3>Lägg till en företagskund</h3>
 
-<Form ButtonText="Create Customer" customer="@customer"
+<Form ButtonText="Lägg till företagskund" customer="@customer"
       OnValidSubmit="@CreateCustomer" />
 
 @code {
@@ -13,7 +13,7 @@
     async Task CreateCustomer()
     {
         await http.PostAsJsonAsync("https://localhost:44374/api/customers", customer);
-        await js.InvokeVoidAsync("alert", $"Created customer {customer.Name} Successfully!");
+        await js.InvokeVoidAsync("alert", $"GRATTIS! Företagskund {customer.Company} Skapades!");
         uriHelper.NavigateTo("customerlist");
     }
 }

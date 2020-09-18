@@ -5,20 +5,22 @@
 
 
 <table id="customers" class="table table-bordered table-danger">
-    <tr id="testing"><th>Information about admin @_operator.FirstName @_operator.LastName</th></tr>
+    <tr id="testing"></tr>
     <tr><th>Id: @_operator.Id</th></tr>
-    <tr><th>Email: @_operator.Email</th></tr>
-    <tr><th>PhoneNumber: @_operator.Phone</th></tr>
-    <tr></tr>
-    <tr><th>User Name: @_operator.UserName</th></tr>
-    <tr><th>Password: @_operator.Password</th></tr>
-    
+    <tr><th>Förnamn: @_operator.FirstName</th></tr>
+    <tr><th>Efternamn: @_operator.LastName</th></tr>
+    <tr><th>Epost: @_operator.Email</th></tr>
+    <tr><th>Telefonnummer: @_operator.Phone</th></tr>
+    <tr><th>Användarnamn: @_operator.UserName</th></tr>
+    <tr><th>Lösenord: @_operator.Password</th></tr>
+    <tr><th>Nuvarande plats: @_operator.Location</th></tr>
+
 </table>
 
 <div class="BackButton">
-    <button class="btn btn-dark" @onclick="@GetBackOnePage">Back to operator page</button>
+    <button class="btn btn-dark" @onclick="@GetBackOnePage">Tillbaks till operatörer</button>
     <a class="btn btn-success" href="operator/edit/@_operator.Id">Edit</a>
-    <button class="btn btn-danger" @onclick="@(() => Delete(_operator.Id))">Delete</button>
+    <button class="btn btn-danger" @onclick="@(() => Delete(_operator.Id))">Ta bort @_operator.FirstName</button>
 
 </div>
 
@@ -26,12 +28,10 @@
 @code{
     [Parameter] public int operatorId { get; set; }
     Operators _operator = new Operators();
-    //public List<Operators> _operators { get; set; } = new List<Operators>();
 
     protected override async Task OnInitializedAsync()
     {
         _operator = await client.GetFromJsonAsync<Operators>($"https://localhost:44374/api/operators/ {operatorId}");
-        //_operators = await client.GetFromJsonAsync<List<Operators>>($"https://localhost:44374/api/operators/ {operatorId}");
     }
 
     public void GetBackOnePage()
@@ -41,13 +41,10 @@
 
     async Task Delete(int id)
     {
-        //var tempOperator = this._operators.First(x => x.Id == id);
-        if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {_operator.FirstName}'s with ID: ({_operator.Id}) Record?"))
+        if (await js.InvokeAsync<bool>("confirm", $"Vill du ta bort {_operator.FirstName}'s med ID: ({_operator.Id}) som operatör?"))
         {
             await client.DeleteAsync($"https://localhost:44374/api/operators/ {id}");
-            GetBackOnePage();
-            
-            
+            GetBackOnePage();  
         }
     }
 

@@ -4,21 +4,22 @@
 @inject IJSRuntime js
 
 
-    <table id="customers" class="table table-bordered table-danger">
-        <tr id="testing"><th>Information about admin @admin.FirstName @admin.LastName</th></tr>
-        <tr><th>Id: @admin.Id</th></tr>
-        <tr><th>Email: @admin.Email</th></tr>
-        <tr><th>PhoneNumber: @admin.Phone</th></tr>
-        <tr></tr>
-        <tr><th>User Name: @admin.UserName</th></tr>
-        <tr><th>Password: @admin.Password</th></tr>
+<table id="customers" class="table table-bordered table-danger">
+    <tr id="testing"></tr>
+    <tr><th>Id: @admin.Id</th></tr>
+    <tr><th>Förnamn: @admin.FirstName</th></tr>
+    <tr><th>Efternamn: @admin.LastName</th></tr>
+    <tr><th>Epost: @admin.Email</th></tr>
+    <tr><th>Telefonnummer: @admin.Phone</th></tr>
+    <tr><th>Användarnamn: @admin.UserName</th></tr>
+    <tr><th>Lösenord: @admin.Password</th></tr>
 
-    </table>
+</table>
 
     <div class="BackButton">
-        <button class="btn btn-dark" @onclick="@GetBackOnePage">Back to admins</button>
+        <button class="btn btn-dark" @onclick="@GetBackOnePage">Tillbaks till admins</button>
         <a class="btn btn-success" href="admin/edit/@admin.Id">Edit</a>
-        <button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>
+        <button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Ta bort @admin.FirstName</button>
     </div>
 
 

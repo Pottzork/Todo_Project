@@ -3,9 +3,8 @@
 @inject IJSRuntime js
 
 <h3>Admins</h3>
-<small>Add as many admins as you wish.</small>
 <div class="form-group">
-    <a class="btn btn-success" href="admin/create"><i class="oi oi-plus"></i> Create New</a>
+    <a class="btn btn-success" href="admin/create"><i class="oi oi-plus"></i> Lägg till ny admin</a>
 </div>
 <br>
 
@@ -22,24 +21,26 @@ else
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Förnamn</th>
+                <th>Efternamn</th>
+                <th>Telefonnummer</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (Admins admin in admins)
             {
-                <tr>
-                    <td>@admin.FirstName</td>
-                    <td>@admin.LastName</td>
-                    <td>
-                        <a class="btn btn-success" href="admin/details/@admin.Id">View</a>
-                        @*<a class="btn btn-success" href="admin/edit/@admin.Id">Edit</a>*@
-                        @*<button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>*@
+            <tr>
+                <td>@admin.FirstName</td>
+                <td>@admin.LastName</td>
+                <td>@admin.Phone</td>
+                <td>
+                    <a class="btn btn-success" href="admin/details/@admin.Id">Mer Info</a>
+                    @*<a class="btn btn-success" href="admin/edit/@admin.Id">Edit</a>*@
+                    @*<button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>*@
 
-                    </td>
-                </tr>
+                </td>
+            </tr>
             }
 
         </tbody>
