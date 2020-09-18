@@ -12,9 +12,10 @@ namespace XamarinTodo.Data.Services
         //public List<Orders> OrderList;
         //public List<Customers> CustomerList;
         //public List<Operators> OperatorList;
-        Orders orders = new Orders();
-        Operators operators = new Operators();
-        Customers customers = new Customers();
+        private Orders orders = new Orders();
+
+        private Operators operators = new Operators();
+        private Customers customers = new Customers();
 
         public static IEnumerable<Orders> OrderList()
         {
@@ -23,26 +24,24 @@ namespace XamarinTodo.Data.Services
                 new Orders{ OrderId = 0, OrderDescription="Fixa elkoppling", OrderAccept=false,
                             OrderStart= DateTime.Now, OrderEnd=DateTime.Now, OrderComplete=false,
                             OrderPrice=0, OrderInfo="Dörr på baksidan", CustomerCusId=1, OperatorID=1},
-                
+
                 new Orders{ OrderId = 1, OrderDescription="Trasigt kylskåp", OrderAccept=false,
                             OrderStart= DateTime.Now, OrderEnd=DateTime.Now, OrderComplete=false,
                             OrderPrice=0, OrderInfo="Andra våningen", CustomerCusId=1, OperatorID=1},
-                
+
                 new Orders{ OrderId = 2, OrderDescription="Trasig eskalator", OrderAccept=false,
                             OrderStart= DateTime.Now, OrderEnd=DateTime.Now, OrderComplete=false,
                             OrderPrice=0, OrderInfo="", CustomerCusId=1, OperatorID=1},
-                
+
                 new Orders{ OrderId = 3, OrderDescription="Trasigt kylskåp", OrderAccept=false,
                             OrderStart= DateTime.Now, OrderEnd=DateTime.Now, OrderComplete=false,
                             OrderPrice=0, OrderInfo="Andra våningen", CustomerCusId=1, OperatorID=1}
             };
         }
 
-
         public static IEnumerable<Customers> CustomerList()
         {
-
-             return new List<Customers>()
+            return new List<Customers>()
             {
                 new Customers() { Id = 1, Name = "Kalle Johansson", Email = "kalle@hotmail.com",
                     Phone = "0702001001", Company = "Kalle AB",
@@ -61,8 +60,7 @@ namespace XamarinTodo.Data.Services
                     Address = "Madickengatan 4, 444 44, Madickenstad"  }
             };
         }
-        
-        
+
         public static IEnumerable<Operators> OperatorList()
         {
             return new List<Operators>()
@@ -84,12 +82,7 @@ namespace XamarinTodo.Data.Services
                     Phone = "0046004004", Location = "Göteborg" }
             };
         }
-
-        
-
     }
-
-
 
     public class JoinStuffThingy
     {
@@ -101,7 +94,6 @@ namespace XamarinTodo.Data.Services
             string thisOrder = null;
 
             JoinDemo(thisOrder);
-
         }
 
         public static string JoinDemo(string thisOrder)
@@ -109,7 +101,6 @@ namespace XamarinTodo.Data.Services
             var theOrders = MockDatabase.OrderList();
             //var theOperators = MockDatabase.OperatorList();
             var theCustomers = MockDatabase.CustomerList();
-
 
             var join = theCustomers.Join(theOrders, p => p.Id, t => t.OrderId, (p, t) => new
             {
@@ -129,17 +120,9 @@ namespace XamarinTodo.Data.Services
                                     $"{no.OrderId}!{no.OrderDescription}!" +
                                     $"{no.OrderInfo}";
                 thisOrder = recievedOrder.ToString();
-
             }
 
             return thisOrder;
         }
-        
-        
-
     }
-
-
-
-
 }
