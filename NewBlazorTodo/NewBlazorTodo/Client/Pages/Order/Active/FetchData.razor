@@ -2,8 +2,8 @@
 @inject HttpClient client
 @inject IJSRuntime js
 
-<h3>Active Orders</h3>
-<small>Here you can see all active orders</small>
+<h3>Aktiva ordrar.</h3>
+<small>Alla orders som operatörer jobbar med just nu.</small>
 
 
 <br>
@@ -40,6 +40,7 @@ else
                 <td>@order.OrderInfo</td>
                 <td>@order.Customer</td>
                 <td></td>
+                
             </tr>
                 }
 
@@ -49,11 +50,13 @@ else
     </table>
 }
 @code {
-        
+
     ActiveOrderView[] activeOrderView { get; set; }
+   
     protected override async Task OnInitializedAsync()
-    {       
+    {
         activeOrderView = await client.GetFromJsonAsync<ActiveOrderView[]>("https://localhost:44374/api/activeorderview");
 
     }
+
 }

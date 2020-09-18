@@ -44,6 +44,9 @@ namespace WebApiTodo
             services.AddSingleton<IActiveOrderViewService, ActiveOrderViewService>();
             services.AddSingleton<IActiveOrderViewRepository>(c => new ActiveOrderViewRepository(Configuration["ConnectionString"]));
 
+            services.AddSingleton<IPayMentDetailsService, PayMentDetailsService>();
+            services.AddSingleton<IPayMentDetailsRepository>(c => new PayMentDetailsRepository(Configuration["ConnectionString"]));
+
             services.AddSingleton<IOperatorService, OperatorService>();
             services.AddSingleton<IOperatorRepository>(c => new OperatorRepository(Configuration["ConnectionString"]));
 

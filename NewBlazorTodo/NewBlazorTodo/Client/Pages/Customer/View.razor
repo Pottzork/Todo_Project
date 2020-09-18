@@ -1,0 +1,50 @@
+﻿@page "/customer/details/{customerId:int}"
+@inject HttpClient client
+@inject NavigationManager uriHelper
+@inject IJSRuntime js
+
+
+<table id="customers" class="table table-bordered table-danger">
+    <tr id="testing"><th>Information about Company @_customer.Company</th></tr>
+    <tr><th>Företag: @_customer.Company</th></tr>
+    <tr><th>Address: @_customer.Street</th></tr>
+    <tr><th>Stad: @_customer.City</th></tr>
+    <tr><th>Email: @_customer.Email</th></tr>
+    <tr><th>Telefon: @_customer.Phone</th></tr>
+
+</table>
+
+<div class="BackButton">
+    <button class="btn btn-dark" @onclick="@GetBackOnePage">Back to customer page</button>
+    <a class="btn btn-success" href="customer/edit/@_customer.Id">Edit</a>
+    <button class="btn btn-danger" @onclick="@(() => Delete(_customer.Id))">Delete</button>
+
+</div>
+
+
+@code{
+    [Parameter] public int customerId { get; set; }
+    Customers _customer = new Customers();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _customer = await client.GetFromJsonAsync<Customers>($"https://localhost:44374/api/customers/ {customerId}");
+    }
+
+    public void GetBackOnePage()
+    {
+        uriHelper.NavigateTo("customerlist");
+    }
+
+    async Task Delete(int id)
+    {
+        if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {_customer.Company}'s with ID: ({_customer.Id}) Record?"))
+        {
+            await client.DeleteAsync($"https://localhost:44374/api/customers/ {id}");
+            GetBackOnePage();
+
+
+        }
+    }
+
+}

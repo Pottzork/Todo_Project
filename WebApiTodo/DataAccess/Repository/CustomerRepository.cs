@@ -18,53 +18,47 @@ namespace DataAccess.Repository
         }
         public async Task<bool> AddCustomer(Customers customer)
         {
-            using (var c = new SqlConnection(_connectionString))
+            using var c = new SqlConnection(_connectionString);
+            try
             {
-                try
-                {
-                    await c.ExecuteAsync("INSERT INTO Customers (Name, Email, Phone, Company, Street, PostalCode, City, OrderID) VALUES (@Name, @Email, @Phone, @Company, @Street, @PostalCode, @City, @OrderID)",
-                        new { customer.Name, customer.Email, customer.Phone, customer.Company, customer.Street, customer.PostalCode, customer.City, customer.OrderId });
+                await c.ExecuteAsync("INSERT INTO Customers (Name, Email, Phone, Company, Street, PostalCode, City, OrderID) VALUES (@Name, @Email, @Phone, @Company, @Street, @PostalCode, @City, @OrderID)",
+                    new { customer.Name, customer.Email, customer.Phone, customer.Company, customer.Street, customer.PostalCode, customer.City, customer.OrderId });
 
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 
         public async Task<bool> DeleteCustomer(int id)
         {
-            using (var c = new SqlConnection(_connectionString))
+            using var c = new SqlConnection(_connectionString);
+            try
             {
-                try
-                {
-                    await c.ExecuteAsync("DELETE Customers WHERE Id = @id", new { id });
+                await c.ExecuteAsync("DELETE Customers WHERE ID = @id", new { id });
 
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                    throw;
-                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
             }
         }
 
         public async Task<IEnumerable<Customers>> GetAllCustomers()
         {
-            using (var c = new SqlConnection(_connectionString))
+            using var c = new SqlConnection(_connectionString);
+            try
             {
-                try
-                {
-                    return await c.QueryAsync<Customers>("SELECT * FROM Customers");
-                }
-                catch (Exception)
-                {
+                return await c.QueryAsync<Customers>("SELECT * FROM Customers");
+            }
+            catch (Exception)
+            {
 
-                    throw;
-                }
+                throw;
             }
         }
 

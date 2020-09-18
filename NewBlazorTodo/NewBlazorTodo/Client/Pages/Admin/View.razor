@@ -18,6 +18,7 @@
     <div class="BackButton">
         <button class="btn btn-dark" @onclick="@GetBackOnePage">Back to admins</button>
         <a class="btn btn-success" href="admin/edit/@admin.Id">Edit</a>
+        <button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>
     </div>
 
 
@@ -35,5 +36,12 @@
         uriHelper.NavigateTo("admin");
     }
 
-
+    async Task Delete(int adminId)
+    {
+        if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {admin.FirstName}'s ({admin.Id}) Record?"))
+        {
+            await client.DeleteAsync($"https://localhost:44374/api/admins/ {adminId}");
+            GetBackOnePage();
+        }
+    }
 }

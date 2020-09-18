@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace NewBlazorTodo.Shared.Models
@@ -7,6 +8,8 @@ namespace NewBlazorTodo.Shared.Models
     public class Orders
     {
         public int orderId { get; set; }
+
+        [Required(ErrorMessage = "Description is required.")]
         public string orderDescription { get; set; }
         public bool orderAccept { get; set; } = false;
         public DateTime orderDate { get; set; } = DateTime.Now;
@@ -15,6 +18,8 @@ namespace NewBlazorTodo.Shared.Models
         public bool orderComplete { get; set; } = false;
         public float orderPrice { get; set; } = 0;
         public string orderInfo { get; set; }
+
+        [Required(ErrorMessage = "Company is required.")]
         public int customerId { get; set; } = 0;
         public int OperatorID { get; set; }
     }

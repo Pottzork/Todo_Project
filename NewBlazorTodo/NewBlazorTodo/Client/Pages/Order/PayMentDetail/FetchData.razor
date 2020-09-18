@@ -2,8 +2,8 @@
 @inject HttpClient client
 @inject IJSRuntime js
 
-<h3>Historical Orders</h3>
-<small>Here you can see all history orders</small>
+<h3>Order Betalningar</h3>
+<small>Ordrar du ser här är färdiga. Skicka faktura och få betalt.</small>
 
 
 <br>
@@ -53,6 +53,7 @@ else
 @code {
 
     ActiveOrderView[] activeOrderView { get; set; }
+    public int CompletedToken { get; set; } = 1;
     protected override async Task OnInitializedAsync()
     {
         activeOrderView = await client.GetFromJsonAsync<ActiveOrderView[]>("https://localhost:44374/api/activeorderview");

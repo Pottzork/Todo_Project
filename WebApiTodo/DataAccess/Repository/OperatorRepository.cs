@@ -38,15 +38,14 @@ namespace DataAccess.Repository
         }
         #endregion
 
-        //Deleting one Operator by id
-        #region DeleteOperator(int id)
+        
         public async Task<bool> DeleteOperator(int id)
         {
             using (var c = new SqlConnection(_connectionString))
             {
                 try
                 {
-                    await c.ExecuteAsync("DELETE FROM Operators WHERE Id = @id", new { id });
+                    await c.ExecuteAsync("DELETE Operators WHERE ID = @id", new { id });
                     return true;
                 }
                 catch (Exception)
@@ -55,7 +54,6 @@ namespace DataAccess.Repository
                 }
             }
         }
-        #endregion
 
         //Getting all Operators
         #region GetAllOperators()

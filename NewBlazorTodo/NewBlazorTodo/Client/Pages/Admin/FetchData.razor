@@ -34,9 +34,9 @@ else
                     <td>@admin.FirstName</td>
                     <td>@admin.LastName</td>
                     <td>
-                        <a class="btn btn-success" href="admin/details/@admin.Id">View/Edit</a>
+                        <a class="btn btn-success" href="admin/details/@admin.Id">View</a>
                         @*<a class="btn btn-success" href="admin/edit/@admin.Id">Edit</a>*@
-                        <button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>
+                        @*<button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>*@
 
                     </td>
                 </tr>
@@ -52,13 +52,13 @@ else
         admins = await client.GetFromJsonAsync<Admins[]>("https://localhost:44374/api/admins");
     }
 
-    async Task Delete(int adminId)
-    {
-        var admin = admins.First(x => x.Id == adminId);
-        if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {admin.FirstName}'s ({admin.Id}) Record?"))
-        {
-            await client.DeleteAsync($"https://localhost:44374/api/admins/ {adminId}");
-            await OnInitializedAsync();
-        }
-    }
+    //async Task Delete(int adminId)
+    //{
+    //    var admin = admins.First(x => x.Id == adminId);
+    //    if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {admin.FirstName}'s ({admin.Id}) Record?"))
+    //    {
+    //        await client.DeleteAsync($"https://localhost:44374/api/admins/ {adminId}");
+    //        await OnInitializedAsync();
+    //    }
+    //}
 }

@@ -45,8 +45,8 @@ else
                 <td>@customer.PostalCode</td>
                 <td>@customer.City</td>
                 <td>
-                    <a class="btn btn-success" href="customer/edit/@customer.Id">Edit</a>
-                    <button class="btn btn-danger" @onclick="@(() => Delete(customer.Id))">Delete</button>
+                    <a class="btn btn-success" href="customer/details/@customer.Id">View</a>
+                    @*<button class="btn btn-danger" @onclick="@(() => Delete(customer.Id))">Delete</button>*@
                 </td>
             </tr>
             }
@@ -61,13 +61,13 @@ else
         customers = await client.GetFromJsonAsync<Customers[]>("https://localhost:44374/api/customers");
     }
 
-    async Task Delete(int id)
-    {
-        var customer = customers.First(x => x.Id == id);
-        if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {customer.Name}'s ({customer.Company}) Record?"))
-        {
-            await client.DeleteAsync($"https://localhost:44374/api/customers/ {id}");
-            await OnInitializedAsync();
-        }
-    }
+    //async Task Delete(int id)
+    //{
+    //    var customer = customers.First(x => x.Id == id);
+    //    if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {customer.Name}'s ({customer.Company}) Record?"))
+    //    {
+    //        await client.DeleteAsync($"https://localhost:44374/api/customers/ {id}");
+    //        await OnInitializedAsync();
+    //    }
+    //}
 }
