@@ -15,8 +15,6 @@ namespace XamarinTodo.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LogInPage : ContentPage
     {
-        //Denna används för att nå metoderna i serviceklassen
-
         public LogInPage()
         {
             InitializeComponent();

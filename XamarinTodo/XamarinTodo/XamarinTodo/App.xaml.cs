@@ -14,7 +14,7 @@ namespace XamarinTodo
 
             DependencyService.Register<DataService>();
 
-            MainPage = new OrderOverviewPage();
+            MainPage = new NavigationPage(new LogInPage());
         }
 
         protected override void OnStart()

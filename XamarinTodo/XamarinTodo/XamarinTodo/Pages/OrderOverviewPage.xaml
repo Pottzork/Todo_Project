@@ -5,32 +5,32 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Mina Ordrar" HorizontalOptions="Center" FontSize="30" Margin="15" />
-            <StackLayout Margin="0, 25">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OrderTapped" />
-                </StackLayout.GestureRecognizers>
-                <!--<Label Text="2020-09-11" FontSize="25" Margin="10,0,0,0" />-->
+            <!--<RefreshView>-->
+            <CollectionView x:Name="orderOverviewList"
+                            SelectionMode="Single"
+                            SelectionChanged="orderOverviewList_SelectionChanged">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
 
-                <ListView x:Name="orderOverviewList" HasUnevenRows="False">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell Height="400">
-                                <Grid BackgroundColor="LightCoral">
-                                    <Label Text="Energiverket" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" />
-                                    <Label Text="{Binding OrderId}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="18" />
-                                    <Label Text="{Binding OrderDescription}" Grid.Row="2" Grid.Column="1" FontSize="18" />
-                                    <!--<Label Text="{Binding Address}" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" />
-                                        <Label Text="{Binding CustomerName}" Grid.Row="2" FontSize="18" Grid.ColumnSpan="2" />
-                                        <Label Text="{Binding Phone}" Grid.Row="3" FontSize="18" Grid.ColumnSpan="2" />
-                                        <Label Text="{Binding OrderInfo}" Grid.Row="4" FontSize="18" Grid.ColumnSpan="2" />
-                                        <Label Text="Tryck för mer info" Grid.Row="5" Grid.ColumnSpan="2" HorizontalOptions="Center" Opacity=".7" VerticalOptions="End" />-->
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid BackgroundColor="LightGray" Margin="5, 0">
+                            <Label Text="2020-09-11" FontSize="25" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" Margin="10, 0" />
+                            <Label Text="Energiverket" Grid.Row="1" Grid.Column="0" FontSize="20" FontAttributes="Bold" Margin="10, 5" />
+                            <Label Text="{Binding OrderId}" Grid.Row="1" Grid.Column="1" FontSize="18" HorizontalOptions="CenterAndExpand" Margin="10, 0" />
+                            <Label Text="Johan Willins gata 3, 416 64 Göteborg" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" Margin="10, 0" />
+                            <Label Text="Anders Andersson" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" FontSize="18" Margin="10, 0" />
+                            <Label Text="0730-436536" Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" FontSize="18" Margin="10, 0" />
+                            <Label Text="{Binding OrderDescription}" Grid.Row="5" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" FontSize="18" Margin="10, 0" />
+                            <Label Text="Tryck för mer info" Grid.Row="6" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" FontSize="18" Opacity=".7" VerticalOptions="End" Margin="10, 0" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <!--</RefreshView>-->
 
-                <!--<ScrollView>
+            <!--<ScrollView>
                         <Label Text="Energiverket" Grid.Column="0" Grid.Row="0" FontSize="25" FontAttributes="Bold" VerticalTextAlignment="Start" />
                         <Label Text="#731432" Grid.Column="1" Grid.Row="0" FontSize="18" VerticalTextAlignment="Start" />
                         <Label Text="Johan Willins gata 3, 416 64 Göteborg" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" />
@@ -38,8 +38,7 @@
                         <Label Text="0730-436536" Grid.Row="3" FontSize="18" Grid.ColumnSpan="2" />
                         <Label Text="En katalysator behöver fixas i kundens generator." Grid.Row="4" FontSize="18" Grid.ColumnSpan="2" />
                         <Label Text="Tryck för mer info" Grid.Row="5" Grid.ColumnSpan="2" HorizontalOptions="Center" Opacity=".7" VerticalOptions="End" />-->
-                <!--</ScrollView>-->
-            </StackLayout>
+            <!--</ScrollView>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

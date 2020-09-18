@@ -26,14 +26,14 @@ namespace XamarinTodo.Pages
             orderOverviewList.ItemsSource = orderList;
         }
 
-        private async void OrderTapped(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new OrderPendingPage());
-        }
-
         private async void GetOrders()
         {
             orderList = await DataService.GetItemsAsync() as List<Orders>;
+        }
+
+        private async void orderOverviewList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            await Navigation.PushAsync(new OrderPendingPage());
         }
 
         //Om OrderAccept = false så ska den visas här
