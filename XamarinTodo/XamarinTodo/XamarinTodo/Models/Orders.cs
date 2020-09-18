@@ -17,5 +17,17 @@ namespace XamarinTodo.Models
         public string OrderInfo { get; set; }
         public int CustomerCusId { get; set; }
         public int OperatorID { get; set; }
+        public int OrderPendingValue { get; set; }
+
+
+
+        //Lägg till pendingvalue
+        //int 0 -UnAnswered
+        // 1. Accepted
+        //2. Pending
+        //3. Neglected
+
+
+
     }
 }

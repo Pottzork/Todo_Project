@@ -23,19 +23,23 @@ namespace XamarinTodo.Data.Services
             {
                 new Orders{ OrderId = 0, OrderDescription="Fixa elkoppling", OrderAccept=false,
                             OrderStart= DateTime.Now, OrderEnd=DateTime.Now, OrderComplete=false,
-                            OrderPrice=0, OrderInfo="Dörr på baksidan", CustomerCusId=1, OperatorID=1},
+                            OrderPrice=0, OrderInfo="Dörr på baksidan", CustomerCusId=1, OperatorID=1
+                            , OrderPendingValue=2},
 
                 new Orders{ OrderId = 1, OrderDescription="Trasigt kylskåp", OrderAccept=false,
                             OrderStart= DateTime.Now, OrderEnd=DateTime.Now, OrderComplete=false,
-                            OrderPrice=0, OrderInfo="Andra våningen", CustomerCusId=1, OperatorID=1},
+                            OrderPrice=0, OrderInfo="Andra våningen", CustomerCusId=1, OperatorID=1
+                            , OrderPendingValue=2},
 
                 new Orders{ OrderId = 2, OrderDescription="Trasig eskalator", OrderAccept=false,
                             OrderStart= DateTime.Now, OrderEnd=DateTime.Now, OrderComplete=false,
-                            OrderPrice=0, OrderInfo="", CustomerCusId=1, OperatorID=1},
+                            OrderPrice=0, OrderInfo="", CustomerCusId=1, OperatorID=1
+                            , OrderPendingValue=2},
 
                 new Orders{ OrderId = 3, OrderDescription="Trasigt kylskåp", OrderAccept=false,
                             OrderStart= DateTime.Now, OrderEnd=DateTime.Now, OrderComplete=false,
-                            OrderPrice=0, OrderInfo="Andra våningen", CustomerCusId=1, OperatorID=1}
+                            OrderPrice=0, OrderInfo="Andra våningen", CustomerCusId=1, OperatorID=1
+                            , OrderPendingValue=2}
             };
         }
 
@@ -110,7 +114,8 @@ namespace XamarinTodo.Data.Services
                 p.Phone,
                 t.OrderId,
                 t.OrderDescription,
-                t.OrderInfo
+                t.OrderInfo,
+                t.OrderPendingValue
             });
 
             foreach (var no in join)
@@ -118,7 +123,7 @@ namespace XamarinTodo.Data.Services
                 string recievedOrder = $"{no.Company}!{no.Address}!" +
                                     $"{no.Name}!{no.Phone}!{no.OrderId}!" +
                                     $"{no.OrderId}!{no.OrderDescription}!" +
-                                    $"{no.OrderInfo}";
+                                    $"{no.OrderInfo}!{no.OrderPendingValue}";
                 thisOrder = recievedOrder.ToString();
             }
 
