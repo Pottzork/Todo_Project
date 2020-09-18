@@ -16,21 +16,17 @@
 
             <StackLayout>
                 <StackLayout Margin="0, 20">
-                    <Label Text="Energiverket" HorizontalOptions="Center" FontSize="30" />
-                    <Label Text="#731432" HorizontalOptions="Center" FontSize="25" />
+                    <Label x:Name="LabelCustomerName" Text="Energiverket" HorizontalOptions="Center" FontSize="30" />
+                    <Label x:Name="LabelCustomerId" Text="#731432" HorizontalOptions="Center" FontSize="25" />
                 </StackLayout>
-                <StackLayout BackgroundColor="#f6f6f6" Padding="10">
-                    <Label Text="Johan Willins gata 3, 416 64 Göteborg" FontSize="18" />
-                    <Label Text="Anders Andersson" FontSize="18" />
-                    <Label Text="0730-436536" FontSize="18" />
+                <StackLayout Padding="10" BackgroundColor="Green">
+                    <Label x:Name="LabelAdress" Text="Johan Willins gata 3, 416 64 Göteborg" FontSize="18" />
+                    <Label x:Name="LabelContactPerson" Text="Anders Andersson" FontSize="18" />
+                    <Label x:Name="LabelPhone" Text="0730-436536" FontSize="18" />
                 </StackLayout>
-                <StackLayout HeightRequest="150" BackgroundColor="#f6f6f6" Padding="10">
+                <StackLayout BackgroundColor="Green" Padding="10">
                     <Label Text="Beskrivning" FontSize="22" FontAttributes="Bold" />
-                    <Label FontSize="18">
-                        En katalysator har slutat att fungera i generatorn. Kolla om du kan fixa det och så fortsätter texten flera
-rader om det behövs väldigt mycket uttrymme för all den info som kan tänkas att skrivas här. Sen kanske det står extra mycket info här. Det hade kunnat
-fortsätta flera rader till.
-                    </Label>
+                    <Label x:Name="LabelOrderDescription" FontSize="18" Text="{Binding OrderDescription}" />
                 </StackLayout>
             </StackLayout>
         </SwipeView>

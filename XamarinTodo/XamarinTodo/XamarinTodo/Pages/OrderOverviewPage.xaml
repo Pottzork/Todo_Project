@@ -22,7 +22,7 @@
                             <Label Text="Johan Willins gata 3, 416 64 Göteborg" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" Margin="10, 0" />
                             <Label Text="Anders Andersson" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" FontSize="18" Margin="10, 0" />
                             <Label Text="0730-436536" Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" FontSize="18" Margin="10, 0" />
-                            <Label Text="{Binding OrderDescription}" Grid.Row="5" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" FontSize="18" Margin="10, 0" />
+                            <Label Text="{Binding OrderDescription}" Grid.Row="5" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" FontSize="18" Margin="10, 0" MaxLines="1" LineBreakMode="TailTruncation" />
                             <Label Text="Tryck för mer info" Grid.Row="6" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" FontSize="18" Opacity=".7" VerticalOptions="End" Margin="10, 0" />
                         </Grid>
                     </DataTemplate>

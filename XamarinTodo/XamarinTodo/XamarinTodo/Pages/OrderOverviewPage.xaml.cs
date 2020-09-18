@@ -33,7 +33,7 @@ namespace XamarinTodo.Pages
 
         private async void orderOverviewList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            await Navigation.PushAsync(new OrderPendingPage());
+            await Navigation.PushAsync(new OrderPendingPage(e.CurrentSelection[0] as Orders));
         }
 
         //Om OrderAccept = false så ska den visas här
