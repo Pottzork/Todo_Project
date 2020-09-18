@@ -1,37 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Linq;
 using System.Text;
 using XamarinTodo.Models;
 
 namespace XamarinTodo.Data.Services
 {
-    public class MockDatabase
+    public class MockDatabase : JoinStuffThingy
     {
-        public List<Orders> OrderList;
-        public List<Customers> CustomerList;
-        public List<Operators> OperatorList;
+        //public List<Orders> OrderList;
+        //public List<Customers> CustomerList;
+        //public List<Operators> OperatorList;
+        Orders orders = new Orders();
+        Operators operators = new Operators();
+        Customers customers = new Customers();
 
-        public MockDatabase()
+        public static IEnumerable<Orders> OrderList()
         {
-            OrderList = new List<Orders>()
+            return new List<Orders>()
             {
                 new Orders{ OrderId = 0, OrderDescription="Fixa elkoppling", OrderAccept=false,
                             OrderStart= DateTime.Now, OrderEnd=DateTime.Now, OrderComplete=false,
                             OrderPrice=0, OrderInfo="Dörr på baksidan", CustomerCusId=1, OperatorID=1},
+                
                 new Orders{ OrderId = 1, OrderDescription="Trasigt kylskåp", OrderAccept=false,
                             OrderStart= DateTime.Now, OrderEnd=DateTime.Now, OrderComplete=false,
                             OrderPrice=0, OrderInfo="Andra våningen", CustomerCusId=1, OperatorID=1},
+                
                 new Orders{ OrderId = 2, OrderDescription="Trasig eskalator", OrderAccept=false,
                             OrderStart= DateTime.Now, OrderEnd=DateTime.Now, OrderComplete=false,
                             OrderPrice=0, OrderInfo="", CustomerCusId=1, OperatorID=1},
+                
                 new Orders{ OrderId = 3, OrderDescription="Trasigt kylskåp", OrderAccept=false,
                             OrderStart= DateTime.Now, OrderEnd=DateTime.Now, OrderComplete=false,
                             OrderPrice=0, OrderInfo="Andra våningen", CustomerCusId=1, OperatorID=1}
             };
+        }
 
 
-            CustomerList = new List<Customers>()
+        public static IEnumerable<Customers> CustomerList()
+        {
+
+             return new List<Customers>()
             {
                 new Customers() { Id = 1, Name = "Kalle Johansson", Email = "kalle@hotmail.com",
                     Phone = "0702001001", Company = "Kalle AB",
@@ -49,9 +60,12 @@ namespace XamarinTodo.Data.Services
                     Phone = "0702004004", Company = "Madicken AB",
                     Address = "Madickengatan 4, 444 44, Madickenstad"  }
             };
-
-
-            OperatorList = new List<Operators>()
+        }
+        
+        
+        public static IEnumerable<Operators> OperatorList()
+        {
+            return new List<Operators>()
             {
                 new Operators { Id = 1, UserName = "SveLju1", Password = "SveLju1",
                     FirstName = "Sven", LastName = "Ljungberg", Email = "svelju@gmail.com",
@@ -70,5 +84,62 @@ namespace XamarinTodo.Data.Services
                     Phone = "0046004004", Location = "Göteborg" }
             };
         }
+
+        
+
     }
+
+
+
+    public class JoinStuffThingy
+    {
+        public string thisOrder { get; set; }
+        public static string orderThis { get; set; }
+
+        public static void Demo()
+        {
+            string thisOrder = null;
+
+            JoinDemo(thisOrder);
+
+        }
+
+        public static string JoinDemo(string thisOrder)
+        {
+            var theOrders = MockDatabase.OrderList();
+            //var theOperators = MockDatabase.OperatorList();
+            var theCustomers = MockDatabase.CustomerList();
+
+
+            var join = theCustomers.Join(theOrders, p => p.Id, t => t.OrderId, (p, t) => new
+            {
+                p.Company,
+                p.Address,
+                p.Name,
+                p.Phone,
+                t.OrderId,
+                t.OrderDescription,
+                t.OrderInfo
+            });
+
+            foreach (var no in join)
+            {
+                string recievedOrder = $"{no.Company}!{no.Address}!" +
+                                    $"{no.Name}!{no.Phone}!{no.OrderId}!" +
+                                    $"{no.OrderId}!{no.OrderDescription}!" +
+                                    $"{no.OrderInfo}";
+                thisOrder = recievedOrder.ToString();
+
+            }
+
+            return thisOrder;
+        }
+        
+        
+
+    }
+
+
+
+
 }

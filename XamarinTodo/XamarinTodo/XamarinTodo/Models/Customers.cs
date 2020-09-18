@@ -13,8 +13,7 @@ namespace XamarinTodo.Models
         public string Phone { get; set; }
         public string Company { get; set; }
         public string Address { get; set; }
-        public int OrderID { get; set; }
-
+        
 
     }
 }
