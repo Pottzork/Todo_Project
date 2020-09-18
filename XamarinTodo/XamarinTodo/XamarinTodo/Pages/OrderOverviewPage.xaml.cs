@@ -28,7 +28,7 @@ namespace XamarinTodo.Pages
 
         private async void GetOrders()
         {
-            orderList = await DataService.GetItemsAsync() as List<Orders>;
+            orderList = await DataService.GetOrdersAsync() as List<Orders>;
         }
 
         private async void orderOverviewList_SelectionChanged(object sender, SelectionChangedEventArgs e)

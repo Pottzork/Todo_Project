@@ -8,6 +8,8 @@ namespace XamarinTodo.Data.Services
 {
     public interface IDataService<T>
     {
-        Task<IEnumerable<T>> GetItemsAsync();
+        Task<IEnumerable<T>> GetOrdersAsync();
+
+        Task<bool> UpdateOrderAsync(T item);
     }
 }

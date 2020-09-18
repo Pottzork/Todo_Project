@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using XamarinTodo.Models;
 
 namespace XamarinTodo.Data.Services
 {
     public class MockDatabase : JoinStuffThingy
     {
-        //public List<Orders> OrderList;
-        //public List<Customers> CustomerList;
-        //public List<Operators> OperatorList;
+        public List<Orders> ListOfOrders;
+        public List<Customers> ListOfCustomers;
+        public List<Operators> ListOfOperators;
+
         private Orders orders = new Orders();
 
         private Operators operators = new Operators();
         private Customers customers = new Customers();
+
+        public MockDatabase()
+        {
+            ListOfOrders = (List<Orders>)OrderList();
+        }
 
         public static IEnumerable<Orders> OrderList()
         {
