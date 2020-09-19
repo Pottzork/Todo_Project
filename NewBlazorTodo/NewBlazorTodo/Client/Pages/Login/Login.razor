@@ -42,7 +42,7 @@ else
                     <div class="w3-card-4 w3-margin w3-white">
                         <div class="w3-container">
                             <h3><b>Aktiva ordrar</b></h3>
-                            <h5>Glöm inte att skicka faktura till fakturor som är helt klara <span class="w3-opacity">@DagensDatum.ToString("MM/dd/yyyy")</span></h5>
+                            <h5>Glöm inte att skicka faktura till företagskunder som är helt klara. <span class="w3-opacity">@DagensDatum.ToString("MM/dd/yyyy")</span></h5>
                         </div>
 
                         <div class="w3-container">
@@ -54,7 +54,7 @@ else
                                     <p><button class="w3-button w3-padding-large w3-white w3-border" @onclick="GetBackOnePage"><b>Till Fakturabetalning »</b></button></p>
                                 </div>
                                 <div class="w3-col m4 w3-hide-small">
-                                    <p><span class="w3-padding-large w3-right"><b>Antal Aktiva orders:  </b> <span class="w3-tag">@activeOrderView.Count</span></span></p>
+                                    <p><span class="w3-padding-large w3-right"><b>Fakturor att bekräfta:  </b> <span class="w3-tag">@tempList.Count</span></span></p>
                                 </div>
                             </div>
                         </div>
@@ -102,10 +102,19 @@ else
 
     public DateTime DagensDatum { get; set; } = DateTime.Now;
     public List<ActiveOrderView> activeOrderView { get; set; } = new List<ActiveOrderView>();
+    public List<ActiveOrderView> tempList { get; set; } = new List<ActiveOrderView>();
 
     protected async override Task OnInitializedAsync()
     {
         activeOrderView = await client.GetFromJsonAsync<List<ActiveOrderView>>("https://webapitodo20200919020315.azurewebsites.net/api/activeorderview");
+        foreach (var tempItem in activeOrderView)
+        {
+            if(tempItem.OrderComplete == true)
+            {
+                tempList.Add(tempItem);
+            }
+
+        }
     }
     public void GetBackOnePage()
     {
