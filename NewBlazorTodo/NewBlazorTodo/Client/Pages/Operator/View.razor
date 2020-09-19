@@ -31,7 +31,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _operator = await client.GetFromJsonAsync<Operators>($"https://localhost:44374/api/operators/ {operatorId}");
+        _operator = await client.GetFromJsonAsync<Operators>($"https://webapitodo20200919020315.azurewebsites.net/api/operators/ {operatorId}");
     }
 
     public void GetBackOnePage()
@@ -43,7 +43,7 @@
     {
         if (await js.InvokeAsync<bool>("confirm", $"Vill du ta bort {_operator.FirstName}'s med ID: ({_operator.Id}) som operatör?"))
         {
-            await client.DeleteAsync($"https://localhost:44374/api/operators/ {id}");
+            await client.DeleteAsync($"https://webapitodo20200919020315.azurewebsites.net/api/operators/ {id}");
             GetBackOnePage();  
         }
     }

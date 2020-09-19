@@ -10,11 +10,11 @@
     Customers customer = new Customers();
     protected async override Task OnParametersSetAsync()
     {
-        customer = await http.GetFromJsonAsync<Customers>($"https://localhost:44374/api/customers/ {Id}");
+        customer = await http.GetFromJsonAsync<Customers>($"https://webapitodo20200919020315.azurewebsites.net/api/customers/ {Id}");
     }
     async Task EditCustomer()
     {
-        await http.PutAsJsonAsync("https://localhost:44374/api/customers", customer);
+        await http.PutAsJsonAsync("https://webapitodo20200919020315.azurewebsites.net/api/customers", customer);
         await js.InvokeVoidAsync("alert", $"Företagskund {customer.Company} med ID: {customer.Id} uppdaterades perfekt!");
         uriHelper.NavigateTo("customerlist");
     }

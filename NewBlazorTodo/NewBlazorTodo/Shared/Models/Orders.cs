@@ -20,7 +20,7 @@ namespace NewBlazorTodo.Shared.Models
         public string orderInfo { get; set; }
 
         [Required(ErrorMessage = "Company is required.")]
-        public int customerId { get; set; } = 0;
+        public int customerId { get; set; }
         public int OperatorID { get; set; }
 
         public int PendingValue { get; set; } = 0;

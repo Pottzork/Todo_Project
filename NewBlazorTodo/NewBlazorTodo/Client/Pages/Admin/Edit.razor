@@ -10,11 +10,11 @@
     Admins admin = new Admins();
     protected async override Task OnParametersSetAsync()
     {
-        admin = await http.GetFromJsonAsync<Admins>($"https://localhost:44374/api/admins/ {adminId}");
+        admin = await http.GetFromJsonAsync<Admins>($"https://webapitodo20200919020315.azurewebsites.net/api/admins/ {adminId}");
     }
     async Task EditAdmin()
     {
-        await http.PutAsJsonAsync("https://localhost:44374/api/admins", admin);
+        await http.PutAsJsonAsync("https://webapitodo20200919020315.azurewebsites.net/api/admins", admin);
         await js.InvokeVoidAsync("alert", $"Admin {admin.FirstName} {admin.LastName} Uppdaterades perfekt!");
         uriHelper.NavigateTo("admin");
     }

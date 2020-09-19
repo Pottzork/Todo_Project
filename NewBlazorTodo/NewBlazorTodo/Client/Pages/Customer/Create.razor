@@ -12,7 +12,7 @@
     Customers customer = new Customers();
     async Task CreateCustomer()
     {
-        await http.PostAsJsonAsync("https://localhost:44374/api/customers", customer);
+        await http.PostAsJsonAsync("https://webapitodo20200919020315.azurewebsites.net/api/customers", customer);
         await js.InvokeVoidAsync("alert", $"GRATTIS! Företagskund {customer.Company} Skapades!");
         uriHelper.NavigateTo("customerlist");
     }

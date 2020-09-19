@@ -14,7 +14,7 @@ namespace DataAccess.Models
         public DateTime OrderEnd { get; set; }
         public bool OrderComplete { get; set; }
         public float OrderPrice { get; set; }
-        public string OrderInfo { get; set; } = "";
+        public string OrderInfo { get; set; }
         public int CustomerId { get; set; }
         public int OperatorID { get; set; }
         public int PendingValue { get; set; } = 0;

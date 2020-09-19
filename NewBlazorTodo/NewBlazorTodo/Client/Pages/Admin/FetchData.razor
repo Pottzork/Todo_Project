@@ -50,7 +50,7 @@ else
     Admins[] admins { get; set; }
     protected override async Task OnInitializedAsync()
     {
-        admins = await client.GetFromJsonAsync<Admins[]>("https://localhost:44374/api/admins");
+        admins = await client.GetFromJsonAsync<Admins[]>("https://webapitodo20200919020315.azurewebsites.net/api/admins");
     }
 
     //async Task Delete(int adminId)
@@ -58,7 +58,7 @@ else
     //    var admin = admins.First(x => x.Id == adminId);
     //    if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {admin.FirstName}'s ({admin.Id}) Record?"))
     //    {
-    //        await client.DeleteAsync($"https://localhost:44374/api/admins/ {adminId}");
+    //        await client.DeleteAsync($"https://webapitodo20200919020315.azurewebsites.net/api/admins/ {adminId}");
     //        await OnInitializedAsync();
     //    }
     //}

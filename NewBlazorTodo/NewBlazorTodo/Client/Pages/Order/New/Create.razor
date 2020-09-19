@@ -4,7 +4,7 @@
 @inject IJSRuntime js
  
 
-<h3>Create</h3>
+<h3>Skapa en Order</h3>
 
 <Form ButtonText="Lägg till ny order" order="@order"
       OnValidSubmit="@CreateOrder" />
@@ -14,7 +14,7 @@
     async Task CreateOrder()
     {
         
-        await http.PostAsJsonAsync("https://localhost:44374/api/orders", order);
+        await http.PostAsJsonAsync("https://webapitodo20200919020315.azurewebsites.net/api/orders", order);
         await js.InvokeVoidAsync("alert", $"Grymt jobbat! Ny Arbetsorder skapad!");
         uriHelper.NavigateTo("activeorders");
     }

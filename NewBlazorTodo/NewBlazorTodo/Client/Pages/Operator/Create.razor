@@ -12,7 +12,7 @@
     Operators o = new Operators();
     async Task CreateOperator()
     {
-        await http.PostAsJsonAsync("https://localhost:44374/api/operators", o);
+        await http.PostAsJsonAsync("https://webapitodo20200919020315.azurewebsites.net/api/operators", o);
         await js.InvokeVoidAsync("alert", $"Vad kul! Operatör {o.FirstName} {o.LastName} Skapades!");
         uriHelper.NavigateTo("operatorlist");
     }

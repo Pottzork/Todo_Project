@@ -10,11 +10,11 @@
     Operators o = new Operators();
     protected async override Task OnParametersSetAsync()
     {
-        o = await http.GetFromJsonAsync<Operators>($"https://localhost:44374/api/operators/ {Id}");
+        o = await http.GetFromJsonAsync<Operators>($"https://webapitodo20200919020315.azurewebsites.net/api/operators/ {Id}");
     }
     async Task EditOperator()
     {
-        await http.PutAsJsonAsync("https://localhost:44374/api/operators", o);
+        await http.PutAsJsonAsync("https://webapitodo20200919020315.azurewebsites.net/api/operators", o);
         await js.InvokeVoidAsync("alert", $"Operatör {o.FirstName} {o.LastName} med ID: {o.Id} Uppdaterades perfekt!");
         uriHelper.NavigateTo("operatorlist");
     }

@@ -13,7 +13,7 @@
 {
     <text>Loading...</text>
 }
-else if (customers.Length == 0)
+else if (customers.Count == 0)
 {
     <text>No Records Found.</text>
 }
@@ -31,26 +31,30 @@ else
         <tbody>
             @foreach (Customers customer in customers)
             {
-            <tr>
-                <td>@customer.Company</td>
-                <td>@customer.Name</td>
-                <td>@customer.Phone</td>
-                <td>@customer.City</td>
-                <td>
-                    <a class="btn btn-success" href="customer/details/@customer.Id">Mer Info</a>
-                    @*<button class="btn btn-danger" @onclick="@(() => Delete(customer.Id))">Delete</button>*@
-                </td>
-            </tr>
+                @if (customer.City != "DONT") //IF sats pga <InputSelect> tar inte första ID.
+                {
+                    <tr>
+                        <td>@customer.Company</td>
+                        <td>@customer.Name</td>
+                        <td>@customer.Phone</td>
+                        <td>@customer.City</td>
+                        <td>
+                            <a class="btn btn-success" href="customer/details/@customer.Id">Mer Info</a>
+                            @*<button class="btn btn-danger" @onclick="@(() => Delete(customer.Id))">Delete</button>*@
+                        </td>
+                    </tr>
+                }
+
             }
 
         </tbody>
     </table>
 }
 @code {
-    Customers[] customers { get; set; }
+    List<Customers> customers { get; set; }
     protected override async Task OnInitializedAsync()
     {
-        customers = await client.GetFromJsonAsync<Customers[]>("https://localhost:44374/api/customers");
+        customers = await client.GetFromJsonAsync<List<Customers>>("https://webapitodo20200919020315.azurewebsites.net/api/customers");
     }
 
     //async Task Delete(int id)
@@ -58,7 +62,7 @@ else
     //    var customer = customers.First(x => x.Id == id);
     //    if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {customer.Name}'s ({customer.Company}) Record?"))
     //    {
-    //        await client.DeleteAsync($"https://localhost:44374/api/customers/ {id}");
+    //        await client.DeleteAsync($"https://webapitodo20200919020315.azurewebsites.net/api/customers/ {id}");
     //        await OnInitializedAsync();
     //    }
     //}

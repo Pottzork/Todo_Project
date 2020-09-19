@@ -29,7 +29,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        admin = await client.GetFromJsonAsync<Admins>($"https://localhost:44374/api/admins/ {adminId}");
+        admin = await client.GetFromJsonAsync<Admins>($"https://webapitodo20200919020315.azurewebsites.net/api/admins/ {adminId}");
     }
 
     public void GetBackOnePage()

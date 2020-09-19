@@ -28,7 +28,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _customer = await client.GetFromJsonAsync<Customers>($"https://localhost:44374/api/customers/ {customerId}");
+        _customer = await client.GetFromJsonAsync<Customers>($"https://webapitodo20200919020315.azurewebsites.net/api/customers/ {customerId}");
+
     }
 
     public void GetBackOnePage()
@@ -38,11 +39,12 @@
 
     async Task Delete(int id)
     {
+        
         if (await js.InvokeAsync<bool>("confirm", $"Vill du ta bort {_customer.Company}'s med ID: ({_customer.Id}) som kund?"))
         {
+
             await client.DeleteAsync($"https://localhost:44374/api/customers/ {id}");
             GetBackOnePage();
-
 
         }
     }

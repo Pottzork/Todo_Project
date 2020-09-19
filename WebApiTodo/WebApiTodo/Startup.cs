@@ -14,7 +14,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-
 namespace WebApiTodo
 {
     public class Startup
@@ -56,6 +55,9 @@ namespace WebApiTodo
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
+
+       
+
             services.AddControllers();
         }
 
@@ -66,7 +68,8 @@ namespace WebApiTodo
             {
                 app.UseDeveloperExceptionPage();
             }
-
+          
+            
             app.UseHttpsRedirection();
             app.UseCors("CorsPolicy");
             app.UseRouting();

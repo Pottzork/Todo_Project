@@ -2,9 +2,8 @@
 <EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <div class="form-group">
-        <label for="operatorTest">Välj en operatör</label>
         <div class="col-sm-3">
-            <InputSelect id="operatorTest" @bind-Value="OperatorTempId" class="form-control">
+            <InputSelect id="OperatorTempId" @bind-Value="OperatorTempId" class="form-control">
                 @foreach (var op in operatorsList)
                 {
                     <option value="@op.Id">@op.FirstName</option>
@@ -41,7 +40,6 @@
     </div>
 
     <div class="form-group">
-        <label for="operatorTest">Välj Företagskund</label>
         <div class="col-sm-3">
             <InputSelect id="customers" @bind-Value="CustomerTempId" class="form-control">
                 @foreach (var op in customersList)
@@ -51,11 +49,13 @@
             </InputSelect>
         </div>
     </div>
+    
+        <button type="submit" class="btn btn-success" @onclick="@ChangeValue">
 
-    <button type="submit" class="btn btn-success" @onclick="@ChangeValue">
+            @ButtonText
+        </button>
+    
 
-        @ButtonText
-    </button>
     @*<button class="btn btn-dark" @onclick="@GetBackOnePage">Back to admins</button>*@
 
 </EditForm>
@@ -72,8 +72,8 @@
     protected override async Task OnInitializedAsync()
     {
         HttpClient client = new HttpClient();
-        operatorsList = await client.GetFromJsonAsync<List<Operators>>("https://localhost:44374/api/Operators");
-        customersList = await client.GetFromJsonAsync<List<Customers>>("https://localhost:44374/api/Customers");
+        operatorsList = await client.GetFromJsonAsync<List<Operators>>("https://webapitodo20200919020315.azurewebsites.net/api/operators");
+        customersList = await client.GetFromJsonAsync<List<Customers>>("https://webapitodo20200919020315.azurewebsites.net/api/customers");
         OperatorTempId = order.OperatorID.ToString();
         CustomerTempId = order.customerId.ToString();
 

@@ -12,7 +12,7 @@
 {
     <text>Loading...</text>
 }
-else if (activeOrderView.Length == 0)
+else if (activeOrderView.Count == 0)
 {
     <text>No Records Found.</text>
 }
@@ -52,11 +52,11 @@ else
 }
 @code {
 
-    ActiveOrderView[] activeOrderView { get; set; }
+    public List<ActiveOrderView> activeOrderView { get; set; } = new List<ActiveOrderView>();
     public int CompletedToken { get; set; } = 1;
     protected override async Task OnInitializedAsync()
     {
-        activeOrderView = await client.GetFromJsonAsync<ActiveOrderView[]>("https://localhost:44374/api/activeorderview");
+        activeOrderView = await client.GetFromJsonAsync<List<ActiveOrderView>>("https://webapitodo20200919020315.azurewebsites.net/api/activeorderview");
 
     }
 }

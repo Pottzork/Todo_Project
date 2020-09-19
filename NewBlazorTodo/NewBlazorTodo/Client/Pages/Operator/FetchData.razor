@@ -12,7 +12,7 @@
 {
     <text>Loading...</text>
 }
-else if (techOp.Length == 0)
+else if (techOp.Count == 0)
 {
     <text>No Records Found.</text>
 }
@@ -30,26 +30,30 @@ else
         <tbody>
             @foreach (Operators o in techOp)
             {
-                <tr>
-                    <td>@o.FirstName</td>
-                    <td>@o.LastName</td>
-                    <td>@o.Email</td>
-                    <td>@o.Phone</td>
-                    <td>
-                        <a class="btn btn-success" href="operator/details/@o.Id">Mer Info</a>                 
+                @if (o.Location != "DONT")//IF sats pga <InputSelect> tar inte första ID.
+                {
+                    <tr>
+                        <td>@o.FirstName</td>
+                        <td>@o.LastName</td>
+                        <td>@o.Email</td>
+                        <td>@o.Phone</td>
+                        <td>
+                            <a class="btn btn-success" href="operator/details/@o.Id">Mer Info</a>
 
-                </td>
-                </tr>
+                        </td>
+                    </tr>
+                }
+
             }
 
         </tbody>
     </table>
 }
 @code {
-    Operators[] techOp { get; set; }
+    List<Operators> techOp { get; set; } = new List<Operators>();
     protected override async Task OnInitializedAsync()
     {
-        techOp = await client.GetFromJsonAsync<Operators[]>("https://localhost:44374/api/operators");
+        techOp = await client.GetFromJsonAsync<List<Operators>>("https://webapitodo20200919020315.azurewebsites.net/api/operators");
     }
-   
+
 }

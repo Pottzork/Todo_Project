@@ -12,7 +12,7 @@
     Admins admin = new Admins();
     async Task CreateAdmin()
     {
-        await http.PostAsJsonAsync("https://localhost:44374/api/admins", admin);
+        await http.PostAsJsonAsync("https://webapitodo20200919020315.azurewebsites.net/api/admins", admin);
         await js.InvokeVoidAsync("alert", $"Admin {admin.FirstName} Skapades!");
         uriHelper.NavigateTo("admin");
     }

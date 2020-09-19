@@ -39,6 +39,7 @@ namespace DataAccess.Repository
             {
                 await c.ExecuteAsync("DELETE Customers WHERE ID = @id", new { id });
 
+
                 return true;
             }
             catch (Exception)
