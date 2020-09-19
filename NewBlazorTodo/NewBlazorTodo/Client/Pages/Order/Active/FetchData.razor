@@ -10,11 +10,11 @@
 
 @if (activeOrderView == null)
 {
-    <text>Loading...</text>
+    <div class="spinner"></div>
 }
 else if (activeOrderView.Count == 0)
 {
-    <text>No Records Found.</text>
+    <div class="spinner"></div>
 }
 else
 {

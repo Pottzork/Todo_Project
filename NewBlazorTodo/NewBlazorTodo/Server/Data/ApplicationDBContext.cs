@@ -13,6 +13,6 @@ namespace NewBlazorTodo.Server.Data
         {
 
         }
-        public DbSet<Developer> Developers { get; set; }
+ 
     }
 }
