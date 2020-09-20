@@ -36,14 +36,6 @@
     </div>
 
     <div class="form-group">
-        <label>Är arbetsorder Klar? :</label>
-        <div>
-            <InputCheckbox @bind-Value="@order.orderComplete" />
-            <ValidationMessage For="@(() => order.orderComplete)" />
-        </div>
-    </div>
-
-    <div class="form-group">
         <label>Ange TotalSumma :</label>
         <div>
             <InputNumber @bind-Value="@order.orderPrice" />
@@ -78,8 +70,8 @@
     <div class="form-group">
         <label>Value :</label>
         <div>
-            <InputNumber @bind-Value="@order.PendingValue" />
-            <ValidationMessage For="@(() => order.PendingValue)" />
+            <InputNumber @bind-Value="@order.OrderStatus" />
+            <ValidationMessage For="@(() => order.OrderStatus)" />
         </div>
     </div>
 

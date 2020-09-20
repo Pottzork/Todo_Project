@@ -16,4 +16,9 @@
     <ProjectReference Include="..\Shared\NewBlazorTodo.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Order\Orders_Not_Accepted\" />
+    <Folder Include="Pages\Order\Orders_Done\" />
+  </ItemGroup>
+
 </Project>

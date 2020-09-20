@@ -26,12 +26,13 @@ else
                 <th>Arbete startar</th>
                 <th>Övrig information</th>
                 <th>Operatörs ID</th>
+                <th>OrderStatus</th>
             </tr>
         </thead>
         <tbody>
             @foreach (Orders order in activeOrderView)
             {
-                if (order.orderComplete == false)
+                if (order.OrderStatus == OrderStatus.ACCEPTERAD || order.OrderStatus == OrderStatus.SCHEMALAGD)
                 {
             <tr>
                 <td>@order.orderId</td>
@@ -39,7 +40,7 @@ else
                 <td>@order.orderStart</td>
                 <td>@order.orderInfo</td>
                 <td>@order.OperatorID</td>
-                <td></td>
+                <td>@order.OrderStatus</td>
                 <td>
 
                 </td>

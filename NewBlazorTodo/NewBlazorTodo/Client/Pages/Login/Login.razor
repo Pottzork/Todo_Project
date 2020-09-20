@@ -128,7 +128,7 @@
             activeOrderView = await client.GetFromJsonAsync<List<Orders>>("https://webapitodo20200919020315.azurewebsites.net/api/Orders");
             foreach (var tempItem in activeOrderView)
             {
-                if (tempItem.orderComplete == true && tempItem.PendingValue != 1)
+                if (tempItem.OrderStatus == OrderStatus.EJ_ACCEPTERAD)
                 {
                     tempList.Add(tempItem);
                 }

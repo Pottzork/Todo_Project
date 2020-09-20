@@ -34,7 +34,7 @@ else
         <tbody>
             @foreach (Orders order in fakturaOrders)
             {
-                if (order.orderComplete == true && order.PendingValue != 1)
+                if (order.OrderStatus == OrderStatus.KLAR)
                 {
             <tr>
                 <td>@order.orderId</td>
@@ -55,15 +55,12 @@ else
 }
 @code {
 
-    //public List<ActiveOrderView> activeOrderView { get; set; } = new List<ActiveOrderView>();
-    //[Parameter] public int FakturaId { get; set; }
+
     public List<Orders> fakturaOrders { get; set; } = new List<Orders>();
     public int CompletedToken { get; set; } = 1;
     protected override async Task OnInitializedAsync()
-    {
-        //activeOrderView = await client.GetFromJsonAsync<List<ActiveOrderView>>("https://webapitodo20200919020315.azurewebsites.net/api/activeorderview");
+    {       
         fakturaOrders = await client.GetFromJsonAsync<List<Orders>>($"https://webapitodo20200919020315.azurewebsites.net/api/orders");
-
     }
 
 }
