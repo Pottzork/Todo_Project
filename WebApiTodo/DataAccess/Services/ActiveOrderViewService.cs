@@ -19,5 +19,10 @@ namespace DataAccess.Services
         {
             return await _activeOrderViewRepository.GetAllActiveOrderViews();
         }
+
+        public async Task<ActiveOrderView> GetFaktura(int id)
+        {
+            return await _activeOrderViewRepository.GetFaktura(id);
+        }
     }
 }

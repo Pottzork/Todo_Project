@@ -12,7 +12,7 @@
 {
     <text>Loading...</text>
 }
-else if (admins.Length == 0)
+else if (admins.Count == 0)
 {
     <text>No Records Found.</text>
 }
@@ -47,10 +47,10 @@ else
     </table>
 }
 @code {
-    Admins[] admins { get; set; }
+    List<Admins> admins { get; set; } = new List<Admins>();
     protected override async Task OnInitializedAsync()
     {
-        admins = await client.GetFromJsonAsync<Admins[]>("https://webapitodo20200919020315.azurewebsites.net/api/admins");
+        admins = await client.GetFromJsonAsync<List<Admins>>("https://webapitodo20200919020315.azurewebsites.net/api/admins");
     }
 
     //async Task Delete(int adminId)

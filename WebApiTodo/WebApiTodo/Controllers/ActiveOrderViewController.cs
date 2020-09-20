@@ -24,5 +24,11 @@ namespace WebApiTodo.Controllers
         {
            return Ok(await _activeOrderViewService.GetAllActiveOrderViews());
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            return Ok(await _activeOrderViewService.GetFaktura(id));
+        }
     }
 }

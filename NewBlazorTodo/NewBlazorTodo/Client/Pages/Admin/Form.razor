@@ -60,12 +60,12 @@
 
 @code {
     [Parameter] public Admins admin { get; set; }
-    [Parameter] public string ButtonText { get; set; } = "Spara";
+    [Parameter] public string ButtonText { get; set; } = "Skicka Faktura";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
 
     public void GetBackOnePage()
     {
-        uriHelper.NavigateTo("admin");
+        uriHelper.NavigateTo("/ordershistory");
     }
 }
 

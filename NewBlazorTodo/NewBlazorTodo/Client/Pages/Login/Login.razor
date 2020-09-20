@@ -1,133 +1,152 @@
 ﻿@page "/"
 @inject HttpClient client
 @inject NavigationManager uriHelper
-<!DOCTYPE html>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<style>
-    body, h1, h2, h3, h4, h5 {
-        font-family: "Raleway", sans-serif
+
+    
+    <!DOCTYPE html>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+    <style>
+        body, h1, h2, h3, h4, h5 {
+            font-family: "Raleway", sans-serif
+        }
+    </style>
+
+    @if (activeOrderView == null)
+    {
+        <div class="spinner"></div>
     }
-</style>
-@if (activeOrderView == null)
-{
-    <div class="spinner"></div>
-}
-else
-{
-    <html>
+    else
+    {
+
+    @if(tempList == null)
+    {
+        <div class="spinner"></div>
+    }
+
+        <html>
 
 
-    <body class="w3-light-grey">
+        <body class="w3-light-grey">
 
-        <!-- w3-content defines a container for fixed size centered content,
-        and is wrapped around the whole page content, except for the footer in this example -->
-        <div class="w3-content" style="max-width:1400px">
+            <!-- w3-content defines a container for fixed size centered content,
+            and is wrapped around the whole page content, except for the footer in this example -->
+            <div class="w3-content" style="max-width:1400px">
 
-            <!-- Header -->
-            <header class="w3-container w3-center w3-padding-32">
-                <h1><b>M A A D  TechController</b></h1>
-                <p> <span class="w3-tag">- Välkommen till oss på MAAD TechController -</span></p>
-            </header>
+                <!-- Header -->
+                <header class="w3-container w3-center w3-padding-32">
+                    <h1><b>M A A D  TechController</b></h1>
+                    <p> <span class="w3-tag">- Välkommen till oss på MAAD TechController -</span></p>
+                </header>
 
-            <!-- Grid -->
-            <div class="w3-row">
+                <!-- Grid -->
+                <div class="w3-row">
 
-                <!-- Blog entries -->
-                <div class="w3-col l8 s12">
-                    <!-- Blog entry -->
-                    <div class="w3-card-4 w3-margin w3-white">
-                        <div class="w3-container">
-                            <h3><b>Aktiva ordrar</b></h3>
-                            <h5>Glöm inte att skicka faktura till företagskunder som är helt klara. <span class="w3-opacity">@DagensDatum.ToString("MM/dd/yyyy")</span></h5>
-                        </div>
+                    <!-- Blog entries -->
+                    <div class="w3-col l8 s12">
+                        <!-- Blog entry -->
+                        <div class="w3-card-4 w3-margin w3-white">
+                            <div class="w3-container">
+                                <h3><b>Aktiva ordrar</b></h3>
+                                @if (tempList.Count == 0)
+                                {
+                                    <h5>Just nu finns inga arbetsordrar att hantera betalning för. <span class="w3-opacity">@DagensDatum.ToString("MM/dd/yyyy")</span></h5>
+                                }
+                                else
+                                {
+                                    <h5>Finns arbetsordrar som kräver fakturahantering. <span class="w3-opacity">@DagensDatum.ToString("MM/dd/yyyy")</span></h5>
+                                }
 
-                        <div class="w3-container">
-                            <p>
+                            </div>
 
-                            </p>
-                            <div class="w3-row">
-                                <div class="w3-col m8 s12">
-                                    <p><button class="w3-button w3-padding-large w3-white w3-border" @onclick="GetBackOnePage"><b>Till Fakturabetalning »</b></button></p>
-                                </div>
-                                <div class="w3-col m4 w3-hide-small">
-                                    <p><span class="w3-padding-large w3-right"><b>Fakturor att bekräfta:  </b> <span class="w3-tag">@tempList.Count</span></span></p>
+                            <div class="w3-container">
+                                <p>
+
+                                </p>
+                                <div class="w3-row">
+                                    <div class="w3-col m8 s12">
+                                        <p><button class="w3-button w3-padding-large w3-white w3-border" @onclick="GetBackOnePage"><b>Till Fakturahantering »</b></button></p>
+                                    </div>
+                                    <div class="w3-col m4 w3-hide-small">
+                                        <p><span class="w3-padding-large w3-right"><b>Fakturor att bekräfta:  </b> <span class="w3-tag">@tempList.Count</span></span></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <hr>
+
                     </div>
-                    <hr>
 
-                </div>
+                    <!-- Introduction menu -->
+                    <div class="w3-col col-lg-3">
+                        <!-- About Card -->
+                        <div class="w3-card w3-margin w3-margin-top">
+                            <div class="w3-container w3-white">
+                                <button class="w3-button w3-padding-large w3-white" @onclick="SkapaKund"><b>Skapa Kund »</b></button>
 
-                <!-- Introduction menu -->
-                <div class="w3-col col-lg-3">
-                    <!-- About Card -->
-                    <div class="w3-card w3-margin w3-margin-top">
-                        <div class="w3-container w3-white">
-                            <button class="w3-button w3-padding-large w3-white" @onclick="SkapaKund"><b>Skapa Kund »</b></button>
+                            </div>
+                        </div><hr>
 
-                        </div>
-                    </div><hr>
+                        <!-- END Introduction Menu -->
+                    </div>
+                    <div class="w3-col col-lg-3">
+                        <!-- About Card -->
+                        <div class="w3-card w3-margin w3-margin-top">
+                            <div class="w3-container w3-white">
+                                <button class="w3-button w3-padding-large w3-white" @onclick="SkapaOrder"><b>Skapa Order »</b></button>
 
-                    <!-- END Introduction Menu -->
-                </div>
-                <div class="w3-col col-lg-3">
-                    <!-- About Card -->
-                    <div class="w3-card w3-margin w3-margin-top">
-                        <div class="w3-container w3-white">
-                            <button class="w3-button w3-padding-large w3-white" @onclick="SkapaOrder"><b>Skapa Order »</b></button>
+                            </div>
+                        </div><hr>
 
-                        </div>
-                    </div><hr>
+                        <!-- END Introduction Menu -->
+                    </div>
 
-                    <!-- END Introduction Menu -->
-                </div>
+                    <!-- END GRID -->
+                </div><br>
 
-                <!-- END GRID -->
-            </div><br>
+                <!-- END w3-content -->
+            </div>
 
-            <!-- END w3-content -->
-        </div>
-
-    </body>
-</html>
+        </body>
+    </html>
 }
 
 
-@code{
+    @code{
 
-    public DateTime DagensDatum { get; set; } = DateTime.Now;
-    public List<ActiveOrderView> activeOrderView { get; set; } = new List<ActiveOrderView>();
-    public List<ActiveOrderView> tempList { get; set; } = new List<ActiveOrderView>();
+        public DateTime DagensDatum { get; set; } = DateTime.Now;
+        public List<Orders> activeOrderView { get; set; } = new List<Orders>();
+        public List<Orders> tempList { get; set; } = new List<Orders>();
 
-    protected async override Task OnInitializedAsync()
-    {
-        activeOrderView = await client.GetFromJsonAsync<List<ActiveOrderView>>("https://webapitodo20200919020315.azurewebsites.net/api/activeorderview");
-        foreach (var tempItem in activeOrderView)
+        protected async override Task OnInitializedAsync()
         {
-            if(tempItem.OrderComplete == true)
+            activeOrderView = await client.GetFromJsonAsync<List<Orders>>("https://webapitodo20200919020315.azurewebsites.net/api/Orders");
+            foreach (var tempItem in activeOrderView)
             {
-                tempList.Add(tempItem);
-            }
+                if (tempItem.orderComplete == true && tempItem.PendingValue != 1)
+                {
+                    tempList.Add(tempItem);
+                }
 
+            }
+        }
+        public void GetBackOnePage()
+        {
+            uriHelper.NavigateTo("ordershistory");
+        }
+
+        public void SkapaKund()
+        {
+            uriHelper.NavigateTo("/customer/create");
+        }
+
+        public void SkapaOrder()
+        {
+            uriHelper.NavigateTo("/order/create/");
         }
     }
-    public void GetBackOnePage()
-    {
-        uriHelper.NavigateTo("ordershistory");
-    }
-
-    public void SkapaKund()
-    {
-        uriHelper.NavigateTo("/customer/create");
-    }
-
-    public void SkapaOrder()
-    {
-        uriHelper.NavigateTo("/order/create/");
-    }
-}

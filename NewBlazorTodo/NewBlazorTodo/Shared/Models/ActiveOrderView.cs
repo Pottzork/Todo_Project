@@ -6,6 +6,7 @@ namespace NewBlazorTodo.Shared.Models
 {
     public class ActiveOrderView
     {
+        public int OrderID { get; set; }
         public string OpFirstName { get; set; }
         public string OpLastName { get; set; }
         public string OrderDescription { get; set; }

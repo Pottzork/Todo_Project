@@ -31,5 +31,19 @@ namespace DataAccess.Repository
                 }
             }
         }
+
+        public async Task<ActiveOrderView> GetFaktura(int id)
+        {
+            using var c = new SqlConnection(_connectionString);
+            try
+            {
+                return await c.QueryFirstOrDefaultAsync<ActiveOrderView>("SELECT * FROM ActiveOrderView WHERE OrderId = @id", new { id });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

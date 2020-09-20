@@ -21,24 +21,24 @@ else
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Operatör</th>
+                <th>Order ID</th>
                 <th>Arbetsbeskrivning </th>
                 <th>Arbete startar</th>
                 <th>Övrig information</th>
-                <th>Företagskund</th>
+                <th>Operatörs ID</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (ActiveOrderView order in activeOrderView)
+            @foreach (Orders order in activeOrderView)
             {
-                if (order.OrderComplete == false)
+                if (order.orderComplete == false)
                 {
             <tr>
-                <td>@order.OpFirstName @order.OpLastName</td>
-                <td>@order.OrderDescription</td>
-                <td>@order.OrderStart</td>
-                <td>@order.OrderInfo</td>
-                <td>@order.Customer</td>
+                <td>@order.orderId</td>
+                <td>@order.orderDescription</td>
+                <td>@order.orderStart</td>
+                <td>@order.orderInfo</td>
+                <td>@order.OperatorID</td>
                 <td></td>
                 <td>
 
@@ -53,11 +53,11 @@ else
 }
 @code {
 
-    List<ActiveOrderView> activeOrderView { get; set; } = new List<ActiveOrderView>();
+    List<Orders> activeOrderView { get; set; } = new List<Orders>();
 
     protected override async Task OnInitializedAsync()
     {
-        activeOrderView = await client.GetFromJsonAsync<List<ActiveOrderView>>("https://webapitodo20200919020315.azurewebsites.net/api/activeorderview");
+        activeOrderView = await client.GetFromJsonAsync<List<Orders>>("https://webapitodo20200919020315.azurewebsites.net/api/orders");
 
     }
 

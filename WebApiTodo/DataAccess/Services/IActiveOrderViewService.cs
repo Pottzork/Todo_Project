@@ -9,5 +9,6 @@ namespace DataAccess.Services
     public interface IActiveOrderViewService
     {
         Task<IEnumerable<ActiveOrderView>> GetAllActiveOrderViews();
+        Task<ActiveOrderView> GetFaktura(int id);
     }
 }

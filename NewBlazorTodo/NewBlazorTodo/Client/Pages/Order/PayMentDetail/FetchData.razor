@@ -1,4 +1,5 @@
 ﻿@page "/ordershistory"
+@inject NavigationManager uriHelper
 @inject HttpClient client
 @inject IJSRuntime js
 
@@ -8,11 +9,11 @@
 
 <br>
 
-@if (activeOrderView == null)
+@if (fakturaOrders == null)
 {
     <div class="spinner"></div>
 }
-else if (activeOrderView.Count == 0)
+else if (fakturaOrders.Count == 0)
 {
     <div class="spinner"></div>
 }
@@ -21,28 +22,30 @@ else
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Operatör</th>
+
+                <th>Order ID</th>
                 <th>Arbetsbeskrivning </th>
-                <th>Arbete startar</th>
+                <th>Arbetsorder startar</th>
+                <th>Arbetsorder slut</th>
                 <th>Övrig information</th>
-                <th>Företagskund</th>
+
             </tr>
         </thead>
         <tbody>
-            @foreach (ActiveOrderView order in activeOrderView)
+            @foreach (Orders order in fakturaOrders)
             {
-                if (order.OrderComplete == true)
+                if (order.orderComplete == true && order.PendingValue != 1)
                 {
-                    <tr>
-                        <td>@order.OpFirstName @order.OpLastName</td>
-                        <td>@order.OrderDescription</td>
-                        <td>@order.OrderStart</td>
-                        <td>@order.OrderInfo</td>
-                        <td>@order.Customer</td>
-                        <td>
-                            <a class="btn btn-success" href="#">Skicka Faktura</a>
-                        </td>
-                    </tr>
+            <tr>
+                <td>@order.orderId</td>
+                <td>@order.orderDescription</td>
+                <td>@order.orderStart</td>
+                <td>@order.orderEnd</td>
+                <td>@order.orderInfo</td>
+                <td>
+                    <a class="btn btn-success" href="/faktura/edit/@order.orderId" >Skicka Faktura</a>
+                </td>
+            </tr>
                 }
 
             }
@@ -52,11 +55,15 @@ else
 }
 @code {
 
-    public List<ActiveOrderView> activeOrderView { get; set; } = new List<ActiveOrderView>();
+    //public List<ActiveOrderView> activeOrderView { get; set; } = new List<ActiveOrderView>();
+    //[Parameter] public int FakturaId { get; set; }
+    public List<Orders> fakturaOrders { get; set; } = new List<Orders>();
     public int CompletedToken { get; set; } = 1;
     protected override async Task OnInitializedAsync()
     {
-        activeOrderView = await client.GetFromJsonAsync<List<ActiveOrderView>>("https://webapitodo20200919020315.azurewebsites.net/api/activeorderview");
+        //activeOrderView = await client.GetFromJsonAsync<List<ActiveOrderView>>("https://webapitodo20200919020315.azurewebsites.net/api/activeorderview");
+        fakturaOrders = await client.GetFromJsonAsync<List<Orders>>($"https://webapitodo20200919020315.azurewebsites.net/api/orders");
 
     }
+
 }
