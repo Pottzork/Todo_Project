@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinTodo.Pages.OrderDeclinePage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Text="Meddelande till Admin"
+                   HorizontalOptions="Center"
+                   FontSize="20"
+                   Grid.Row="0"
+                   Margin="0, 40, 0, 0" />
+            <Editor Placeholder="Varför avböjdes ordern?"
+                    AutoSize="TextChanges"
+                    Grid.Row="1"
+                    VerticalOptions="Start"
+                    Margin="40,0" />
+            <Button Text="Skicka"
+                    Clicked="SendReason_Clicked"
+                    Margin="40, 30"
+                    CornerRadius="15"
+                    Grid.Row="2"
+                    VerticalOptions="End" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
