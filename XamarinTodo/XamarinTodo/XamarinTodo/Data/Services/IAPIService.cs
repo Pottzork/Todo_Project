@@ -6,8 +6,12 @@ using XamarinTodo.Models;
 
 namespace XamarinTodo.Data.Services
 {
-    public interface IAPIService<T>
+    public interface IAPIService
     {
-        Task<List<T>> GetOrdersAsync();
+        Task<List<OrderOverView>> GetOrderOverViewAsync(int operatorId);
+
+        Task<Orders> GetOrderAsync(int orderId);
+
+        Task UpdateOrderAsync(Object objectclass);
     }
 }

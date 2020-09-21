@@ -6,20 +6,33 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinTodo.Data.Services;
+using XamarinTodo.Models;
 
 namespace XamarinTodo.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderDoneAddInfoPage : ContentPage
     {
-        public OrderDoneAddInfoPage()
+        public IAPIService Service => DependencyService.Get<IAPIService>();
+
+        public OrderOverView OrderOverView { get; set; }
+        public Orders Order { get; set; }
+
+        public OrderDoneAddInfoPage(OrderOverView orderOverView)
         {
             InitializeComponent();
+            OrderOverView = orderOverView;
         }
 
         private async void ConfirmInfo_Clicked(object sender, EventArgs e)
         {
+            Order = await Service.GetOrderAsync(OrderOverView.OrderId);
             await DisplayAlert("Alert", "Är du säker på att du vill markera order som klar?", "Nej.", "Ja!");
+
+            Order.OrderStatus = OrderStatus.ACCEPTERAD;
+
+            await Service.UpdateOrderAsync(Order);
         }
     }
 }

@@ -14,30 +14,32 @@ namespace XamarinTodo.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderOverviewPage : ContentPage
     {
-        public IAPIService<Orders> Service => DependencyService.Get<IAPIService<Orders>>();
+        public IAPIService Service => DependencyService.Get<IAPIService>();
 
-        private List<Orders> orderList;
+        private List<OrderOverView> orderOverViewList;
+
+        public int OperatorId { get; set; } = 27;
 
         public OrderOverviewPage()
         {
             InitializeComponent();
             GetOrders();
 
-            orderOverviewList.ItemsSource = orderList;
+            orderOverviewList.ItemsSource = orderOverViewList;
         }
 
         private async void GetOrders()
         {
-            var apiOrders = await Service.GetOrdersAsync();
-            orderList = SortOrders(apiOrders).ToList();
+            var tempList = await Service.GetOrderOverViewAsync(OperatorId);
+            orderOverViewList = SortOrders(tempList).ToList();
         }
 
         private async void orderOverviewList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            await Navigation.PushAsync(new OrderPendingPage(e.CurrentSelection[0] as Orders));
+            await Navigation.PushAsync(new OrderPendingPage(e.CurrentSelection[0] as OrderOverView));
         }
 
-        public IEnumerable<Orders> SortOrders(List<Orders> orders)
+        public IEnumerable<OrderOverView> SortOrders(List<OrderOverView> orders)
         {
             var sortedOrders = orders.OrderBy(x => x.OrderStart.Date)
                 .ThenBy(x => x.OrderStart.TimeOfDay);

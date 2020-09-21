@@ -5,9 +5,8 @@ using XamarinTodo.Pages;
 
 namespace XamarinTodo.Models
 {
-    public class OrderOverview
+    public class OrderOverView
     {
-
         public string Name { get; set; }
         public string Company { get; set; }
         public string Street { get; set; }
@@ -21,6 +20,5 @@ namespace XamarinTodo.Models
         public DateTime OrderEnd { get; set; }
         public int CustomerId { get; set; }
         public string OrderInfo { get; set; }
-
     }
 }
