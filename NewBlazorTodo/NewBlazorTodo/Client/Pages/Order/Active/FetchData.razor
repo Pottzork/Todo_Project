@@ -2,11 +2,26 @@
 @inject HttpClient client
 @inject IJSRuntime js
 
+
+<style>
+   .btn-success{
+       background-color: slategray;
+       color: black;
+       border-color: slategray;
+
+       
+   }
+   .btn-success:hover{
+       background-color: lightgray;
+       border-color: lightgray;
+   }
+</style>
+
 <h3>Aktiva ordrar.</h3>
 <small>Alla orders som operatörer jobbar med just nu.</small>
 @*<button @onclick="@ShowDiv" class="btn btn-success">Visa Aktiva Orders</button>
-<button @onclick="@ShowDiv" class="btn btn-success">Visa Ej Acceperade Orders</button>
-<p></p>*@
+    <button @onclick="@ShowDiv" class="btn btn-success">Visa Ej Acceperade Orders</button>
+    <p></p>*@
 
 <br>
 
@@ -21,7 +36,7 @@ else if (activeOrderView.Count == 0)
 else
 {
     <div class="ShowListDiv" style="overflow-y:auto;">
-        
+
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -43,7 +58,7 @@ else
                             <td>@order.orderDescription</td>
                             <td>@order.orderStart</td>
                             <td>@order.orderInfo</td>
-                            <td>@order.OperatorID</td>
+                            <td><a class="btn btn-success" href="operator/details/@order.OperatorID">@order.OperatorID</a></td>
                             <td>@order.OrderStatus</td>
                             <td>
                             </td>
@@ -81,7 +96,7 @@ else
                             <td>@order.orderDescription</td>
                             <td>@order.orderStart</td>
                             <td>@order.orderInfo</td>
-                            <td>@order.OperatorID</td>
+                            <td><a class="btn btn-success" href="operator/details/@order.OperatorID">@order.OperatorID</a></td>
                             <td>@order.OrderStatus</td>
                             <td>
                             </td>
@@ -92,32 +107,16 @@ else
 
             </tbody>
         </table>
-        </div>
-        }
-        @code {
+    </div>
+}
+@code {
 
-            List<Orders> activeOrderView { get; set; } = new List<Orders>();
+    List<Orders> activeOrderView { get; set; } = new List<Orders>();
 
-            protected override async Task OnInitializedAsync()
-            {
-                activeOrderView = await client.GetFromJsonAsync<List<Orders>>("https://webapitodo20200919020315.azurewebsites.net/api/orders");
+    protected override async Task OnInitializedAsync()
+    {
+        activeOrderView = await client.GetFromJsonAsync<List<Orders>>("https://webapitodo20200919020315.azurewebsites.net/api/orders");
 
-            }
+    }
 
-
-            public void ShowDiv()
-            {
-               
-            }
-
-            public void HideDiv()
-            {
-
-            }
-
-
-
-
-
-
-        }
+}
