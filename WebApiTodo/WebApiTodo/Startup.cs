@@ -40,6 +40,9 @@ namespace WebApiTodo
             services.AddSingleton<IHistoryOrderService, HistoryOrderService>();
             services.AddSingleton<IHistoryOrderRepository>(c => new HistoryOrderRepository(Configuration["ConnectionString"]));
 
+            services.AddSingleton<IOrderOverViewService, OrderOverViewService>();
+            services.AddSingleton<IOrderOverViewRepository>(c => new OrderOverViewRepository(Configuration["ConnectionString"]));
+
             services.AddSingleton<IActiveOrderViewService, ActiveOrderViewService>();
             services.AddSingleton<IActiveOrderViewRepository>(c => new ActiveOrderViewRepository(Configuration["ConnectionString"]));
 

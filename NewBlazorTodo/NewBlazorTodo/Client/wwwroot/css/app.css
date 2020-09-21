@@ -225,3 +225,10 @@ app {
     border-radius:20px;
 }
 
+.HideListDiv{
+    display: none;
+}
+
+.ShowListDiv{
+    display: normal;
+}

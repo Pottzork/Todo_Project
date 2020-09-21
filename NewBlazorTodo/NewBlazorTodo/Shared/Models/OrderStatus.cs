@@ -11,6 +11,6 @@ namespace NewBlazorTodo.Shared.Models
         NEKAD, // (2) Operatör har nekat arbetsorder
         EJ_ACCEPTERAD, // (3) Operatör har inte "sett" arbetsordern
         KLAR, // (4) Operatör har gjort klart order
-        BETALD // (5) Admin har betalat och order visas endast i history tabellen
+        FAKTURA_SKICKAD // (5) Admin har skickat faktura och order visas endast i history tabellen
     }
 }
