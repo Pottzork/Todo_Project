@@ -7,10 +7,13 @@
 <div class="main">
 
     <div class="top-row px-4">
-        <label>Inloggad som: @SetCurrentUser.FirstName @SetCurrentUser.LastName</label>
-        <a class="btn btn-success" @onclick="@LogoutCurrentUser">Logout user</a>
+        <label>Inloggad med ID: @SetCurrentUser.Id som @SetCurrentUser.FirstName @SetCurrentUser.LastName </label>
+        <br />
+        
+        <a class="btn btn-success" @onclick="@LogoutCurrentUser">Logout @SetCurrentUser.FirstName</a>
+
     </div>
-  
+    
     <div class="content px-4 container">
         @Body
     </div>
