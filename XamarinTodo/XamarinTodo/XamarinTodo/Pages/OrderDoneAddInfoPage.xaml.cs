@@ -28,11 +28,12 @@ namespace XamarinTodo.Pages
         private async void ConfirmInfo_Clicked(object sender, EventArgs e)
         {
             Order = await Service.GetOrderAsync(OrderOverView.OrderId);
-            await DisplayAlert("Alert", "Är du säker på att du vill markera order som klar?", "Nej.", "Ja!");
-
-            Order.OrderStatus = OrderStatus.ACCEPTERAD;
-
-            await Service.UpdateOrderAsync(Order);
+            bool displayAlertAnswer = await DisplayAlert("Alert", "Är du säker på att du vill markera order som klar?", "Ja!", "Nej.");
+            if (displayAlertAnswer)
+            {
+                Order.OrderStatus = OrderStatus.KLAR;
+                await Service.UpdateOrderAsync(Order);
+            }
         }
     }
 }
