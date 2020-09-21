@@ -14,7 +14,12 @@ namespace XamarinTodo.Models
 
         public string Name { get; set; }
         public string Company { get; set; }
-        public string Address { get; set; }  //Street, PostalCode, City
+        public string Street { get; set; }
+        public string PostalCode { get; set; }
+        public string City { get; set; }
+
+
+        
 
         public int OrderId { get; set; }
 
@@ -28,9 +33,8 @@ namespace XamarinTodo.Models
         public int CustomerId { get; set; }
 
         public string OrderInfo { get; set; }
-        public DateTime OrderEnd { get; set; }
 
-
+        
 
     }
 }

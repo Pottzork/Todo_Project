@@ -16,8 +16,8 @@ namespace XamarinTodo.Models
         public DateTime OrderEnd { get; set; }
         public float OrderPrice { get; set; }
         public string OrderInfo { get; set; }
-        public int CustomerCusId { get; set; }
-        public int OperatorID { get; set; }
+        public int CustomerId { get; set; }
+        public int OperatorId { get; set; }
         public OrderStatus OrderStatus { get; set; }
 
 
