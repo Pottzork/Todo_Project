@@ -8,6 +8,6 @@ namespace XamarinTodo.Data.Services
 {
     public interface IAPIService<T>
     {
-        Task<List<T>> GetOrdersAsync();
+        Task<List<T>> GetOrderOverViewAsync(int operatorId);
     }
 }

@@ -12,17 +12,20 @@ namespace XamarinTodo.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderAcceptedPage : ContentPage
     {
-        private Orders AcceptedOrder;
+        private OrderOverView OrderOverView;
 
-        public OrderAcceptedPage(Orders acceptedOrder)
+        public OrderAcceptedPage(OrderOverView orderOverView)
         {
-            AcceptedOrder = new Orders();
-            AcceptedOrder = acceptedOrder;
+            OrderOverView = new OrderOverView();
+            OrderOverView = orderOverView;
 
             InitializeComponent();
 
-            LabelCustomerId.Text = AcceptedOrder.OrderId.ToString();
-            LabelOrderDescription.Text = AcceptedOrder.OrderDescription;
+            LabelCustomerName.Text = OrderOverView.Company;
+            LabelCustomerId.Text = OrderOverView.OrderId.ToString();
+            LabelAdress.Text = OrderOverView.Street;
+            LabelContactPerson.Text = OrderOverView.Name;
+            LabelOrderDescription.Text = OrderOverView.OrderDescription;
         }
 
         private async void AddInfoSwipe_Invoked(object sender, EventArgs e)

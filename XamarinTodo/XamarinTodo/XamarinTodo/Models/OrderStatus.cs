@@ -11,6 +11,6 @@ namespace XamarinTodo.Models
         NEKAD,
         EJ_ACCEPTERAD,
         KLAR,
-        BETALD
+        FAKTURA_SKICKAD
     }
 }

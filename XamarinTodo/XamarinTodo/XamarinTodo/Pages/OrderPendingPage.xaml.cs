@@ -13,22 +13,25 @@ namespace XamarinTodo.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderPendingPage : ContentPage
     {
-        public Orders PendingOrder;
+        public OrderOverView OrderOverView;
 
-        public OrderPendingPage(Orders pendingOrder)
+        public OrderPendingPage(OrderOverView orderOverView)
         {
-            PendingOrder = new Orders();
-            PendingOrder = pendingOrder;
+            OrderOverView = new OrderOverView();
+            OrderOverView = orderOverView;
 
             InitializeComponent();
 
-            LabelCustomerId.Text = PendingOrder.OrderId.ToString();
-            LabelOrderDescription.Text = PendingOrder.OrderDescription;
+            LabelCustomerName.Text = OrderOverView.Company;
+            LabelCustomerId.Text = OrderOverView.OrderId.ToString();
+            LabelAdress.Text = OrderOverView.Street;
+            LabelContactPerson.Text = OrderOverView.Name;
+            LabelOrderDescription.Text = OrderOverView.OrderDescription;
         }
 
         private async void AcceptOrderSwipe_Invoked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new OrderAcceptedPage(PendingOrder));
+            await Navigation.PushAsync(new OrderAcceptedPage(OrderOverView));
         }
 
         private async void DeclineOrderSwipe_Invoked(object sender, EventArgs e)
