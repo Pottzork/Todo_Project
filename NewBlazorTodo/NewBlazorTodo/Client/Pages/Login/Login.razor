@@ -29,6 +29,11 @@
         <div class="spinner"></div>
     }
 
+    @if(nekadeOrdersList == null)
+    {
+        <div class="spinner"></div>
+    }
+
         <html>
 
 
@@ -52,7 +57,7 @@
                         <!-- Blog entry -->
                         <div class="w3-card-4 w3-margin w3-white">
                             <div class="w3-container">
-                                <h3><b>Aktiva ordrar</b></h3>
+                                <h3 style="color:darkred"><b>Information</b></h3>
                                 @if (tempList.Count == 0)
                                 {
                                     <h5>Just nu finns inga arbetsordrar att hantera betalning för. <span class="w3-opacity">@DagensDatum.ToString("MM/dd/yyyy")</span></h5>
@@ -78,6 +83,23 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="w3-container">
+                            <h3 style="color:darkred"><b>Nekade arbetsordrar</b></h3>
+                            @if (nekadeOrdersList.Count == 0)
+                            {
+                                <h5>Just nu finns inga nekade arbetsordrar. <span class="w3-opacity">@DagensDatum.ToString("MM/dd/yyyy")</span></h5>
+                            }
+                            else
+                            {
+                                <h5>Finns nekade arbetsordrar som behöver tilldelas en annan operatör. <span class="w3-opacity">@DagensDatum.ToString("MM/dd/yyyy")</span></h5>
+                                <h5>Antal nekade arbetsordrar: <span class="w3-tag">@nekadeOrdersList.Count</span></h5>
+                            }
+
+                        </div>
+                        
+                            
+                       
                         <hr>
 
                     </div>
@@ -122,18 +144,26 @@
         public DateTime DagensDatum { get; set; } = DateTime.Now;
         public List<Orders> activeOrderView { get; set; } = new List<Orders>();
         public List<Orders> tempList { get; set; } = new List<Orders>();
+        public List<Orders> nekadeOrdersList { get; set; } = new List<Orders>();
 
         protected async override Task OnInitializedAsync()
         {
             activeOrderView = await client.GetFromJsonAsync<List<Orders>>("https://webapitodo20200919020315.azurewebsites.net/api/Orders");
             foreach (var tempItem in activeOrderView)
             {
-                if (tempItem.OrderStatus == OrderStatus.EJ_ACCEPTERAD)
+                if (tempItem.OrderStatus == OrderStatus.KLAR)
                 {
                     tempList.Add(tempItem);
                 }
 
+
+                if(tempItem.OrderStatus == OrderStatus.NEKAD)
+                {
+                    nekadeOrdersList.Add(tempItem);
+                }
             }
+
+
         }
         public void GetBackOnePage()
         {
