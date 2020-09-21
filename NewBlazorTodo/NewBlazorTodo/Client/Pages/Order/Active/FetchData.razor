@@ -4,7 +4,9 @@
 
 <h3>Aktiva ordrar.</h3>
 <small>Alla orders som operatörer jobbar med just nu.</small>
-
+@*<button @onclick="@ShowDiv" class="btn btn-success">Visa Aktiva Orders</button>
+<button @onclick="@ShowDiv" class="btn btn-success">Visa Ej Acceperade Orders</button>
+<p></p>*@
 
 <br>
 
@@ -18,48 +20,104 @@ else if (activeOrderView.Count == 0)
 }
 else
 {
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>Arbetsbeskrivning </th>
-                <th>Arbete startar</th>
-                <th>Övrig information</th>
-                <th>Operatörs ID</th>
-                <th>OrderStatus</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Orders order in activeOrderView)
-            {
-                if (order.OrderStatus == OrderStatus.ACCEPTERAD || order.OrderStatus == OrderStatus.SCHEMALAGD)
+    <div class="ShowListDiv" style="overflow-y:auto;">
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Arbetsbeskrivning </th>
+                    <th>Arbete startar</th>
+                    <th>Övrig information</th>
+                    <th>Operatörs ID</th>
+                    <th>OrderStatus</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Orders order in activeOrderView)
                 {
-            <tr>
-                <td>@order.orderId</td>
-                <td>@order.orderDescription</td>
-                <td>@order.orderStart</td>
-                <td>@order.orderInfo</td>
-                <td>@order.OperatorID</td>
-                <td>@order.OrderStatus</td>
-                <td>
+                    if (order.OrderStatus == OrderStatus.ACCEPTERAD || order.OrderStatus == OrderStatus.SCHEMALAGD)
+                    {
+                        <tr>
+                            <td>@order.orderId</td>
+                            <td>@order.orderDescription</td>
+                            <td>@order.orderStart</td>
+                            <td>@order.orderInfo</td>
+                            <td>@order.OperatorID</td>
+                            <td>@order.OrderStatus</td>
+                            <td>
+                            </td>
+                        </tr>
+                    }
 
-                </td>
-            </tr>
                 }
+
+            </tbody>
+        </table>
+    </div>
+    <p></p>
+    <hr />
+    <p></p>
+    <h3>Ej accepterade ordrar som ev behöver tilldelas en annan operatör.</h3>
+    <div style="overflow-y:auto;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Arbetsbeskrivning </th>
+                    <th>Arbete startar</th>
+                    <th>Övrig information</th>
+                    <th>Operatörs ID</th>
+                    <th>OrderStatus</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Orders order in activeOrderView)
+                {
+                    if (order.OrderStatus == OrderStatus.EJ_ACCEPTERAD)
+                    {
+                        <tr>
+                            <td>@order.orderId</td>
+                            <td>@order.orderDescription</td>
+                            <td>@order.orderStart</td>
+                            <td>@order.orderInfo</td>
+                            <td>@order.OperatorID</td>
+                            <td>@order.OrderStatus</td>
+                            <td>
+                            </td>
+                        </tr>
+                    }
+
+                }
+
+            </tbody>
+        </table>
+        </div>
+        }
+        @code {
+
+            List<Orders> activeOrderView { get; set; } = new List<Orders>();
+
+            protected override async Task OnInitializedAsync()
+            {
+                activeOrderView = await client.GetFromJsonAsync<List<Orders>>("https://webapitodo20200919020315.azurewebsites.net/api/orders");
 
             }
 
-        </tbody>
-    </table>
-}
-@code {
 
-    List<Orders> activeOrderView { get; set; } = new List<Orders>();
+            public void ShowDiv()
+            {
+               
+            }
 
-    protected override async Task OnInitializedAsync()
-    {
-        activeOrderView = await client.GetFromJsonAsync<List<Orders>>("https://webapitodo20200919020315.azurewebsites.net/api/orders");
+            public void HideDiv()
+            {
 
-    }
+            }
 
-}
+
+
+
+
+
+        }
