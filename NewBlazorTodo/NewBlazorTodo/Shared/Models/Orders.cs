@@ -21,6 +21,7 @@ namespace NewBlazorTodo.Shared.Models
         public int customerId { get; set; } 
         public int OperatorID { get; set; }
         public OrderStatus OrderStatus { get; set; } = OrderStatus.EJ_ACCEPTERAD;
+        public WorkProfessions WorkProfessions { get; set; }
 
     }
 }
