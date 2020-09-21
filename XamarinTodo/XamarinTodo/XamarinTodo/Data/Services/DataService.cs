@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using XamarinTodo.Models;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Text;
+//using System.Threading.Tasks;
+//using XamarinTodo.Models;
 
-namespace XamarinTodo.Data.Services
-{
-    public class DataService : IDataService<Orders>
-    {
-        private MockDatabase mockDb;
+//namespace XamarinTodo.Data.Services
+//{
+//    public class DataService : IDataService<Orders>
+//    {
+//        //private MockDatabase mockDb;
 
-        public DataService()
-        {
-            mockDb = new MockDatabase();
-        }
+//        public DataService()
+//        {
+//            //mockDb = new MockDatabase()
+//        }
 
-        public async Task<IEnumerable<Orders>> GetItemsAsync()
-        {
-            return MockDatabase.OrderList();
-        }
-    }
-}
+//        public async Task<IEnumerable<Orders>> GetItemsAsync()
+//        {
+//            //return MockDatabase.OrderList();
+//        }
+//    }
+//}

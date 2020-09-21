@@ -45,10 +45,10 @@ namespace XamarinTodo.Pages
             return sortedOrders;
         }
 
-        public void temp()
-        {
-            JoinStuffThingy.Demo();
-        }
+        //public void temp()
+        //{
+        //    JoinStuffThingy.Demo();
+        //}
 
         //Om OrderAccept = false så ska den visas här
         //Samt att OrderComplete är false.
