@@ -95,6 +95,8 @@
     public string password { get; set; }
 
     List<Admins> admins { get; set; } = new List<Admins>();
+    
+
     protected override async Task OnInitializedAsync()
     {
         admins = await client.GetFromJsonAsync<List<Admins>>("https://webapitodo20200919020315.azurewebsites.net/api/admins");
@@ -104,9 +106,18 @@
     {
         foreach (var admin in admins)
         {
-            if (admin.UserName == uname && admin.Password == password)
+            SetCurrentUser.Id = admin.Id;
+            SetCurrentUser.FirstName = admin.FirstName;
+            SetCurrentUser.LastName = admin.LastName;
+            SetCurrentUser.UserName = admin.UserName;
+            SetCurrentUser.Password = admin.Password;
+            SetCurrentUser.Phone = admin.Phone;
+
+            if (SetCurrentUser.UserName == uname && SetCurrentUser.Password == password)
             {
-                await js.InvokeVoidAsync("alert", $"Välkommen {admin.FirstName}!");
+
+
+                await js.InvokeVoidAsync("alert", $"Välkommen {SetCurrentUser.FirstName}!");
                 uriHelper.NavigateTo("/start");
             }
             else
