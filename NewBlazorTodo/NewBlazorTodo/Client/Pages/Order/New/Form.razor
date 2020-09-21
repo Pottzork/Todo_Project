@@ -56,17 +56,17 @@
         </button>
     
 
-    @*<button class="btn btn-dark" @onclick="@GetBackOnePage">Back to admins</button>*@
+    
 
 </EditForm>
 
 
 @code {
     public List<Operators> operatorsList { get; set; } = new List<Operators>();
-    public string OperatorTempId { get; set; }
+    public string OperatorTempId { get; set; } // Temp ID for operator.ID
 
     public List<Customers> customersList { get; set; } = new List<Customers>();
-    public string CustomerTempId { get; set; }
+    public string CustomerTempId { get; set; } // Temp ID for customer.ID
 
 
     protected override async Task OnInitializedAsync()
@@ -74,8 +74,10 @@
         HttpClient client = new HttpClient();
         operatorsList = await client.GetFromJsonAsync<List<Operators>>("https://webapitodo20200919020315.azurewebsites.net/api/operators");
         customersList = await client.GetFromJsonAsync<List<Customers>>("https://webapitodo20200919020315.azurewebsites.net/api/customers");
-        OperatorTempId = order.OperatorID.ToString();
-        CustomerTempId = order.customerId.ToString();
+
+        //Using InputSelect cant handle INT so you have to change to a STRING
+        OperatorTempId = order.OperatorID.ToString(); //Change OperatorID to a string
+        CustomerTempId = order.customerId.ToString(); //Change customerId to a string
 
     }
 
@@ -87,14 +89,13 @@
     {
         uriHelper.NavigateTo("order");
     }
-    /// <summary>
-    /// Rechange value of order.OperatorID back to int
-    /// </summary>
+
+    // Rechange value of order.OperatorID / customerId back to int
     public void ChangeValue()
     {
-        
-        order.OperatorID = (int.Parse(OperatorTempId));
-        order.customerId = (int.Parse(CustomerTempId));
+
+        order.OperatorID = (int.Parse(OperatorTempId)); //Change back from string to int
+        order.customerId = (int.Parse(CustomerTempId)); //Change back from string to int
     }
 }
 

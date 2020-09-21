@@ -11,6 +11,6 @@ namespace DataAccess.Models
         NEKAD, //Operatör har nekat arbetsorder
         EJ_ACCEPTERAD, //Operatör har inte "sett" arbetsordern
         KLAR, // Operatör har gjort klart order
-        BETALD // Admin har betalat och order visas endast i history tabellen
+        FAKTURA_SKICKAD // Admin har skickat faktura och order visas endast i history tabellen
     }
 }
