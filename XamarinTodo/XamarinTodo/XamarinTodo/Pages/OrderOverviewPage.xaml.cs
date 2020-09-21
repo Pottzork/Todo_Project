@@ -18,6 +18,7 @@ namespace XamarinTodo.Pages
 
         private List<OrderOverView> orderOverViewList;
 
+        //Här ligger OperatorId. Detta ska ändras dynamiskt beroende på vilken Operator som är inloggad.
         public int OperatorId { get; set; } = 27;
 
         public OrderOverviewPage()
