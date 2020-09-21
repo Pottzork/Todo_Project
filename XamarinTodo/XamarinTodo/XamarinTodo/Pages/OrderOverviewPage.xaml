@@ -16,7 +16,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid BackgroundColor="LightGray" Margin="5, 0">
-                            <Label Text="2020-09-11" FontSize="25" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" Margin="10, 0" />
+                            <Label Text="{Binding OrderStart}" FontSize="25" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" Margin="10, 0" />
                             <Label Text="Energiverket" Grid.Row="1" Grid.Column="0" FontSize="20" FontAttributes="Bold" Margin="10, 5" />
                             <Label Text="{Binding OrderId}" Grid.Row="1" Grid.Column="1" FontSize="18" HorizontalOptions="CenterAndExpand" Margin="10, 0" />
                             <Label Text="Johan Willins gata 3, 416 64 Göteborg" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" Margin="10, 0" />
