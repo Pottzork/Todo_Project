@@ -14,7 +14,7 @@ namespace XamarinTodo.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderOverviewPage : ContentPage
     {
-        public IDataService<Orders> DataService => DependencyService.Get<IDataService<Orders>>();
+        public IAPIService<Orders> Service => DependencyService.Get<IAPIService<Orders>>();
 
         private List<Orders> orderList;
 
@@ -28,7 +28,8 @@ namespace XamarinTodo.Pages
 
         private async void GetOrders()
         {
-            orderList = await DataService.GetItemsAsync() as List<Orders>;
+            var apiOrders = await Service.GetOrdersAsync();
+            orderList = SortOrders(apiOrders).ToList();
         }
 
         private async void orderOverviewList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -36,10 +37,18 @@ namespace XamarinTodo.Pages
             await Navigation.PushAsync(new OrderPendingPage(e.CurrentSelection[0] as Orders));
         }
 
-        public void temp()
+        public IEnumerable<Orders> SortOrders(List<Orders> orders)
         {
-            JoinStuffThingy.Demo();
+            var sortedOrders = orders.OrderBy(x => x.OrderStart.Date)
+                .ThenBy(x => x.OrderStart.TimeOfDay);
+
+            return sortedOrders;
         }
+
+        //public void temp()
+        //{
+        //    JoinStuffThingy.Demo();
+        //}
 
         //Om OrderAccept = false så ska den visas här
         //Samt att OrderComplete är false.
