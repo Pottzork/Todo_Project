@@ -12,7 +12,7 @@ namespace XamarinTodo
         {
             InitializeComponent();
 
-            DependencyService.Register<DataService>();
+            DependencyService.Register<APIServices>();
 
             MainPage = new NavigationPage(new LogInPage());
         }
