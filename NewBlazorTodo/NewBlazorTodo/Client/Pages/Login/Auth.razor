@@ -79,10 +79,10 @@
         </div>
     <div class="container">
         <label for="uname"><b>Användarnamn</b></label>
-        <input @bind-value="uname" type="text" placeholder="Ange användarnamn" required>
+        <input @bind-value="@uname" type="text" placeholder="Ange användarnamn" required>
 
         <label for="psw"><b>Lösenord</b></label>
-        <input @bind-value="password" type="password" placeholder="Ange lösenord" required>
+        <input @bind-value="@password" type="password" placeholder="Ange lösenord" required>
 
         <button @onclick="@checkAuth">Login</button>
     </div>
@@ -95,7 +95,7 @@
     public string password { get; set; }
 
     List<Admins> admins { get; set; } = new List<Admins>();
-    
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -106,25 +106,28 @@
     {
         foreach (var admin in admins)
         {
-            SetCurrentUser.Id = admin.Id;
-            SetCurrentUser.FirstName = admin.FirstName;
-            SetCurrentUser.LastName = admin.LastName;
-            SetCurrentUser.UserName = admin.UserName;
-            SetCurrentUser.Password = admin.Password;
-            SetCurrentUser.Phone = admin.Phone;
 
-            if (SetCurrentUser.UserName == uname && SetCurrentUser.Password == password)
+
+            if (admin.UserName == uname && admin.Password == password)
             {
-
+                SetCurrentUser.Id = admin.Id;
+                SetCurrentUser.FirstName = admin.FirstName;
+                SetCurrentUser.LastName = admin.LastName;
+                SetCurrentUser.UserName = uname;
+                SetCurrentUser.Password = password;
+                SetCurrentUser.Phone = admin.Phone;
 
                 await js.InvokeVoidAsync("alert", $"Välkommen {SetCurrentUser.FirstName}!");
                 uriHelper.NavigateTo("/start");
             }
-            else
+
+            if(admin.UserName != uname && admin.Password != password)
+
             {
                 await js.InvokeVoidAsync("alert", $"Fel lösenord eller användarnamn");
+                return;
             }
-            return;
+
         }
     }
 
