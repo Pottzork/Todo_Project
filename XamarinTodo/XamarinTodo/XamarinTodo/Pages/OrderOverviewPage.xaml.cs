@@ -14,11 +14,11 @@ namespace XamarinTodo.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderOverviewPage : ContentPage
     {
-        public IAPIService<OrderOverView> Service => DependencyService.Get<IAPIService<OrderOverView>>();
+        public IAPIService Service => DependencyService.Get<IAPIService>();
 
         private List<OrderOverView> orderOverViewList;
 
-        public int OperatorId { get; set; } = 29;
+        public int OperatorId { get; set; } = 27;
 
         public OrderOverviewPage()
         {
