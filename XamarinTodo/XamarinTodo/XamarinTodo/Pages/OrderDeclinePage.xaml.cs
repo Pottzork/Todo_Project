@@ -54,7 +54,7 @@ namespace XamarinTodo.Pages
 
             //Order.OrderDeclineReason = orderDeclineBuilder.ToString();
 
-
+            //Det bortkommenterade är om man hellre vill lösa det med en string
 
 
             //Add string OrderDeclineReason to DB
