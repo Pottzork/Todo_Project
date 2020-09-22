@@ -28,12 +28,12 @@ namespace XamarinTodo.Pages
 
         private async void SendReason_Clicked(object sender, EventArgs e)
         {
-            var answer = await DisplayAlert("Alert", "Är du säker på att du vill avböja order?", "Nej.", "Ja!");
+            var answer = await DisplayAlert("Alert", "Är du säker på att du vill avböja order?", "Ja!", "Nej.");
 
             if (answer ==true)
             {
                 DeclineOrder();
-                await Navigation.PushModalAsync(new NavigationPage(new OrderOverviewPage()));
+                Navigation.PushModalAsync(new NavigationPage(new OrderOverviewPage()));
             }
             
 
