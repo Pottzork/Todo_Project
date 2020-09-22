@@ -78,7 +78,7 @@
         </div>
     </div>
 
-
+    You have been working for @CalculateTime();
 
 
 
@@ -97,6 +97,12 @@
     public List<Orders> orderStatusList { get; set; } = new List<Orders>();
     public string OperatorTempId { get; set; }
 
+    public string CalculateTime()
+    {
+
+        var hourWorked = order.orderEnd.Subtract(order.orderStart);
+        return hourWorked.ToString();
+    }
 
     public void GoToPage()
     {

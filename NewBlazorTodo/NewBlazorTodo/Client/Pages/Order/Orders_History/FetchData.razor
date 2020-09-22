@@ -9,15 +9,15 @@
 
 <br>
 
-@if (orderHistoria == null)
+@if (order == null)
 {
     <div class="spinner"></div>
 }
-else if (orderHistoria.Count == 0)
+else if (order.Count == 0)
 {
     <div class="spinner"></div>
 }
-else
+else 
 {
     <table class="table table-striped">
         <thead>
@@ -30,24 +30,24 @@ else
                 <th>Övrig information</th>
                 <th>Operatörs ID</th>
                 <th>Order Status</th>
-
+                
             </tr>
         </thead>
         <tbody>
-            @foreach (Orders order in orderHistoria)
+            @foreach (Orders order in order)
             {
+               
                 if (order.OrderStatus == OrderStatus.FAKTURA_SKICKAD)
                 {
-                    <tr>
-                        <td>@order.orderId</td>
-                        <td>@order.orderDescription</td>
-                        <td>@order.orderStart</td>
-                        <td>@order.orderEnd</td>
-                        <td>@order.orderInfo</td>
-                        <td>@order.OperatorID</td>
-                        <td>@order.OrderStatus</td>
-
-                    </tr>
+            <tr>
+                <td>@order.orderId</td>
+                <td>@order.orderDescription</td>
+                <td>@order.orderStart</td>
+                <td>@order.orderEnd</td>
+                <td>@order.orderInfo</td>
+                <td>@order.OperatorID</td>
+                <td>@order.OrderStatus</td>
+            </tr>
                 }
 
             }
@@ -57,10 +57,10 @@ else
 }
 @code {
 
-    public List<Orders> orderHistoria { get; set; } = new List<Orders>();
+    public List<Orders> order { get; set; } = new List<Orders>();
     protected override async Task OnInitializedAsync()
     {
-        orderHistoria = await client.GetFromJsonAsync<List<Orders>>($"https://webapitodo20200919020315.azurewebsites.net/api/orders");
+        order = await client.GetFromJsonAsync<List<Orders>>($"https://webapitodo20200919020315.azurewebsites.net/api/orders");       
     }
 
 }
