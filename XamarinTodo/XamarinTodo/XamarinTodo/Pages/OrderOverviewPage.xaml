@@ -23,16 +23,15 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid BackgroundColor="{Binding BgColor, Converter={StaticResource BackgroundConverter}}" Margin="5, 0">
-                            <Label Text="{Binding OrderStart}" FontSize="25" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" Margin="10, 0" />
-                            <Label Text="{Binding Company}" Grid.Row="1" Grid.Column="0" FontSize="20" FontAttributes="Bold" Margin="10, 5" />
-                            <Label Text="{Binding OrderId}" Grid.Row="1" Grid.Column="1" FontSize="18" HorizontalOptions="CenterAndExpand" Margin="10, 0" />
-                            <Label Text="{Binding Street}" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" Margin="10, 0" />
-                            <Label Text="{Binding Name}" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" FontSize="18" Margin="10, 0" />
-                            <Label Text="0730-436536" Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" FontSize="18" Margin="10, 0" />
-                            <Label Text="{Binding OrderDescription}" Grid.Row="5" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" FontSize="18" Margin="10, 0" MaxLines="1" LineBreakMode="TailTruncation" />
-                            <Label Text="Tryck för mer info" Grid.Row="6" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" FontSize="18" Opacity=".7" VerticalOptions="End" Margin="10, 0" />
-                        </Grid>
+                        <StackLayout BackgroundColor="{Binding BgColor, Converter={StaticResource BackgroundConverter}}">
+                            <Label Text="{Binding OrderStart}" FontSize="20" HorizontalOptions="StartAndExpand" />
+                            <StackLayout Margin="5">
+                                <Label Text="{Binding Company}" FontSize="20" FontAttributes="Bold" />
+                                <Label Text="{Binding FullAdress}" Grid.Column="0" FontSize="18" />
+                                <Label Text="{Binding OrderDescription}" HorizontalOptions="StartAndExpand" FontSize="18" MaxLines="1" LineBreakMode="TailTruncation" />
+                                <Label Text="Tryck för mer info" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" FontSize="18" Opacity=".7" VerticalOptions="End" />
+                            </StackLayout>
+                        </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

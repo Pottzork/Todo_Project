@@ -23,7 +23,10 @@ namespace XamarinTodo.Models
         public int CustomerId { get; set; }
         public string OrderInfo { get; set; }
 
+        //Lokala Props
         [JsonIgnore]
         public string BgColor { get; set; }
+
+        public string FullAdress => Street + ", " + PostalCode + " " + City;
     }
 }
