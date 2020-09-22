@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinTodo.Data;
 using XamarinTodo.Data.Services;
 using XamarinTodo.Models;
 
@@ -21,7 +22,7 @@ namespace XamarinTodo.Pages
         private List<OrderOverView> _selectedOrderList;
 
         //Ska sättas dynamiskt
-        public int OperatorId { get; set; } = 27;
+        public int OperatorId { get; set; } = ActiveUser.Operator.Id;
 
         public OrderOverviewPage()
         {

@@ -54,5 +54,21 @@ namespace XamarinTodo.Data.Services
 
             await client.PutAsync("https://webapitodo20200919020315.azurewebsites.net/api/orders?fbclid=IwAR3YpHnjZQCX77z2L21w1ypG0OSFqr8zTtZ0B-tHFMaoU9F9gVQHgmcYXDU", content);
         }
+
+        public async Task<List<Operators>> GetOperatorsAsync()
+        {
+            HttpClient client = new HttpClient();
+
+            string url = $"https://webapitodo20200919020315.azurewebsites.net/api/operators?fbclid=IwAR2CfM1ZB80xdjqnDyHJuWICjrN9BFgj358eCKfbQFlulVYHGc2dCuuwfhA";
+
+            var response = client.GetAsync(url);
+            var result = response.Result;
+
+            string json = result.Content.ReadAsStringAsync().Result;
+
+            var _operator = JsonConvert.DeserializeObject<List<Operators>>(json);
+
+            return _operator;
+        }
     }
 }
