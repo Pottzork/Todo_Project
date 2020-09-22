@@ -16,5 +16,7 @@ namespace DataAccess.Models
         public int CustomerId { get; set; } = 0;
         public int OperatorID { get; set; } = 0;
         public OrderStatus Orderstatus { get; set; } = OrderStatus.EJ_ACCEPTERAD;
+        public string OrderDeclineReason { get; set; } = "";
+        public string OrderCompleteMessage { get; set; } = "";
     }
 }
