@@ -35,7 +35,6 @@ namespace XamarinTodo.Pages
 
         private async void AcceptOrderSwipe_Invoked(object sender, EventArgs e)
         {
-            //Här ska OrderStatus uppdateras
             if (OrderOverView != null)
             {
                 _order = await Service.GetOrderAsync(OrderOverView.OrderId);

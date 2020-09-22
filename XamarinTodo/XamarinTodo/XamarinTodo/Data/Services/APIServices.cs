@@ -12,15 +12,6 @@ namespace XamarinTodo.Data.Services
     {
         public async Task<List<OrderOverView>> GetOrderOverViewAsync(int operatorId)
         {
-            string json = NewMethod(operatorId);
-
-            var orderList = JsonConvert.DeserializeObject<List<OrderOverView>>(json);
-
-            return orderList;
-        }
-
-        private static string NewMethod(int operatorId)
-        {
             HttpClient client = new HttpClient();
 
             string url = $"https://webapitodo20200919020315.azurewebsites.net/api/OrderOverView/{operatorId}?fbclid=IwAR1LMi7ghiTGQfhdmu_fQjDHqNIEx9ZPAiC5IadZZCEVBB4dkpftx3DjZdI";
@@ -29,7 +20,10 @@ namespace XamarinTodo.Data.Services
             var result = response.Result;
 
             string json = result.Content.ReadAsStringAsync().Result;
-            return json;
+
+            var orderList = JsonConvert.DeserializeObject<List<OrderOverView>>(json);
+
+            return orderList;
         }
 
         public async Task<Orders> GetOrderAsync(int orderId)
@@ -58,7 +52,7 @@ namespace XamarinTodo.Data.Services
 
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-           await client.PutAsync("https://webapitodo20200919020315.azurewebsites.net/api/orders?fbclid=IwAR3YpHnjZQCX77z2L21w1ypG0OSFqr8zTtZ0B-tHFMaoU9F9gVQHgmcYXDU", content);
+            await client.PutAsync("https://webapitodo20200919020315.azurewebsites.net/api/orders?fbclid=IwAR3YpHnjZQCX77z2L21w1ypG0OSFqr8zTtZ0B-tHFMaoU9F9gVQHgmcYXDU", content);
         }
     }
 }

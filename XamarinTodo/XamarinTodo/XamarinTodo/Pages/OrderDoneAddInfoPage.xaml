@@ -13,6 +13,7 @@
             <Label Text="Lägg till information" HorizontalOptions="Center" FontSize="25" Margin="0, 40"
                    Grid.Row="0" />
             <StackLayout Grid.Row="1">
+                <!--Lägg till label med rubrik-->
                 <Label x:Name="LabelOrderStart" Margin="40, 5" />
                 <Label x:Name="LabelOrderEnd" Margin="40, 5" />
             </StackLayout>

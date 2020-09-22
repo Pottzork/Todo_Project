@@ -14,7 +14,6 @@
 
         <StackLayout>
             <Label Text="Mina Ordrar" HorizontalOptions="Center" FontSize="30" Margin="15" />
-            <!--<RefreshView>-->
             <CollectionView x:Name="orderOverviewList"
                             SelectionMode="Single"
                             SelectionChanged="orderOverviewList_SelectionChanged">

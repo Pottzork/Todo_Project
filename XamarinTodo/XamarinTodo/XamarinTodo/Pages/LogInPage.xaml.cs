@@ -15,6 +15,9 @@ namespace XamarinTodo.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LogInPage : ContentPage
     {
+        private string UserName;
+        private string Password;
+
         public LogInPage()
         {
             InitializeComponent();
@@ -22,6 +25,9 @@ namespace XamarinTodo.Pages
 
         private async void LogIn_Clicked(object sender, EventArgs e)
         {
+            UserName = EntryUsername.Text;
+            Password = EntryPassword.Text;
+
             await Navigation.PushModalAsync(new NavigationPage(new OrderOverviewPage()));
         }
     }
