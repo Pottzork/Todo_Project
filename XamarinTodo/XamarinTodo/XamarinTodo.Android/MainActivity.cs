@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
+using XamarinTodo.Droid.AndroidServices;
 
 namespace XamarinTodo.Droid
 {
@@ -22,6 +23,9 @@ namespace XamarinTodo.Droid
 
             Forms.SetFlags("SwipeView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            DependencyService.Register<AndroidToastMessage>();
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }

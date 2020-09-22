@@ -1,0 +1,63 @@
+﻿@page "/orderhistory"
+
+<h3>OrderHistory</h3>
+
+<form action="/action_page.php">
+    <label for="fname">Customer ID</label><br />
+    <input type="text" id="custID" name="custID"><br><br>
+    <label for="lname">Order ID:</label><br />
+    <input type="text" id="orderID" name="orderID"><br><br>
+    <input type="button" value="SEARCH"> <input type="button" value="CLEAR"><br />
+</form>
+<br />
+
+<table id="tt" class="table table-striped table-bordered" style="width:100%;height:auto;">
+    <thead>
+        <tr>
+            <th field="CustomerID" width="50" rowspan="2">Customer ID</th>
+            <th field="OrderID" width="50">Order ID</th>
+            <th field="StartDate" width="50">Start Date</th>
+            <th field="EndDate" width="50">End Date</th>
+            <th field="Technician" width="50">Technician</th>
+            <th field="Company" width="50">Company</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
+        </tr>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
+        </tr>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
+        </tr>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
+        </tr>
+    </tbody>
+</table>
+
+@code {
+
+}

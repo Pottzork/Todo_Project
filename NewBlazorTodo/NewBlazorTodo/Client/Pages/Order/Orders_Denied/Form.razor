@@ -1,0 +1,129 @@
+﻿@inject HttpClient client
+@inject NavigationManager uriHelper
+<EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <div class="col-sm-3">
+            <InputSelect id="OperatorTempId" @bind-Value="OperatorTempId" class="form-control">
+                @foreach (var op in operatorsList)
+                {
+                    <option value="@op.Id">@op.FirstName</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Arbetsbeskrivning :</label>
+        <div>
+            <InputText @bind-Value="@order.orderDescription" />
+            <ValidationMessage For="@(() => order.orderDescription)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Arbetsorder beställdes :</label>
+        <div>
+            <InputDate @bind-Value="@order.orderDate" />
+            <ValidationMessage For="@(() => order.orderDate)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Arbetsorder startades :</label>
+        <div>
+            <InputDate @bind-Value="@order.orderStart" />
+            <ValidationMessage For="@(() => order.orderStart)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Arbetsorder slutfördes :</label>
+        <div>
+            <InputDate @bind-Value="@order.orderEnd" />
+            <ValidationMessage For="@(() => order.orderEnd)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Ange TotalSumma :</label>
+        <div>
+            <InputNumber @bind-Value="@order.orderPrice" />
+            <ValidationMessage For="@(() => order.orderPrice)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Övrig Info om order :</label>
+        <div>
+            <InputText @bind-Value="@order.orderInfo" />
+            <ValidationMessage For="@(() => order.orderInfo)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Företagskunds ID :</label>
+        <div>
+            <InputNumber @bind-Value="@order.customerId" />
+            <ValidationMessage For="@(() => order.customerId)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Operatörs ID :</label>
+        <div>
+            <InputNumber @bind-Value="@order.OperatorID" />
+            <ValidationMessage For="@(() => order.OperatorID)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-3">
+            <InputSelect @bind-Value="order.OrderStatus" class="form-control">
+                @foreach (var orderStatus in Enum.GetValues(typeof(OrderStatus)))
+                {
+                    <option value="@orderStatus">@orderStatus</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+
+
+
+
+
+    <button type="submit" class="btn btn-success" @onclick="@ChangeValue">
+        @ButtonText
+    </button>
+
+</EditForm>
+
+@code{
+    [Parameter] public Orders order { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Spara";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    public List<Operators> operatorsList { get; set; } = new List<Operators>();
+
+    public List<Orders> orderStatusList { get; set; } = new List<Orders>();
+    public string OperatorTempId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        HttpClient client = new HttpClient();
+        operatorsList = await client.GetFromJsonAsync<List<Operators>>("https://webapitodo20200919020315.azurewebsites.net/api/operators");
+        OperatorTempId = order.OperatorID.ToString();
+
+
+    }
+
+    public void ChangeValue()
+    {        
+        order.OperatorID = (int.Parse(OperatorTempId));       
+    }
+
+    public void GoToPage()
+    {
+        uriHelper.NavigateTo("/orderhistory");
+    }
+}

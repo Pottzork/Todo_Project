@@ -21,6 +21,7 @@
             </SwipeView.LeftItems>
 
             <!--Page content-->
+
             <StackLayout>
                 <StackLayout Margin="0, 20">
                     <Label x:Name="LabelCustomerName" Text="Energiverket" HorizontalOptions="Center" FontSize="30" />
@@ -39,8 +40,3 @@
         </SwipeView>
     </ContentPage.Content>
 </ContentPage>
-
-<!--<StackLayout BindingContext="{Binding PendingOrder}">
-    <Label x:Name="OrderIdLabel" Text="{Binding OrderId}" />
-    <Label x:Name="OrderDescriptionLabel" Text="Test" />
-</StackLayout>-->

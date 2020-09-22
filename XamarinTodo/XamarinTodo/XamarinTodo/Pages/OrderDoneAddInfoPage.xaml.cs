@@ -23,6 +23,9 @@ namespace XamarinTodo.Pages
         {
             InitializeComponent();
             OrderOverView = orderOverView;
+
+            LabelOrderStart.Text = OrderOverView.OrderStart.ToString();
+            LabelOrderEnd.Text = DateTime.Now.ToString();
         }
 
         private async void ConfirmInfo_Clicked(object sender, EventArgs e)
@@ -32,7 +35,14 @@ namespace XamarinTodo.Pages
             if (displayAlertAnswer)
             {
                 Order.OrderStatus = OrderStatus.KLAR;
+                Order.OrderEnd = DateTime.Now;
+                Order.OrderCompleteMessage = txtOrderCompleteMessage.Text;
+
                 await Service.UpdateOrderAsync(Order);
+
+                DependencyService.Get<IToastMessage>().LongAlert("Order markerad som klar!");
+
+                await Navigation.PushModalAsync(new NavigationPage(new OrderOverviewPage()));
             }
         }
     }

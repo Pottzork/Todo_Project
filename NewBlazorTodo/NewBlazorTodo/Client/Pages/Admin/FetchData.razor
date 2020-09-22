@@ -1,0 +1,65 @@
+﻿@page "/admin"
+@inject HttpClient client
+@inject IJSRuntime js
+
+<h3>Admins</h3>
+<div class="form-group">
+    <a class="btn btn-success" href="admin/create"><i class="oi oi-plus"></i> Lägg till ny admin</a>
+</div>
+<br>
+
+@if (admins == null)
+{
+    <text>Loading...</text>
+}
+else if (admins.Count == 0)
+{
+    <text>No Records Found.</text>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Förnamn</th>
+                <th>Efternamn</th>
+                <th>Telefonnummer</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Admins admin in admins)
+            {
+            <tr>
+                <td>@admin.FirstName</td>
+                <td>@admin.LastName</td>
+                <td>@admin.Phone</td>
+                <td>
+                    <a class="btn btn-success" href="admin/details/@admin.Id">Mer Info</a>
+                    @*<a class="btn btn-success" href="admin/edit/@admin.Id">Edit</a>*@
+                    @*<button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>*@
+
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+}
+@code {
+    List<Admins> admins { get; set; } = new List<Admins>();
+    protected override async Task OnInitializedAsync()
+    {
+        admins = await client.GetFromJsonAsync<List<Admins>>("https://webapitodo20200919020315.azurewebsites.net/api/admins");
+    }
+
+    //async Task Delete(int adminId)
+    //{
+    //    var admin = admins.First(x => x.Id == adminId);
+    //    if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {admin.FirstName}'s ({admin.Id}) Record?"))
+    //    {
+    //        await client.DeleteAsync($"https://webapitodo20200919020315.azurewebsites.net/api/admins/ {adminId}");
+    //        await OnInitializedAsync();
+    //    }
+    //}
+}

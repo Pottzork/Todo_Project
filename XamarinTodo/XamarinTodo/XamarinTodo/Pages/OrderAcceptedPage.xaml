@@ -12,6 +12,13 @@
                                Invoked="AddInfoSwipe_Invoked" />
                 </SwipeItems>
             </SwipeView.RightItems>
+            <SwipeView.LeftItems>
+                <SwipeItems Mode="Reveal">
+                    <SwipeItem Text="Remove"
+                               BackgroundColor="Yellow"
+                               Invoked="MarkAsPendingSwipe_Invoked" />
+                </SwipeItems>
+            </SwipeView.LeftItems>
 
             <!--Content-->
 

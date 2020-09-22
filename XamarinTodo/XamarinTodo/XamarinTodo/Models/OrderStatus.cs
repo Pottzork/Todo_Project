@@ -6,10 +6,9 @@ namespace XamarinTodo.Models
 {
     public enum OrderStatus
     {
-        SCHEMALAGD,
+        EJ_ACCEPTERAD,
         ACCEPTERAD,
         NEKAD,
-        EJ_ACCEPTERAD,
         KLAR,
         FAKTURA_SKICKAD
     }

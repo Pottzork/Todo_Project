@@ -1,0 +1,66 @@
+﻿@page "/ordershistory"
+@inject NavigationManager uriHelper
+@inject HttpClient client
+@inject IJSRuntime js
+
+<h3>Skicka Fakturor</h3>
+<small>Bästa sidan att besöka. Här får vi betalt!</small>
+
+
+<br>
+
+@if (fakturaOrders == null)
+{
+    <div class="spinner"></div>
+}
+else if (fakturaOrders.Count == 0)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+
+                <th>Order ID</th>
+                <th>Arbetsbeskrivning </th>
+                <th>Arbetsorder startar</th>
+                <th>Arbetsorder slut</th>
+                <th>Övrig information</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Orders order in fakturaOrders)
+            {
+                if (order.OrderStatus == OrderStatus.KLAR)
+                {
+            <tr>
+                <td>@order.orderId</td>
+                <td>@order.orderDescription</td>
+                <td>@order.orderStart</td>
+                <td>@order.orderEnd</td>
+                <td>@order.orderInfo</td>
+                <td>
+                    <a class="btn btn-success" href="/faktura/edit/@order.orderId" >Skicka Faktura</a>
+                </td>
+            </tr>
+                }
+
+            }
+
+        </tbody>
+    </table>
+}
+@code {
+
+
+    public List<Orders> fakturaOrders { get; set; } = new List<Orders>();
+    public int CompletedToken { get; set; } = 1;
+    protected override async Task OnInitializedAsync()
+    {       
+        fakturaOrders = await client.GetFromJsonAsync<List<Orders>>($"https://webapitodo20200919020315.azurewebsites.net/api/orders");
+    }
+
+}

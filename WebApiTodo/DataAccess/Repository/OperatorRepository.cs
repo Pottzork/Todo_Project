@@ -25,7 +25,7 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("INSERT INTO Operators (UserName, Password, FirstName, LastName, Email, Phone, Location) VALUES (@UserName, @Password, @FirstName, @LastName, @Email, @Phone, @Location",
+                    await c.ExecuteAsync("INSERT INTO Operators (UserName, Password, FirstName, LastName, Email, Phone, Location) VALUES (@UserName, @Password, @FirstName, @LastName, @Email, @Phone, @Location)",
                         new { Operator.UserName, Operator.Password, Operator.FirstName, Operator.LastName, Operator.Email, Operator.Phone, Operator.Location });
 
                     return true;
@@ -38,15 +38,14 @@ namespace DataAccess.Repository
         }
         #endregion
 
-        //Deleting one Operator by id
-        #region DeleteOperator(int id)
+        
         public async Task<bool> DeleteOperator(int id)
         {
             using (var c = new SqlConnection(_connectionString))
             {
                 try
                 {
-                    await c.ExecuteAsync("DELETE FROM Operators WHERE OpId = @id", new { id });
+                    await c.ExecuteAsync("DELETE Operators WHERE ID = @id", new { id });
                     return true;
                 }
                 catch (Exception)
@@ -55,7 +54,6 @@ namespace DataAccess.Repository
                 }
             }
         }
-        #endregion
 
         //Getting all Operators
         #region GetAllOperators()
@@ -83,7 +81,7 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    return await c.QueryFirstOrDefaultAsync<Operators>("SELECT * FROM Operators WHERE OpId = @Id", new { id });
+                    return await c.QueryFirstOrDefaultAsync<Operators>("SELECT * FROM Operators WHERE Id = @Id", new { id });
                 }
                 catch (Exception)
                 {
@@ -102,8 +100,8 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("UPDATE Operators SET UserName = @UserName, Password = @Password, FirstName = @FirstName, LastName = @LastName, Email = @Email, Phone = @Phone, Location = @Location",
-                        new { Operator.UserName, Operator.Password, Operator.FirstName, Operator.LastName, Operator.Email, Operator.Phone, Operator.Location, Operator.OpId });
+                    await c.ExecuteAsync("UPDATE Operators SET UserName = @UserName, Password = @Password, FirstName = @FirstName, LastName = @LastName, Email = @Email, Phone = @Phone, Location = @Location WHERE Id = @Id",
+                        new { Operator.UserName, Operator.Password, Operator.FirstName, Operator.LastName, Operator.Email, Operator.Phone, Operator.Location, Operator.Id });
 
                     return true;
                 }

@@ -13,5 +13,7 @@ namespace XamarinTodo.Data.Services
         Task<Orders> GetOrderAsync(int orderId);
 
         Task UpdateOrderAsync(Object objectclass);
+
+        Task<List<Operators>> GetOperatorsAsync();
     }
 }

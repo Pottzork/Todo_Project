@@ -10,22 +10,28 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            
             <Label Text="Meddelande till Admin"
                    HorizontalOptions="Center"
                    FontSize="20"
                    Grid.Row="0"
                    Margin="0, 40, 0, 0" />
-            <Editor Placeholder="Varför avböjdes ordern?"
+            
+            <Editor x:Name="txtOrderDeclineReason"
+                    Placeholder="Varför avböjdes ordern?"
                     AutoSize="TextChanges"
                     Grid.Row="1"
                     VerticalOptions="Start"
-                    Margin="40,0" />
+                    Margin="40,0" 
+                    />
+            
             <Button Text="Skicka"
                     Clicked="SendReason_Clicked"
                     Margin="40, 30"
                     CornerRadius="15"
                     Grid.Row="2"
                     VerticalOptions="End" />
+        
         </Grid>
     </ContentPage.Content>
 </ContentPage>

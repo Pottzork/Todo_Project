@@ -6,11 +6,14 @@ namespace DataAccess.Models
 {
     public class Customers
     {
-        public int CusId { get; set; }
-        public string CusName { get; set; }
-        public string CusEmail { get; set; }
-        public string CusPhone { get; set; }
-        public string CusCompany { get; set; }
-        public int AddressId { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Company { get; set; }
+        public string Street { get; set; }
+        public string PostalCode { get; set; }
+        public string City { get; set; }
+        public int OrderId { get; set; }
     }
 }

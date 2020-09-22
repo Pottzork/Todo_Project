@@ -14,7 +14,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-
 namespace WebApiTodo
 {
     public class Startup
@@ -38,14 +37,29 @@ namespace WebApiTodo
             services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<ICustomerRepository>(c => new CustomerRepository(Configuration["ConnectionString"]));
 
-            services.AddSingleton<IAddressService, AddressService>();
-            services.AddSingleton<IAddressRepository>(c => new AddressRepository(Configuration["ConnectionString"]));
-
             services.AddSingleton<IHistoryOrderService, HistoryOrderService>();
             services.AddSingleton<IHistoryOrderRepository>(c => new HistoryOrderRepository(Configuration["ConnectionString"]));
 
+            services.AddSingleton<IOrderOverViewService, OrderOverViewService>();
+            services.AddSingleton<IOrderOverViewRepository>(c => new OrderOverViewRepository(Configuration["ConnectionString"]));
+
+            services.AddSingleton<IActiveOrderViewService, ActiveOrderViewService>();
+            services.AddSingleton<IActiveOrderViewRepository>(c => new ActiveOrderViewRepository(Configuration["ConnectionString"]));
+
+            services.AddSingleton<IPayMentDetailsService, PayMentDetailsService>();
+            services.AddSingleton<IPayMentDetailsRepository>(c => new PayMentDetailsRepository(Configuration["ConnectionString"]));
+
             services.AddSingleton<IOperatorService, OperatorService>();
             services.AddSingleton<IOperatorRepository>(c => new OperatorRepository(Configuration["ConnectionString"]));
+
+            services.AddCors(o => {
+                o.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
+
+       
 
             services.AddControllers();
         }
@@ -57,12 +71,14 @@ namespace WebApiTodo
             {
                 app.UseDeveloperExceptionPage();
             }
-
+          
+            
             app.UseHttpsRedirection();
-
+            app.UseCors("CorsPolicy");
             app.UseRouting();
 
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {
