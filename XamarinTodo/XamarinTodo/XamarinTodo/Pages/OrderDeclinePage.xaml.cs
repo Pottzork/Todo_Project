@@ -14,31 +14,30 @@ namespace XamarinTodo.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderDeclinePage : ContentPage
     {
-
         public IAPIService Service => DependencyService.Get<IAPIService>();
 
         public OrderOverView OrderOverView { get; set; }
         public Orders Order { get; set; }
 
-
-        public OrderDeclinePage()
+        public OrderDeclinePage(OrderOverView orderOverView)
         {
+            OrderOverView = orderOverView;
             InitializeComponent();
         }
 
         private async void SendReason_Clicked(object sender, EventArgs e)
         {
-            var answer = await DisplayAlert("Alert", "Är du säker på att du vill avböja order?", "Nej.", "Ja!");
+            Order = new Orders();
+            Order = await Service.GetOrderAsync(OrderOverView.OrderId);
 
-            if (answer ==true)
+            var answer = await DisplayAlert("Alert", "Är du säker på att du vill avböja order?", "Ja!", "Nej.");
+
+            if (answer == true)
             {
                 DeclineOrder();
                 await Navigation.PushModalAsync(new NavigationPage(new OrderOverviewPage()));
             }
-            
-
         }
-
 
         public void DeclineOrder()
         {
@@ -52,8 +51,6 @@ namespace XamarinTodo.Pages
             Order.OrderDeclineReason = $"-{respId}- {respTime} : {respText}";
 
             Service.UpdateOrderAsync(Order);
-
-            
         }
     }
 }
