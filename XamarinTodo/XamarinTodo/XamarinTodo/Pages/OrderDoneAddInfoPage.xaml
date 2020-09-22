@@ -13,10 +13,10 @@
             <Label Text="Lägg till information" HorizontalOptions="Center" FontSize="25" Margin="0, 40"
                    Grid.Row="0" />
             <StackLayout Grid.Row="1">
-                <Entry Placeholder="Arbetstid nerlagd" Keyboard="Numeric" Margin="40, 5" />
-                <Entry Placeholder="Antal timmar OB" Keyboard="Numeric" Margin="40, 5" />
+                <Label x:Name="LabelOrderStart" Margin="40, 5" />
+                <Label x:Name="LabelOrderEnd" Margin="40, 5" />
             </StackLayout>
-            <Editor BackgroundColor="#f6f6f6" Placeholder="Vad har gjorts?" Margin="40, 0" AutoSize="TextChanges"
+            <Editor x:Name="txtOrderCompleteMessage" BackgroundColor="#f6f6f6" Placeholder="Vad har gjorts?" Margin="40, 0" AutoSize="TextChanges"
                     Grid.Row="2"
                     VerticalOptions="Start" />
             <Button Text="Skicka"

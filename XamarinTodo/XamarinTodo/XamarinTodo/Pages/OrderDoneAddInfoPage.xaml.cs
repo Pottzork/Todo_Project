@@ -23,6 +23,9 @@ namespace XamarinTodo.Pages
         {
             InitializeComponent();
             OrderOverView = orderOverView;
+
+            LabelOrderStart.Text = OrderOverView.OrderStart.ToString();
+            LabelOrderEnd.Text = DateTime.Now.ToString();
         }
 
         private async void ConfirmInfo_Clicked(object sender, EventArgs e)
@@ -33,6 +36,8 @@ namespace XamarinTodo.Pages
             {
                 Order.OrderStatus = OrderStatus.KLAR;
                 Order.OrderEnd = DateTime.Now;
+                Order.OrderCompleteMessage = txtOrderCompleteMessage.Text;
+
                 await Service.UpdateOrderAsync(Order);
             }
         }

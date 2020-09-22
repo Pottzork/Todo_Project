@@ -7,7 +7,6 @@ namespace XamarinTodo.Models
 {
     public class Orders
     {
-
         public int OrderId { get; set; }
         public string OrderDescription { get; set; }
         public DateTime OrderDate { get; set; }
@@ -18,7 +17,7 @@ namespace XamarinTodo.Models
         public int CustomerId { get; set; }
         public int OperatorId { get; set; }
         public string OrderDeclineReason { get; set; }
+        public string OrderCompleteMessage { get; set; }
         public OrderStatus OrderStatus { get; set; }
-
     }
 }
