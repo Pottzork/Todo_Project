@@ -16,7 +16,7 @@ namespace XamarinTodo.Pages
     {
         public IAPIService Service => DependencyService.Get<IAPIService>();
 
-        private List<OrderOverView> orderOverViewList;
+        private List<OrderOverView> _orderOverViewList;
 
         public int OperatorId { get; set; } = 27;
 
@@ -24,14 +24,29 @@ namespace XamarinTodo.Pages
         {
             InitializeComponent();
             GetOrders();
-
-            orderOverviewList.ItemsSource = orderOverViewList;
+            SetBgColor();
+            orderOverviewList.ItemsSource = _orderOverViewList;
         }
 
         private async void GetOrders()
         {
             var tempList = await Service.GetOrderOverViewAsync(OperatorId);
-            orderOverViewList = SortOrders(tempList).ToList();
+            _orderOverViewList = SortOrders(tempList).ToList();
+        }
+
+        private void SetBgColor()
+        {
+            foreach (var order in _orderOverViewList)
+            {
+                if (order.OrderStatus == OrderStatus.FAKTURA_SKICKAD)
+                {
+                    order.BgColor = "#FFF";
+                }
+                else if (order.OrderStatus == OrderStatus.KLAR)
+                {
+                    order.BgColor = "#000";
+                }
+            }
         }
 
         private async void orderOverviewList_SelectionChanged(object sender, SelectionChangedEventArgs e)

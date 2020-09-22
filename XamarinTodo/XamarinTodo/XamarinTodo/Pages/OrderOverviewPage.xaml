@@ -1,8 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamarinTodo.Data.Converters"
              x:Class="XamarinTodo.Pages.OrderOverviewPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:BackgroundConverter x:Key="BackgroundConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
+
         <StackLayout>
             <Label Text="Mina Ordrar" HorizontalOptions="Center" FontSize="30" Margin="15" />
             <!--<RefreshView>-->
@@ -15,7 +24,7 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid BackgroundColor="LightGray" Margin="5, 0">
+                        <Grid BackgroundColor="{Binding BgColor, Converter={StaticResource BackgroundConverter}}" Margin="5, 0">
                             <Label Text="{Binding OrderStart}" FontSize="25" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" Margin="10, 0" />
                             <Label Text="{Binding Company}" Grid.Row="1" Grid.Column="0" FontSize="20" FontAttributes="Bold" Margin="10, 5" />
                             <Label Text="{Binding OrderId}" Grid.Row="1" Grid.Column="1" FontSize="18" HorizontalOptions="CenterAndExpand" Margin="10, 0" />
@@ -28,9 +37,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-   
-            
-            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
