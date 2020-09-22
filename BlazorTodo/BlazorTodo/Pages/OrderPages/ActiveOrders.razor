@@ -1,0 +1,60 @@
+﻿@page "/activeorders"
+@inherits ActiveOrdersBase
+@inject HttpClient Http
+
+<h3>ActiveOrders</h3>
+
+<form>
+    <label for="fname">Customer ID</label><br />
+    <input type="text" id="custID" name="custID"><br><br>
+    <label for="lname">Order ID:</label><br />
+    <input type="text" id="orderID" name="orderID"><br><br>
+    <input type="button" value="SEARCH">
+    <input type="button" value="CLEAR">
+    <br />
+
+</form>
+<br />
+
+
+@if (orders == null)
+{
+    <div class="spinner">
+    </div>
+}
+else
+{
+
+    <table id="tt" class="table table-striped table-bordered" style="width:100%;height:auto;">
+        <thead>
+            <tr>
+                <th field="orderID" width="50" rowspan="2">ID</th>
+                <th field="CustomerID" width="50">Customer ID</th>
+                <th field="StartDate" width="50">Start Date</th>
+                <th field="ETA" width="50">ETA</th>
+                <th field="Technician" width="50">Technician</th>
+                <th field="Price" width="50">Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in orders)
+            {
+                <tr>
+                    <td>@order.orderId</td>
+                    <td>@order.customerCusId</td>
+                    <td>@order.orderStart</td>
+                    <td>@order.orderEstTime</td>
+                    <td>@order.opId</td>
+                    <td>@order.orderPrice</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+
+
+@code {
+
+
+}

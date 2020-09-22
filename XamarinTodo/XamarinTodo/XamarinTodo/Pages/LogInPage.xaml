@@ -10,6 +10,9 @@
                 <Entry Placeholder="Password" Margin="60, 10" />
                 <Button Text="Log In" Margin="60, 10" CornerRadius="15"
                         Clicked="LogIn_Clicked" />
+                
+           
+                
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

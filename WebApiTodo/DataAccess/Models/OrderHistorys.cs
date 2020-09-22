@@ -19,7 +19,6 @@ namespace DataAccess.Models
         public float OrderPrice { get; set; }
         public int OrderId { get; set; }
 
-        public int AddressId { get; set; }
 
     }
 }

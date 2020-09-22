@@ -1,0 +1,21 @@
+﻿@page "/operator/edit/{Id:int}"
+@inject HttpClient http
+@inject NavigationManager uriHelper
+@inject IJSRuntime js
+<h3>Edit</h3>
+<Form ButtonText="Update" o="o"
+      OnValidSubmit="@EditOperator" />
+@code {
+    [Parameter] public int Id { get; set; }
+    Operators o = new Operators();
+    protected async override Task OnParametersSetAsync()
+    {
+        o = await http.GetFromJsonAsync<Operators>($"https://webapitodo20200919020315.azurewebsites.net/api/operators/ {Id}");
+    }
+    async Task EditOperator()
+    {
+        await http.PutAsJsonAsync("https://webapitodo20200919020315.azurewebsites.net/api/operators", o);
+        await js.InvokeVoidAsync("alert", $"Operatör {o.FirstName} {o.LastName} med ID: {o.Id} Uppdaterades perfekt!");
+        uriHelper.NavigateTo("operatorlist");
+    }
+}

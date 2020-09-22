@@ -13,12 +13,6 @@ namespace NewBlazorTodo.Server.Data
         {
 
         }
-        public DbSet<Developer> Developers { get; set; }
-
-        public DbSet<Admins> Admins { get; set; }
-        public DbSet<Customers> Customers { get; set; }
-        public DbSet<Operators> Operators { get; set; }
-        public DbSet<Orders> Orders { get; set; }
-
+ 
     }
 }

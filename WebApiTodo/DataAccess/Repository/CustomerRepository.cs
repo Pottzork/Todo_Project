@@ -18,53 +18,48 @@ namespace DataAccess.Repository
         }
         public async Task<bool> AddCustomer(Customers customer)
         {
-            using (var c = new SqlConnection(_connectionString))
+            using var c = new SqlConnection(_connectionString);
+            try
             {
-                try
-                {
-                    await c.ExecuteAsync("INSERT INTO Customers (CusName, CusEmail, CusPhone, CusCompany, AddressId) VALUES (@CusName, @CusEmail, @CusPhone, @CusCompany, @AddressId)",
-                        new { customer.CusName, customer.CusEmail, customer.CusPhone, customer.CusCompany, customer.AddressId });
+                await c.ExecuteAsync("INSERT INTO Customers (Name, Email, Phone, Company, Street, PostalCode, City, OrderID) VALUES (@Name, @Email, @Phone, @Company, @Street, @PostalCode, @City, @OrderID)",
+                    new { customer.Name, customer.Email, customer.Phone, customer.Company, customer.Street, customer.PostalCode, customer.City, customer.OrderId });
 
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 
         public async Task<bool> DeleteCustomer(int id)
         {
-            using (var c = new SqlConnection(_connectionString))
+            using var c = new SqlConnection(_connectionString);
+            try
             {
-                try
-                {
-                    await c.ExecuteAsync("DELETE Customers WHERE CusId = @Id", new { id });
+                await c.ExecuteAsync("DELETE Customers WHERE ID = @id", new { id });
 
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                    throw;
-                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
             }
         }
 
         public async Task<IEnumerable<Customers>> GetAllCustomers()
         {
-            using (var c = new SqlConnection(_connectionString))
+            using var c = new SqlConnection(_connectionString);
+            try
             {
-                try
-                {
-                    return await c.QueryAsync<Customers>("SELECT * FROM Customers");
-                }
-                catch (Exception)
-                {
+                return await c.QueryAsync<Customers>("SELECT * FROM Customers");
+            }
+            catch (Exception)
+            {
 
-                    throw;
-                }
+                throw;
             }
         }
 
@@ -74,7 +69,7 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    return await c.QueryFirstOrDefaultAsync<Customers>("SELECT * FROM Customers WHERE CusId = @Id", new { id });
+                    return await c.QueryFirstOrDefaultAsync<Customers>("SELECT * FROM Customers WHERE Id = @Id", new { id });
                 }
                 catch (Exception)
                 {
@@ -90,8 +85,8 @@ namespace DataAccess.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("UPDATE Customers SET CusName = @CusName, CusEmail = @CusEmail, CusPhone = @CusPhone, CusCompany = @CusCompany, AddressId = @AddressId WHERE CusId = @CusId",
-                        new { customer.CusName, customer.CusEmail, customer.CusPhone, customer.CusCompany, customer.AddressId, customer.CusId });
+                    await c.ExecuteAsync("UPDATE Customers SET Name = @Name, Email = @Email, Phone = @Phone, Company = @Company, Street = @Street, PostalCode = @PostalCode, City = @City, OrderID = @OrderID WHERE Id = @Id",
+                        new { customer.Name, customer.Email, customer.Phone, customer.Company, customer.Street, customer.PostalCode, customer.City, customer.OrderId, customer.Id });
 
                     return true;
                 }
