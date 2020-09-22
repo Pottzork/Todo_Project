@@ -24,10 +24,10 @@ else
             <tr>
 
                 <th>Order ID</th>
-                <th>Arbetsbeskrivning </th>
+                <th>Arbetsbeskrivning</th>
                 <th>Arbetsorder startar</th>
                 <th>Arbetsorder slut</th>
-                <th>Övrig information</th>
+                <th>Operatör meddelande</th>
 
             </tr>
         </thead>
@@ -41,7 +41,7 @@ else
                 <td>@order.orderDescription</td>
                 <td>@order.orderStart</td>
                 <td>@order.orderEnd</td>
-                <td>@order.orderInfo</td>
+                <td>@order.OrderCompleteMessage</td>
                 <td>
                     <a class="btn btn-success" href="/faktura/edit/@order.orderId" >Skicka Faktura</a>
                 </td>

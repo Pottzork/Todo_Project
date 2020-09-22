@@ -3,6 +3,14 @@
 @inject NavigationManager uriHelper
 @inject IJSRuntime js
 
+<style>
+    .redText {
+        color: red;
+    } 
+    .greenText{
+        color: lawngreen;
+    }
+</style>
 
 <table id="customers" class="table table-bordered table-danger">
     <tr id="testing"></tr>
@@ -16,11 +24,21 @@
 
 </table>
 
-    <div class="BackButton">
-        <button class="btn btn-dark" @onclick="@GetBackOnePage">Tillbaks till admins</button>
-        <a class="btn btn-success" href="admin/edit/@admin.Id">Edit</a>
-        <button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Ta bort @admin.FirstName</button>
-    </div>
+<div class="BackButton">
+    <button class="btn btn-dark" @onclick="@GetBackOnePage">Tillbaks till admins</button>
+    <a class="btn btn-success" href="admin/edit/@admin.Id">Edit</a>
+    <button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Ta bort @admin.FirstName</button>
+</div>
+
+
+@if (admin.UserName == SetCurrentUser.UserName)
+{
+    <h3>Status: <span class="greenText">Inloggad</span></h3>
+}
+else
+{
+    <h3>Status: <span class="redText">offline</span></h3>
+}
 
 
 @code{

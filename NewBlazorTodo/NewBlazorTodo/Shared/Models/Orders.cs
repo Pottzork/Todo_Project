@@ -16,11 +16,12 @@ namespace NewBlazorTodo.Shared.Models
         public DateTime orderEnd { get; set; } = DateTime.Now;
         public float orderPrice { get; set; } = 0;
         public string orderInfo { get; set; } = "";
-
-        [Required(ErrorMessage = "Company is required.")]
         public int customerId { get; set; } 
         public int OperatorID { get; set; }
         public OrderStatus OrderStatus { get; set; } = OrderStatus.EJ_ACCEPTERAD;
+        public string OrderDeclineReason { get; set; } = "";
+        public string OrderCompleteMessage { get; set; } = "";
+
 
     }
 }

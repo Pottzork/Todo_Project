@@ -25,8 +25,7 @@ else
 
                 <th>Order ID</th>
                 <th>Arbetsbeskrivning </th>
-                <th>Arbetsorder startar</th>
-                <th>Arbetsorder slut</th>
+                <th>Orsak</th>
                 <th>Övrig information</th>
                 <th>Operatörs ID</th>
 
@@ -40,11 +39,10 @@ else
                     <tr>
                         <td>@order.orderId</td>
                         <td>@order.orderDescription</td>
-                        <td>@order.orderStart</td>
-                        <td>@order.orderEnd</td>
+                        <td>@order.OrderDeclineReason</td>
                         <td>@order.orderInfo</td>
                         <td>@order.OperatorID</td>
-                        <a class="btn btn-success" href="/nekadorder/edit/@order.orderId">Ändra Operatör</a>
+                        <td><a class="btn btn-success" href="/nekadorder/edit/@order.orderId">Ändra Operatör</a></td>
                     </tr>
                 }
 

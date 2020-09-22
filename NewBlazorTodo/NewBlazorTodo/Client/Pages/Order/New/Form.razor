@@ -70,6 +70,8 @@
 
 
 @code {
+    public List<OrderOverView> orderViewList { get; set; } = new List<OrderOverView>();
+
     public List<Operators> operatorsList { get; set; } = new List<Operators>();
     public string OperatorTempId { get; set; } // Temp ID for operator.ID
 
@@ -83,7 +85,7 @@
         HttpClient client = new HttpClient();
         operatorsList = await client.GetFromJsonAsync<List<Operators>>("https://webapitodo20200919020315.azurewebsites.net/api/operators");
         customersList = await client.GetFromJsonAsync<List<Customers>>("https://webapitodo20200919020315.azurewebsites.net/api/customers");
-       
+
 
         //Using InputSelect cant handle INT so you have to change to a STRING
         OperatorTempId = order.OperatorID.ToString(); //Change OperatorID to a string

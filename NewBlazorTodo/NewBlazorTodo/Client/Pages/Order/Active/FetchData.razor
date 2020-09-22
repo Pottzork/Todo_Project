@@ -51,7 +51,7 @@ else
             <tbody>
                 @foreach (Orders order in activeOrderView)
                 {
-                    if (order.OrderStatus == OrderStatus.ACCEPTERAD || order.OrderStatus == OrderStatus.SCHEMALAGD)
+                    if (order.OrderStatus == OrderStatus.ACCEPTERAD)
                     {
                         <tr>
                             <td>@order.orderId</td>
