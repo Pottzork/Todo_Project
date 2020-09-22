@@ -16,28 +16,29 @@ namespace XamarinTodo.Pages
     {
         public IAPIService Service => DependencyService.Get<IAPIService>();
 
-        public OrderOverView OrderOverView;
+        private OrderOverView _orderOverView;
         private Orders _order;
 
         public OrderPendingPage(OrderOverView orderOverView)
         {
-            OrderOverView = new OrderOverView();
-            OrderOverView = orderOverView;
+            _orderOverView = new OrderOverView();
+            _orderOverView = orderOverView;
 
             InitializeComponent();
 
-            LabelCustomerName.Text = OrderOverView.Company;
-            LabelCustomerId.Text = OrderOverView.OrderId.ToString();
-            LabelAdress.Text = OrderOverView.Street;
-            LabelContactPerson.Text = OrderOverView.Name;
-            LabelOrderDescription.Text = OrderOverView.OrderDescription;
+            LabelCustomerName.Text = _orderOverView.Company;
+            LabelAdress.Text = _orderOverView.FullAdress;
+            LabelPhone.Text = _orderOverView.Phone;
+            LabelContactPerson.Text = _orderOverView.Name;
+            LabelOrderInfo.Text = _orderOverView.OrderInfo;
+            LabelOrderDescription.Text = _orderOverView.OrderDescription;
         }
 
         private async void AcceptOrderSwipe_Invoked(object sender, EventArgs e)
         {
-            if (OrderOverView != null)
+            if (_orderOverView != null)
             {
-                _order = await Service.GetOrderAsync(OrderOverView.OrderId);
+                _order = await Service.GetOrderAsync(_orderOverView.OrderId);
 
                 _order.OrderStatus = OrderStatus.ACCEPTERAD;
                 await Service.UpdateOrderAsync(_order);
@@ -50,7 +51,7 @@ namespace XamarinTodo.Pages
 
         private async void DeclineOrderSwipe_Invoked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new OrderDeclinePage(OrderOverView));
+            await Navigation.PushAsync(new OrderDeclinePage(_orderOverView));
         }
     }
 }

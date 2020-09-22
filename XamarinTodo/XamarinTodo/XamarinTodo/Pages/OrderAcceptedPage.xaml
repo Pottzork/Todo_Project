@@ -7,15 +7,15 @@
         <SwipeView>
             <SwipeView.RightItems>
                 <SwipeItems Mode="Reveal">
-                    <SwipeItem Text="Info"
-                               BackgroundColor="Green"
+                    <SwipeItem Text="Lägg till info"
+                               BackgroundColor="#53dc98"
                                Invoked="AddInfoSwipe_Invoked" />
                 </SwipeItems>
             </SwipeView.RightItems>
             <SwipeView.LeftItems>
                 <SwipeItems Mode="Reveal">
-                    <SwipeItem Text="Remove"
-                               BackgroundColor="Yellow"
+                    <SwipeItem Text="Avböj"
+                               BackgroundColor="#FDFD96"
                                Invoked="MarkAsPendingSwipe_Invoked" />
                 </SwipeItems>
             </SwipeView.LeftItems>
@@ -23,18 +23,22 @@
             <!--Content-->
 
             <StackLayout>
-                <StackLayout Margin="0, 20">
-                    <Label x:Name="LabelCustomerName" Text="Energiverket" HorizontalOptions="Center" FontSize="30" />
-                    <Label x:Name="LabelCustomerId" Text="#731432" HorizontalOptions="Center" FontSize="25" />
+                <StackLayout BackgroundColor="#53dc98" HeightRequest="100">
+                    <Label Text="Order Information" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="30" TextColor="white" FontAttributes="Bold" />
                 </StackLayout>
-                <StackLayout Padding="10" BackgroundColor="Green">
-                    <Label x:Name="LabelAdress" Text="Johan Willins gata 3, 416 64 Göteborg" FontSize="18" />
-                    <Label x:Name="LabelContactPerson" Text="Anders Andersson" FontSize="18" />
-                    <Label x:Name="LabelPhone" Text="0730-436536" FontSize="18" />
+
+                <StackLayout Padding="10">
+                    <Label x:Name="LabelCustomerName" FontSize="20" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="0, 10" />
+                    <Label Text="Kontakt information" FontAttributes="Bold" FontSize="18" />
+                    <Label x:Name="LabelAdress" FontSize="18" />
+                    <Label x:Name="LabelContactPerson" FontSize="18" />
+                    <Label x:Name="LabelPhone" FontSize="18" />
                 </StackLayout>
-                <StackLayout BackgroundColor="Green" Padding="10">
-                    <Label Text="Beskrivning" FontSize="22" FontAttributes="Bold" />
-                    <Label x:Name="LabelOrderDescription" FontSize="18" Text="{Binding OrderDescription}" />
+                <StackLayout Padding="10" HeightRequest="500" Margin="0, 0, 0, 20">
+                    <Label Text="Order Info" FontAttributes="Bold" FontSize="18" />
+                    <Label x:Name="LabelOrderInfo" FontSize="18" Margin="0, 0, 0, 10" />
+                    <Label Text="Beskrivning" FontAttributes="Bold" FontSize="18" />
+                    <Label x:Name="LabelOrderDescription" FontSize="18" />
                 </StackLayout>
             </StackLayout>
         </SwipeView>

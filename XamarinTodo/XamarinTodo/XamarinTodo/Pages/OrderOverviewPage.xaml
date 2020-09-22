@@ -11,27 +11,37 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-
         <StackLayout>
-            <Label Text="Mina Ordrar" HorizontalOptions="Center" FontSize="30" Margin="15" />
+            <StackLayout BackgroundColor="#53dc98" HeightRequest="100">
+                <Label Text="Mina Ordrar" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontSize="30" Margin="15" TextColor="white" FontAttributes="Bold" />
+            </StackLayout>
+
             <CollectionView x:Name="orderOverviewList"
                             SelectionMode="Single"
                             SelectionChanged="orderOverviewList_SelectionChanged">
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+                    <LinearItemsLayout ItemSpacing="25" Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout BackgroundColor="{Binding BgColor, Converter={StaticResource BackgroundConverter}}">
-                            <Label Text="{Binding OrderStart}" FontSize="20" HorizontalOptions="StartAndExpand" />
-                            <StackLayout Margin="5">
-                                <Label Text="{Binding Company}" FontSize="20" FontAttributes="Bold" />
-                                <Label Text="{Binding FullAdress}" Grid.Column="0" FontSize="18" />
-                                <Label Text="{Binding OrderDescription}" HorizontalOptions="StartAndExpand" FontSize="18" MaxLines="1" LineBreakMode="TailTruncation" />
-                                <Label Text="Tryck för mer info" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" FontSize="18" Opacity=".7" VerticalOptions="End" />
+                        <Frame HasShadow="True">
+                            <StackLayout Padding="5">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding OrderStart}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+                                    <Frame CornerRadius="15" BackgroundColor="{Binding BgColor, Converter={StaticResource BackgroundConverter}}">
+                                        <Label Text="{Binding OrderStatus}" FontSize="10" FontAttributes="Bold" />
+                                    </Frame>
+                                </StackLayout>
+
+                                <StackLayout Margin="5">
+                                    <Label Text="{Binding Company}" FontSize="20" FontAttributes="Bold" />
+                                    <Label Text="{Binding FullAdress}" Grid.Column="0" FontSize="18" />
+                                    <Label Text="{Binding OrderDescription}" HorizontalOptions="StartAndExpand" FontSize="18" MaxLines="1" LineBreakMode="TailTruncation" />
+                                    <Label Text="Tryck för mer info" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" FontSize="15" Opacity=".7" VerticalOptions="End" />
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

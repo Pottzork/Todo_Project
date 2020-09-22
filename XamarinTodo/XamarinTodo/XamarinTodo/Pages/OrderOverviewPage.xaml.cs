@@ -54,15 +54,15 @@ namespace XamarinTodo.Pages
             {
                 if (order.OrderStatus == OrderStatus.EJ_ACCEPTERAD) //Ska ändras till Orderstatus.EJ_ACCEPTERAD
                 {
-                    order.BgColor = "#FFFF00";
+                    order.BgColor = "#EBECF0";
                 }
                 else if (order.OrderStatus == OrderStatus.ACCEPTERAD) //Ska ändras till Orderstatus.ACCEPTERAD
                 {
-                    order.BgColor = "#00ff00";
+                    order.BgColor = "#53dc98";
                 }
                 else
                 {
-                    order.BgColor = "#FFF";
+                    order.BgColor = "#EBECF0";
                 }
             }
         }

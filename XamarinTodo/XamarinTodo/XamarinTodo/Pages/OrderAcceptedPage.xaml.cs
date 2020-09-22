@@ -26,9 +26,10 @@ namespace XamarinTodo.Pages
             InitializeComponent();
 
             LabelCustomerName.Text = _orderOverView.Company;
-            LabelCustomerId.Text = _orderOverView.OrderId.ToString();
-            LabelAdress.Text = _orderOverView.Street;
+            LabelAdress.Text = _orderOverView.FullAdress;
+            LabelPhone.Text = _orderOverView.Phone;
             LabelContactPerson.Text = _orderOverView.Name;
+            LabelOrderInfo.Text = _orderOverView.OrderInfo;
             LabelOrderDescription.Text = _orderOverView.OrderDescription;
         }
 
