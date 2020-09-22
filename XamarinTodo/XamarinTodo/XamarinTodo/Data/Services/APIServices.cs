@@ -58,7 +58,7 @@ namespace XamarinTodo.Data.Services
 
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync("https://webapitodo20200919020315.azurewebsites.net/api/orders?fbclid=IwAR3YpHnjZQCX77z2L21w1ypG0OSFqr8zTtZ0B-tHFMaoU9F9gVQHgmcYXDU", content);
+           await client.PutAsync("https://webapitodo20200919020315.azurewebsites.net/api/orders?fbclid=IwAR3YpHnjZQCX77z2L21w1ypG0OSFqr8zTtZ0B-tHFMaoU9F9gVQHgmcYXDU", content);
         }
     }
 }

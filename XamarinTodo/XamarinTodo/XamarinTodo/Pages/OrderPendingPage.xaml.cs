@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinTodo.Data.Services;
 using XamarinTodo.Models;
 
 namespace XamarinTodo.Pages
@@ -31,12 +32,15 @@ namespace XamarinTodo.Pages
 
         private async void AcceptOrderSwipe_Invoked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new OrderAcceptedPage(OrderOverView));
+            await Navigation.PushAsync(new OrderOverviewPage());
+
+            DependencyService.Get<IToastMessage>().LongAlert("Order Accepterad");
+            //await Navigation.PushAsync(new OrderAcceptedPage(OrderOverView));
         }
 
         private async void DeclineOrderSwipe_Invoked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new OrderDeclinePage());
+            await Navigation.PushAsync(new OrderDeclinePage(OrderOverView));
         }
     }
 }
