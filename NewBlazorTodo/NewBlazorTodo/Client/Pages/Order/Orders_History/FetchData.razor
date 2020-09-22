@@ -9,11 +9,11 @@
 
 <br>
 
-@if (orderHistora == null)
+@if (orderHistoria == null)
 {
     <div class="spinner"></div>
 }
-else if (orderHistora.Count == 0)
+else if (orderHistoria.Count == 0)
 {
     <div class="spinner"></div>
 }
@@ -34,7 +34,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (Orders order in orderHistora)
+            @foreach (Orders order in orderHistoria)
             {
                 if (order.OrderStatus == OrderStatus.FAKTURA_SKICKAD)
                 {
@@ -57,10 +57,10 @@ else
 }
 @code {
 
-    public List<Orders> orderHistora { get; set; } = new List<Orders>();
+    public List<Orders> orderHistoria { get; set; } = new List<Orders>();
     protected override async Task OnInitializedAsync()
     {
-        orderHistora = await client.GetFromJsonAsync<List<Orders>>($"https://webapitodo20200919020315.azurewebsites.net/api/orders");       
+        orderHistoria = await client.GetFromJsonAsync<List<Orders>>($"https://webapitodo20200919020315.azurewebsites.net/api/orders");
     }
 
 }
