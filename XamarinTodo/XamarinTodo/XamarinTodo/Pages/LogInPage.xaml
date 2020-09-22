@@ -7,7 +7,7 @@
             <StackLayout Orientation="Vertical"
                          VerticalOptions="CenterAndExpand">
                 <Entry x:Name="EntryUsername" Placeholder="Username" Margin="60, 10" />
-                <Entry x:Name="EntryPassword" Placeholder="Password" Margin="60, 10" />
+                <Entry x:Name="EntryPassword" Placeholder="Password" Margin="60, 10" IsPassword="True" />
                 <Button Text="Log In" Margin="60, 10" CornerRadius="15"
                         Clicked="LogIn_Clicked" />
             </StackLayout>
