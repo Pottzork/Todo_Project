@@ -39,6 +39,10 @@ namespace XamarinTodo.Pages
                 Order.OrderCompleteMessage = txtOrderCompleteMessage.Text;
 
                 await Service.UpdateOrderAsync(Order);
+
+                DependencyService.Get<IToastMessage>().LongAlert("Order markerad som klar!");
+
+                await Navigation.PushModalAsync(new NavigationPage(new OrderOverviewPage()));
             }
         }
     }
