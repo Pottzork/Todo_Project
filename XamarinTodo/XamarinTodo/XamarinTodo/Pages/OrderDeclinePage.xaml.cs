@@ -41,7 +41,7 @@ namespace XamarinTodo.Pages
 
         public void DeclineOrder()
         {
-            Order.OrderStatus = OrderStatus.EJ_ACCEPTERAD;
+            Order.OrderStatus = OrderStatus.NEKAD;
             DateTime timeLogNow = DateTime.Now;
 
             string respId = OrderOverView.OperatorID.ToString();

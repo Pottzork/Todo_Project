@@ -30,7 +30,6 @@ namespace XamarinTodo.Pages
 
         private async void AddInfoSwipe_Invoked(object sender, EventArgs e)
         {
-            //Här ska ordern uppdateras till Accepterad
             await Navigation.PushAsync(new OrderDoneAddInfoPage(OrderOverView));
         }
     }

@@ -32,6 +32,7 @@ namespace XamarinTodo.Pages
             if (displayAlertAnswer)
             {
                 Order.OrderStatus = OrderStatus.KLAR;
+                Order.OrderEnd = DateTime.Now;
                 await Service.UpdateOrderAsync(Order);
             }
         }
