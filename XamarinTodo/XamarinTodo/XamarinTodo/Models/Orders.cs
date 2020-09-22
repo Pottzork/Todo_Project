@@ -17,6 +17,7 @@ namespace XamarinTodo.Models
         public string OrderInfo { get; set; }
         public int CustomerId { get; set; }
         public int OperatorId { get; set; }
+        public StringBuilder OrderDeclineReason { get; set; }
         public OrderStatus OrderStatus { get; set; }
 
     }
