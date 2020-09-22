@@ -28,17 +28,17 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (Operators o in techOp)
+            @foreach (Operators _operator in techOp)
             {
-                @if (o.Location != "DONT")//IF sats pga <InputSelect> tar inte första ID.
+                @if (_operator.Location != "DONT")//IF sats pga <InputSelect> tar inte första ID.
                 {
                     <tr>
-                        <td>@o.FirstName</td>
-                        <td>@o.LastName</td>
-                        <td>@o.Email</td>
-                        <td>@o.Phone</td>
+                        <td>@_operator.FirstName</td>
+                        <td>@_operator.LastName</td>
+                        <td>@_operator.Email</td>
+                        <td>@_operator.Phone</td>
                         <td>
-                            <a class="btn btn-success" href="operator/details/@o.Id">Mer Info</a>
+                            <a class="btn btn-success" href="operator/details/@_operator.Id">Mer Info</a>
 
                         </td>
                     </tr>

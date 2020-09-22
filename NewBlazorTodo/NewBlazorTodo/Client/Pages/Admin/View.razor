@@ -41,7 +41,7 @@
     {
         if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {admin.FirstName}'s ({admin.Id}) Record?"))
         {
-            await client.DeleteAsync($"https://localhost:44374/api/admins/ {adminId}");
+            await client.DeleteAsync($"https://webapitodo20200919020315.azurewebsites.net/api/admins/ {adminId}");
             GetBackOnePage();
         }
     }

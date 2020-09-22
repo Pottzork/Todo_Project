@@ -17,6 +17,8 @@
             </InputSelect>
         </div>
     </div>
+
+  
     <div class="form-group">
         <label>Arbetsbeskrivning :</label>
         <div>
@@ -55,14 +57,14 @@
             </InputSelect>
         </div>
     </div>
-    
-        <button type="submit" class="btn btn-success" @onclick="@ChangeValue">
 
-            @ButtonText
-        </button>
-    
+    <button type="submit" class="btn btn-success" @onclick="@ChangeValue">
 
-    
+        @ButtonText
+    </button>
+
+
+
 
 </EditForm>
 
@@ -74,12 +76,14 @@
     public List<Customers> customersList { get; set; } = new List<Customers>();
     public string CustomerTempId { get; set; } // Temp ID for customer.ID
 
+    public int indexNumber { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         HttpClient client = new HttpClient();
         operatorsList = await client.GetFromJsonAsync<List<Operators>>("https://webapitodo20200919020315.azurewebsites.net/api/operators");
         customersList = await client.GetFromJsonAsync<List<Customers>>("https://webapitodo20200919020315.azurewebsites.net/api/customers");
+       
 
         //Using InputSelect cant handle INT so you have to change to a STRING
         OperatorTempId = order.OperatorID.ToString(); //Change OperatorID to a string
@@ -88,6 +92,7 @@
     }
 
     [Parameter] public Orders order { get; set; }
+    [Parameter] public Operators _operator { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Spara";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
 
@@ -99,7 +104,6 @@
     // Rechange value of order.OperatorID / customerId back to int
     public void ChangeValue()
     {
-
         order.OperatorID = (int.Parse(OperatorTempId)); //Change back from string to int
         order.customerId = (int.Parse(CustomerTempId)); //Change back from string to int
     }
