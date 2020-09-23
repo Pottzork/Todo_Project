@@ -108,5 +108,11 @@ namespace XamarinTodo.Pages
 
             return sortedOrders;
         }
+
+        private async void LogOutBtn_Clicked(object sender, EventArgs e)
+        {
+            ActiveUser.Operator = null;
+            await Navigation.PushModalAsync(new LogInPage());
+        }
     }
 }

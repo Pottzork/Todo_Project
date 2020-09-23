@@ -7,14 +7,14 @@
         <SwipeView>
             <SwipeView.RightItems>
                 <SwipeItems Mode="Reveal">
-                    <SwipeItem Text="Lägg till info"
+                    <SwipeItem Text="Addera Info"
                                BackgroundColor="#53dc98"
                                Invoked="AddInfoSwipe_Invoked" />
                 </SwipeItems>
             </SwipeView.RightItems>
             <SwipeView.LeftItems>
                 <SwipeItems Mode="Reveal">
-                    <SwipeItem Text="Avböj"
+                    <SwipeItem Text="Abryt Order"
                                BackgroundColor="#FDFD96"
                                Invoked="MarkAsPendingSwipe_Invoked" />
                 </SwipeItems>
@@ -29,8 +29,8 @@
                 <Frame BackgroundColor="#53dc98" CornerRadius="5" Margin="15">
                     <StackLayout>
                         <StackLayout Padding="10">
-                            <Label x:Name="LabelCustomerName" FontSize="20" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="0, 10" />
                             <Label Text="Kontakt information" FontAttributes="Bold" FontSize="18" />
+                            <Label x:Name="LabelCustomerName" FontSize="18" />
                             <Label x:Name="LabelAdress" FontSize="18" />
                             <Label x:Name="LabelContactPerson" FontSize="18" />
                             <Label x:Name="LabelPhone" FontSize="18" />

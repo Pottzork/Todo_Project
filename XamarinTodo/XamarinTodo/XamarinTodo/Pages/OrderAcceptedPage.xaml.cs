@@ -40,7 +40,7 @@ namespace XamarinTodo.Pages
 
         private async void MarkAsPendingSwipe_Invoked(object sender, EventArgs e)
         {
-            bool displayAlertAnswer = await DisplayAlert("Alert", "Är du säker på att du vill markera order som ej accepterad?", "Ja!", "Nej.");
+            bool displayAlertAnswer = await DisplayAlert("Alert", "Är du säker på att du vill avbryta order?", "Ja!", "Nej.");
 
             if (displayAlertAnswer)
             {
@@ -49,7 +49,7 @@ namespace XamarinTodo.Pages
                 _order.OrderStatus = OrderStatus.EJ_ACCEPTERAD;
                 await Service.UpdateOrderAsync(_order);
 
-                DependencyService.Get<IToastMessage>().LongAlert("Order ej längre accepterad");
+                DependencyService.Get<IToastMessage>().LongAlert("Order avbruten");
 
                 await Navigation.PushAsync(new OrderOverviewPage());
             }

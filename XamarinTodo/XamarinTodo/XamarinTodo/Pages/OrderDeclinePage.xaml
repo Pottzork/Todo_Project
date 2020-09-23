@@ -1,37 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinTodo.Pages.OrderDeclinePage"
-             BackgroundColor="#CFFFE5">
+             x:Class="XamarinTodo.Pages.OrderDeclinePage">
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            
-            <Label Text="Meddelande till Admin"
-                   HorizontalOptions="Center"
-                   FontSize="20"
-                   Grid.Row="0"
-                   Margin="0, 40, 0, 0" />
-            
-            <Editor x:Name="txtOrderDeclineReason"
-                    Placeholder="Varför avböjdes ordern?"
-                    AutoSize="TextChanges"
-                    Grid.Row="1"
-                    VerticalOptions="Start"
-                    Margin="40,0" 
-                    />
-            
-            <Button Text="Skicka"
-                    Clicked="SendReason_Clicked"
-                    Margin="40, 30"
-                    CornerRadius="15"
-                    Grid.Row="2"
-                    VerticalOptions="End" />
-        
-        </Grid>
+        <StackLayout>
+            <StackLayout BackgroundColor="#53dc98" HeightRequest="50">
+                <Label Text="Avböj Order" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontSize="30" TextColor="white" FontAttributes="Bold" />
+            </StackLayout>
+            <Frame CornerRadius="5">
+                <StackLayout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height="20*" />
+                            <RowDefinition Height="60*" />
+                            <RowDefinition Height="10*" />
+                        </Grid.RowDefinitions>
+                        <StackLayout Grid.Row="2">
+                            <Editor x:Name="txtOrderDeclineReason"
+                            Placeholder="Varför avböjdes ordern?"
+                            AutoSize="TextChanges"
+                            VerticalOptions="StartAndExpand" />
+                        </StackLayout>
+                        <StackLayout Grid.Row="3" VerticalOptions="EndAndExpand">
+                            <Button Text="Skicka"
+                            Clicked="SendReason_Clicked"
+                            CornerRadius="15"
+                            VerticalOptions="EndAndExpand" />
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+            <!--<Frame>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="20*" />
+                        <RowDefinition Height="60*" />
+                        <RowDefinition Height="10*" />
+                    </Grid.RowDefinitions>
+                    <Editor x:Name="txtOrderDeclineReason"
+                            Placeholder="Varför avböjdes ordern?"
+                            AutoSize="TextChanges"
+                            Grid.Row="2"
+                            VerticalOptions="StartAndExpand" />
+
+                    <Button Text="Skicka"
+                            Clicked="SendReason_Clicked"
+                            CornerRadius="15"
+                            Grid.Row="3"
+                            VerticalOptions="EndAndExpand" />
+                </Grid>
+            </Frame>-->
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

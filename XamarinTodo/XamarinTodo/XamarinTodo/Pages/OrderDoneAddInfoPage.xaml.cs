@@ -42,6 +42,7 @@ namespace XamarinTodo.Pages
 
                 DependencyService.Get<IToastMessage>().LongAlert("Order markerad som klar!");
 
+                //Ändra till pop to root async
                 await Navigation.PushModalAsync(new NavigationPage(new OrderOverviewPage()));
             }
         }

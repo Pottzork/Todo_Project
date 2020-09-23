@@ -13,9 +13,15 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout BackgroundColor="#53dc98" HeightRequest="100">
-                <Label Text="Mina Ordrar" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontSize="30" Margin="15" TextColor="white" FontAttributes="Bold" />
-            </StackLayout>
+            <Grid BackgroundColor="#53dc98" HeightRequest="100">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Mina Ordrar" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontSize="30" Margin="15" TextColor="white" FontAttributes="Bold" />
+                <Button Text="Logga ut" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Start" TextColor="white" FontAttributes="Bold" BackgroundColor="Transparent" Clicked="LogOutBtn_Clicked" />
+            </Grid>
 
             <CollectionView x:Name="orderOverviewList"
                             SelectionMode="Single"
@@ -38,9 +44,10 @@
                                     </StackLayout>-->
 
                                     <StackLayout>
-                                        <Label Text="{Binding FullAdress}" Grid.Column="0" FontSize="18" TextColor="Black" />
+                                        <Label Text="{Binding Company}" FontSize="18" TextColor="Black" />
+                                        <Label Text="{Binding FullAdress}" FontSize="18" TextColor="Black" />
                                         <Label Text="{Binding OrderDescription}" HorizontalOptions="StartAndExpand" FontSize="18" MaxLines="1" LineBreakMode="TailTruncation" TextColor="Black" />
-                                        <Label Text="Tryck för mer info" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" FontSize="15" Opacity=".7" VerticalOptions="End" />
+                                        <Label Text="Tryck för mer info" HorizontalOptions="CenterAndExpand" FontSize="15" Opacity=".7" VerticalOptions="End" />
                                     </StackLayout>
                                 </StackLayout>
                             </Frame>
