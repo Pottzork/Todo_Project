@@ -24,38 +24,51 @@
             </Grid>
             <!--<RefreshView x:Name="OrdersRefreshView" IsRefreshing="{Binding IsRefreshing}"
                          Command="{Binding RefreshCommand}">-->
-                <CollectionView x:Name="orderOverviewList"
+            <CollectionView x:Name="orderOverviewList"
                             SelectionMode="Single"
                             SelectionChanged="orderOverviewList_SelectionChanged">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout ItemSpacing="25" Orientation="Vertical" />
-                    </CollectionView.ItemsLayout>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="25" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
 
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout Margin="5, 10">
-                                <Label Text="{Binding OrderStart}" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand" Margin="10, 0" />
-                                <Frame BackgroundColor="{Binding BgColor, Converter={StaticResource BackgroundConverter}}">
-                                    <StackLayout>
-                                        <!--<StackLayout Orientation="Horizontal">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="5, 10">
+                            <Label Text="{Binding OrderStart}" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand" Margin="10, 0" />
+                            <Frame BackgroundColor="{Binding BgColor, Converter={StaticResource BackgroundConverter}}">
+
+                                <!--<StackLayout Orientation="Horizontal">
 
                                     <Frame CornerRadius="15" BackgroundColor="{Binding BgColor, Converter={StaticResource BackgroundConverter}}">
                                             <Label Text="{Binding OrderStatus}" FontSize="10" FontAttributes="Bold" />
                                         </Frame>
                                     </StackLayout>-->
 
-                                        <StackLayout>
-                                            <Label Text="{Binding Company}" FontSize="18" TextColor="Black" />
-                                            <Label Text="{Binding FullAdress}" FontSize="18" TextColor="Black" />
-                                            <Label Text="{Binding OrderDescription}" HorizontalOptions="StartAndExpand" FontSize="18" MaxLines="1" LineBreakMode="TailTruncation" TextColor="Black" />
-                                            <Label Text="Tryck för mer info" HorizontalOptions="CenterAndExpand" FontSize="15" Opacity=".7" VerticalOptions="End" />
-                                        </StackLayout>
-                                    </StackLayout>
-                                </Frame>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                                <Grid HeightRequest="120">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10*" />
+                                        <ColumnDefinition Width="90*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25*" />
+                                        <RowDefinition Height="25*" />
+                                        <RowDefinition Height="25*" />
+                                        <RowDefinition Height="25*" />
+                                    </Grid.RowDefinitions>
+                                    <Image Source="officebuilding.png" Grid.Row="0" Grid.Column="0" Aspect="AspectFit" Scale=".8" HorizontalOptions="StartAndExpand" />
+                                    <Image Source="pin.png" Grid.Row="1" Grid.Column="0" Aspect="AspectFit" Scale=".8" HorizontalOptions="StartAndExpand" />
+                                    <Image Source="jobseeking.png" Grid.Row="2" Grid.Column="0" Aspect="AspectFit" Scale=".8" HorizontalOptions="StartAndExpand" />
+
+                                    <Label Text="{Binding Company}" Grid.Row="0" Grid.Column="1" FontSize="18" TextColor="Black" HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding FullAdress}" Grid.Row="1" Grid.Column="1" FontSize="18" TextColor="Black" HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding OrderDescription}" Grid.Row="2" Grid.Column="1" HorizontalOptions="StartAndExpand" FontSize="18" MaxLines="1" LineBreakMode="TailTruncation" TextColor="Black" />
+                                    <Label Text="Tryck för mer info" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" FontSize="15" Opacity=".7" VerticalOptions="End" />
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
             <!--</RefreshView>-->
         </StackLayout>
     </ContentPage.Content>
