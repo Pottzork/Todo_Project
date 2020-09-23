@@ -1,66 +1,55 @@
 ﻿@page "/Order/History"
-@inject NavigationManager uriHelper
 @inject HttpClient client
 @inject IJSRuntime js
 
-<h3>Order History</h3>
-<small>Historiska orders</small>
 
+<h4>Ange företagsnamn:</h4>
+<input @bind-value="SearchTerm" @bind-value:event="oninput" />
 
-<br>
+<span class="text-muted ml-5">
+    Visar @FilteredToDos.Count av @companyName.Count ordrar
+</span>
 
-@if (order == null)
-{
-    <div class="spinner"></div>
-}
-else if (order.Count == 0)
-{
-    <div class="spinner"></div>
-}
-else 
-{
-    <table class="table table-striped">
-        <thead>
-            <tr>
-
-                <th>Order ID</th>
-                <th>Arbetsbeskrivning </th>
-                <th>Arbetsorder startar</th>
-                <th>Arbetsorder slut</th>
-                <th>Övrig information</th>
-                <th>Operatörs ID</th>
-                <th>Order Status</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Orders order in order)
+<table id="acceptedTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Företag </th>
+            <th>Arbete startade</th>
+            <th>Arbete avslutades</th>
+            <th>Operatörs ID</th>
+            <th>Orderinfo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in FilteredToDos)
+        {
+            if (order.OrderStatus == OrderStatus.FAKTURA_SKICKAD)
             {
-               
-                if (order.OrderStatus == OrderStatus.FAKTURA_SKICKAD)
-                {
-            <tr>
-                <td>@order.orderId</td>
-                <td>@order.orderDescription</td>
-                <td>@order.orderStart</td>
-                <td>@order.orderEnd</td>
-                <td>@order.orderInfo</td>
-                <td>@order.OperatorID</td>
-                <td>@order.OrderStatus</td>
-            </tr>
-                }
-
+                <tr>
+                    <td>@order.OrderId</td>
+                    <td>@order.Company</td>
+                    <td>@order.OrderStart</td>
+                    <td>@order.OrderEnd</td>
+                    <td><a class="btn btn-success" href="operator/details/@order.OperatorID">@order.OperatorID</a></td>
+                    <td>@order.OrderDescription</td>
+                </tr>
             }
+        }
+    </tbody>
+</table>
 
-        </tbody>
-    </table>
-}
+
 @code {
+    string SearchTerm { get; set; } = "";
 
-    public List<Orders> order { get; set; } = new List<Orders>();
+    List<OrderOverView> companyName { get; set; } = new List<OrderOverView>();
+
     protected override async Task OnInitializedAsync()
     {
-        order = await client.GetFromJsonAsync<List<Orders>>($"https://webapitodo20200919020315.azurewebsites.net/api/orders");       
+        companyName = await client.GetFromJsonAsync<List<OrderOverView>>("https://webapitodo20200919020315.azurewebsites.net/api/orderoverview");
+
     }
 
+    List<OrderOverView> FilteredToDos => companyName.Where(i => i.Company.ToLower().Contains(SearchTerm.ToLower())).ToList();
 }

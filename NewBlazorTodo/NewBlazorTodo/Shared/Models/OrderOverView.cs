@@ -16,7 +16,7 @@ namespace NewBlazorTodo.Shared.Models
         public int OperatorID { get; set; }
         public string OrderDescription { get; set; }
         public DateTime OrderStart { get; set; }
-        public int OrderStatus { get; set; }
+        public OrderStatus OrderStatus { get; set; }
         public int CustomerId { get; set; }
         public string OrderInfo { get; set; }
         public DateTime OrderEnd { get; set; }
