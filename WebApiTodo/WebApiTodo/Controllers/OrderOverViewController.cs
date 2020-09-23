@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DataAccess.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace WebApiTodo.Controllers
 {
@@ -19,11 +20,11 @@ namespace WebApiTodo.Controllers
             this._orderOverViewService = orderOverViewService;
         }
 
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> Get(int id)
-        //{
-        //    return Ok(await _orderOverViewService.GetOrderOverView(id));
-        //}
+        [HttpGet("{name}")]
+        public async Task<IActionResult> Get(string name)
+        {
+            return Ok(await _orderOverViewService.SearchByName(name));
+        }
 
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -31,7 +32,7 @@ namespace WebApiTodo.Controllers
             return Ok(await _orderOverViewService.GetOrderOverViews());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
             return Ok(await _orderOverViewService.GetListOfOrderOverViews(id));

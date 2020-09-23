@@ -11,5 +11,6 @@ namespace DataAccess.Repository
         Task<IEnumerable<OrderOverView>> GetOrderOverViews();
         Task<OrderOverView> GetOrderOverView(int id);
         Task<IEnumerable<OrderOverView>> GetListOfOrderOverViews(int id);
+        Task<IEnumerable<OrderOverView>> SearchByName(string name);
     }
 }

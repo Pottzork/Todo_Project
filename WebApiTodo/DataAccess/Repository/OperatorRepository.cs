@@ -90,6 +90,8 @@ namespace DataAccess.Repository
                 }
             }
         }
+
+        
         #endregion
 
         //Update Operator using incoming Operator object

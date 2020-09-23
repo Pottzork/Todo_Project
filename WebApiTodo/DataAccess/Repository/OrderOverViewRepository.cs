@@ -58,5 +58,22 @@ namespace DataAccess.Repository
                 throw;
             }
         }
+
+        public async Task<IEnumerable<OrderOverView>> SearchByName(string name)
+        {
+           
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    return await c.QueryAsync<OrderOverView>("SELECT * FROM OrderOverView WHERE Company = @Name", new { name });
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+        }
     }
 }
