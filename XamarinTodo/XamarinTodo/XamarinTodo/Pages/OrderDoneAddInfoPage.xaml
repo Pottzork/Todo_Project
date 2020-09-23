@@ -25,13 +25,14 @@
                         </StackLayout>
                         <StackLayout Grid.Row="2">
                             <Editor x:Name="txtOrderCompleteMessage" Placeholder="Vilket arbete har utförts?" AutoSize="TextChanges"
-                    VerticalOptions="StartAndExpand" />
+                                    VerticalOptions="StartAndExpand" />
                         </StackLayout>
                         <StackLayout Grid.Row="3" VerticalOptions="EndAndExpand">
                             <Button Text="Skicka"
-                    CornerRadius="15"
-                    VerticalOptions="End"
-                    Clicked="ConfirmInfo_Clicked" />
+                                    CornerRadius="15"
+                                    BackgroundColor="#53dc98"
+                                    VerticalOptions="End"
+                                    Clicked="ConfirmInfo_Clicked" />
                         </StackLayout>
                     </Grid>
                 </StackLayout>

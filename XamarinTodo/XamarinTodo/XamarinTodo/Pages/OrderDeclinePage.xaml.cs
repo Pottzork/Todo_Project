@@ -44,11 +44,11 @@ namespace XamarinTodo.Pages
             Order.OrderStatus = OrderStatus.NEKAD;
             DateTime timeLogNow = DateTime.Now;
 
-            string respId = OrderOverView.OperatorID.ToString();
+            //string respId = OrderOverView.OperatorID.ToString(); Används ej längre. Finns i Blazor
             string respText = txtOrderDeclineReason.Text;
-            string respTime = timeLogNow.ToString();
+            string respTime = timeLogNow.ToString("yyyy-MM-dd HH:mm");
 
-            Order.OrderDeclineReason = $"-{respId}- {respTime} : {respText}";
+            Order.OrderDeclineReason = $" {respTime} : {respText}";
 
             Service.UpdateOrderAsync(Order);
         }
