@@ -1,32 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinTodo.Pages.OrderDoneAddInfoPage"
-             BackgroundColor="#CFFFE5">
+             x:Class="XamarinTodo.Pages.OrderDoneAddInfoPage">
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Label Text="Lägg till information" HorizontalOptions="Center" FontSize="25" Margin="0, 40"
-                   Grid.Row="0" />
-            <StackLayout Grid.Row="1">
-                <!--Lägg till label med rubrik-->
-                <Label x:Name="LabelOrderStart" Margin="40, 5" />
-                <Label x:Name="LabelOrderEnd" Margin="40, 5" />
-            </StackLayout>
-            <Editor x:Name="txtOrderCompleteMessage" BackgroundColor="#f6f6f6" Placeholder="Vad har gjorts?" Margin="40, 0" AutoSize="TextChanges"
-                    Grid.Row="2"
-                    VerticalOptions="Start" />
-            <Button Text="Skicka"
-                    Grid.Row="3"
-                    Margin="40, 30"
+        <Frame BackgroundColor="AntiqueWhite" CornerRadius="5">
+            <StackLayout>
+                <StackLayout BackgroundColor="#53dc98" HeightRequest="50">
+                    <Label Text="Lägg till Information" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontSize="30" />
+                </StackLayout>
+                
+                <StackLayout>
+                    <!--Lägg till label med rubrik-->
+                    <Label Text="Order start:"/>
+                    <Label x:Name="LabelOrderStart"/>
+                    <Label Text="Order slut:"/>
+                    <Label x:Name="LabelOrderEnd"/>
+                </StackLayout>
+                <Editor x:Name="txtOrderCompleteMessage" Placeholder="Vilket arbete har utförts?" Margin="40, 0" AutoSize="TextChanges"
+                    VerticalOptions="StartAndExpand" />
+                <Button Text="Skicka"
                     CornerRadius="15"
                     VerticalOptions="End"
                     Clicked="ConfirmInfo_Clicked" />
-        </Grid>
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

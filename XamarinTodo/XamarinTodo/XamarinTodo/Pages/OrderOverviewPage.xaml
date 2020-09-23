@@ -7,6 +7,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:BackgroundConverter x:Key="BackgroundConverter" />
+            <local:TextColorConverter x:Key="TextColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -26,7 +27,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Margin="5, 10">
-                            <Label Text="{Binding OrderStart}" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand" />
+                            <Label Text="{Binding OrderStart}" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand" Margin="10, 0" />
                             <Frame BackgroundColor="{Binding BgColor, Converter={StaticResource BackgroundConverter}}">
                                 <StackLayout>
                                     <!--<StackLayout Orientation="Horizontal">
@@ -37,9 +38,8 @@
                                     </StackLayout>-->
 
                                     <StackLayout>
-                                        <Label Text="{Binding Company}" FontSize="20" FontAttributes="Bold" />
-                                        <Label Text="{Binding FullAdress}" Grid.Column="0" FontSize="18" />
-                                        <Label Text="{Binding OrderDescription}" HorizontalOptions="StartAndExpand" FontSize="18" MaxLines="1" LineBreakMode="TailTruncation" />
+                                        <Label Text="{Binding FullAdress}" Grid.Column="0" FontSize="18" TextColor="Black" />
+                                        <Label Text="{Binding OrderDescription}" HorizontalOptions="StartAndExpand" FontSize="18" MaxLines="1" LineBreakMode="TailTruncation" TextColor="Black" />
                                         <Label Text="Tryck för mer info" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" FontSize="15" Opacity=".7" VerticalOptions="End" />
                                     </StackLayout>
                                 </StackLayout>

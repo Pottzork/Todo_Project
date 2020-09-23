@@ -23,8 +23,8 @@
             <!--Page content-->
 
             <StackLayout>
-                <StackLayout BackgroundColor="#53dc98" HeightRequest="100">
-                    <Label Text="Order Information" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="30" TextColor="white" FontAttributes="Bold" />
+                <StackLayout BackgroundColor="#53dc98" HeightRequest="50">
+                    <Label Text="Order Information" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontSize="30" TextColor="white" FontAttributes="Bold" />
                 </StackLayout>
                 <Frame BackgroundColor="#FDFD96" CornerRadius="5" Margin="15">
                     <StackLayout>

@@ -30,6 +30,7 @@ namespace XamarinTodo.Pages
             GetOrders();
             orderOverviewList.ItemsSource = _orderOverViewList;
             SetBgColor();
+            //SetTextColor();
         }
 
         private async void GetOrders()
@@ -63,6 +64,25 @@ namespace XamarinTodo.Pages
                 else
                 {
                     order.BgColor = "#EBECF0";
+                }
+            }
+        }
+
+        private void SetTextColor()
+        {
+            foreach (var order in _orderOverViewList)
+            {
+                if (order.OrderStatus == OrderStatus.EJ_ACCEPTERAD) //Ska ändras till Orderstatus.EJ_ACCEPTERAD
+                {
+                    order.TextColor = "#000";
+                }
+                else if (order.OrderStatus == OrderStatus.ACCEPTERAD) //Ska ändras till Orderstatus.ACCEPTERAD
+                {
+                    order.TextColor = "#FFF";
+                }
+                else
+                {
+                    order.TextColor = "#000";
                 }
             }
         }
