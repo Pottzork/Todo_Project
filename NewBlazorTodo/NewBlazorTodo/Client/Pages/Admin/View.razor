@@ -30,7 +30,6 @@
     <button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Ta bort @admin.FirstName</button>
 </div>
 
-
 @if (admin.UserName == SetCurrentUser.UserName)
 {
     <h3>Status: <span class="greenText">Inloggad</span></h3>
@@ -39,7 +38,6 @@ else
 {
     <h3>Status: <span class="redText">offline</span></h3>
 }
-
 
 @code{
     [Parameter] public int adminId { get; set; }

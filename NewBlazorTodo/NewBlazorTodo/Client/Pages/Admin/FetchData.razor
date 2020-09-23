@@ -16,11 +16,11 @@ else
 }
 <br>
 
-@if (admins == null)
+@if (ListOfAdmins == null)
 {
     <text>Loading...</text>
 }
-else if (admins.Count == 0)
+else if (ListOfAdmins.Count == 0)
 {
     <text>No Records Found.</text>
 }
@@ -37,7 +37,7 @@ else if (SetCurrentUser.IsAuthenticated == true)
                 </tr>
             </thead>
             <tbody>
-                @foreach (Admins admin in admins)
+                @foreach (Admins admin in ListOfAdmins)
                 {
                     <tr>
                         <td>@admin.FirstName</td>
@@ -59,10 +59,10 @@ else if (SetCurrentUser.IsAuthenticated == true)
 
 
 @code {
-    List<Admins> admins { get; set; } = new List<Admins>();
+    List<Admins> ListOfAdmins { get; set; } = new List<Admins>();
     protected override async Task OnInitializedAsync()
     {
-        admins = await client.GetFromJsonAsync<List<Admins>>("https://webapitodo20200919020315.azurewebsites.net/api/admins");
+        ListOfAdmins = await client.GetFromJsonAsync<List<Admins>>("https://webapitodo20200919020315.azurewebsites.net/api/admins");
     }
 
     //async Task Delete(int adminId)

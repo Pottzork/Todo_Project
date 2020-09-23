@@ -17,11 +17,11 @@ else
 
 <br>
 
-@if (customers == null)
+@if (CustomerList == null)
 {
     <div class="spinner"></div>
 }
-else if (customers.Count == 0)
+else if (CustomerList.Count == 0)
 {
     <div class="spinner"></div>
 }
@@ -38,7 +38,7 @@ else if (SetCurrentUser.IsAuthenticated == true)
                 </tr>
             </thead>
             <tbody>
-                @foreach (Customers customer in customers)
+                @foreach (Customers customer in CustomerList)
                 {
                     @if (customer.City != "DONT") //IF sats pga <InputSelect> tar inte första ID.
                     {
@@ -62,19 +62,10 @@ else if (SetCurrentUser.IsAuthenticated == true)
 }
 
 @code {
-    List<Customers> customers { get; set; }
+    List<Customers> CustomerList { get; set; }
     protected override async Task OnInitializedAsync()
     {
-        customers = await client.GetFromJsonAsync<List<Customers>>("https://webapitodo20200919020315.azurewebsites.net/api/customers");
+        CustomerList = await client.GetFromJsonAsync<List<Customers>>("https://webapitodo20200919020315.azurewebsites.net/api/customers");
     }
 
-    //async Task Delete(int id)
-    //{
-    //    var customer = customers.First(x => x.Id == id);
-    //    if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {customer.Name}'s ({customer.Company}) Record?"))
-    //    {
-    //        await client.DeleteAsync($"https://webapitodo20200919020315.azurewebsites.net/api/customers/ {id}");
-    //        await OnInitializedAsync();
-    //    }
-    //}
 }
