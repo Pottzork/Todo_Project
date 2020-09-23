@@ -53,25 +53,24 @@ else
                 <th>Order ID</th>
                 <th>Arbetsbeskrivning </th>
                 <th>Arbete startar</th>
-                <th>Övrig information</th>
-                <th>Operatörs ID</th>
+                <th>Företag</th>
+                <th>Operatör ID</th>
                 <th>OrderStatus</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (Orders order in activeOrderView)
+            @foreach (OrderOverView order in activeOrderView)
             {
                 if (order.OrderStatus == OrderStatus.ACCEPTERAD)
                 {
                     <tr>
-                        <td>@order.orderId</td>
-                        <td>@order.orderDescription</td>
-                        <td>@order.orderStart</td>
-                        <td>@order.orderInfo</td>
+                        <td>@order.OrderId</td>
+                        <td>@order.OrderDescription</td>
+                        <td>@order.OrderStart</td>
+                        <td>@order.Company</td>
                         <td><a class="btn btn-success" href="operator/details/@order.OperatorID">@order.OperatorID</a></td>
                         <td>@order.OrderStatus</td>
-                        <td>
-                        </td>
+ 
                     </tr>
                 }
             }
@@ -92,26 +91,25 @@ else
                     <th>Order ID</th>
                     <th>Arbetsbeskrivning </th>
                     <th>Arbete startar</th>
-                    <th>Övrig information</th>
-                    <th>Operatörs ID</th>
+                    <th>Företag</th>
+                    <th>Operatör ID</th>
                     <th>OrderStatus</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (Orders order in activeOrderView)
+                @foreach (OrderOverView order in activeOrderView)
                 {
                     if (order.OrderStatus == OrderStatus.EJ_ACCEPTERAD)
                     {
-                        <tr>
-                            <td>@order.orderId</td>
-                            <td>@order.orderDescription</td>
-                            <td>@order.orderStart</td>
-                            <td>@order.orderInfo</td>
-                            <td><a class="btn btn-success" href="operator/details/@order.OperatorID">@order.OperatorID</a></td>
-                            <td>@order.OrderStatus</td>
-                            <td>
-                            </td>
-                        </tr>
+                <tr>
+                    <td>@order.OrderId</td>
+                    <td>@order.OrderDescription</td>
+                    <td>@order.OrderStart</td>
+                    <td>@order.Company</td>
+                    <td><a class="btn btn-success" href="operator/details/@order.OperatorID">@order.OperatorID</a></td>
+                    <td>@order.OrderStatus</td>
+
+                </tr>
                     }
 
                 }
@@ -122,14 +120,16 @@ else
 }
 @code {
 
-    List<Orders> activeOrderView { get; set; } = new List<Orders>();
+    public List<OrderOverView> activeOrderView { get; set; } = new List<OrderOverView>();
+   
+
     private string vis { get; set; } = "d-none";
     private string vis2 { get; set; } = null;
     string tableValue = "Inte Accepterade";
 
     protected override async Task OnInitializedAsync()
     {
-        activeOrderView = await client.GetFromJsonAsync<List<Orders>>("https://webapitodo20200919020315.azurewebsites.net/api/orders");
+        activeOrderView = await client.GetFromJsonAsync<List<OrderOverView>>("https://webapitodo20200919020315.azurewebsites.net/api/orderoverview");
 
     }
 
