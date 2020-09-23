@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamarinTodo.Data;
@@ -21,20 +21,19 @@ namespace XamarinTodo.Pages
         private OrderOverView _orderOverView;
         private List<OrderOverView> _selectedOrderList;
 
-        //Ska sättas dynamiskt
         public int OperatorId { get; set; } = ActiveUser.Operator.Id;
 
         public OrderOverviewPage()
         {
             InitializeComponent();
+
             GetOrders();
             orderOverviewList.ItemsSource = _orderOverViewList;
             SetBgColor();
-            OnBackButtonPressed();
             //SetTextColor();
         }
 
-        protected override bool OnBackButtonPressed() => false;
+        //protected override bool OnBackButtonPressed() => false; För att motverka tillbakaknappen (funkar inte)
 
         private async void GetOrders()
         {

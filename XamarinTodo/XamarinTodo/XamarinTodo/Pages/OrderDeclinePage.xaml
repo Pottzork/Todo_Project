@@ -7,32 +7,7 @@
             <StackLayout BackgroundColor="#53dc98" HeightRequest="50">
                 <Label Text="Avböj Order" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontSize="30" TextColor="white" FontAttributes="Bold" />
             </StackLayout>
-            <Frame CornerRadius="5">
-                <StackLayout>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="10*" />
-                            <RowDefinition Height="20*" />
-                            <RowDefinition Height="60*" />
-                            <RowDefinition Height="10*" />
-                        </Grid.RowDefinitions>
-                        <StackLayout Grid.Row="2">
-                            <Editor x:Name="txtOrderDeclineReason"
-                                    Placeholder="Varför avböjdes ordern?"
-                                    AutoSize="TextChanges"
-                                    VerticalOptions="StartAndExpand"
-                                    MaxLength="60" />
-                        </StackLayout>
-                        <StackLayout Grid.Row="3" VerticalOptions="EndAndExpand">
-                            <Button Text="Skicka"
-                            Clicked="SendReason_Clicked"
-                            CornerRadius="15"
-                            VerticalOptions="EndAndExpand" />
-                        </StackLayout>
-                    </Grid>
-                </StackLayout>
-            </Frame>
-            <!--<Frame>
+            <StackLayout Padding="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="10*" />
@@ -40,19 +15,25 @@
                         <RowDefinition Height="60*" />
                         <RowDefinition Height="10*" />
                     </Grid.RowDefinitions>
-                    <Editor x:Name="txtOrderDeclineReason"
-                            Placeholder="Varför avböjdes ordern?"
-                            AutoSize="TextChanges"
-                            Grid.Row="2"
-                            VerticalOptions="StartAndExpand" />
-
-                    <Button Text="Skicka"
-                            Clicked="SendReason_Clicked"
-                            CornerRadius="15"
-                            Grid.Row="3"
-                            VerticalOptions="EndAndExpand" />
+                    <StackLayout Grid.Row="1" Margin="20, 0, 20, 0">
+                        <Label Text="Meddelande till Admin:" Margin="5, 0, 0, 25" FontAttributes="Bold" />
+                        <Editor x:Name="txtOrderDeclineReason"
+                                    Placeholder="Varför avböjdes ordern?"
+                                    AutoSize="TextChanges"
+                                    VerticalOptions="StartAndExpand"
+                                    MaxLength="60" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="3" VerticalOptions="EndAndExpand">
+                        <Button Text="Skicka"
+                                Clicked="SendReason_Clicked"
+                                CornerRadius="15"
+                                BackgroundColor="#53dc98"
+                                VerticalOptions="EndAndExpand"
+                                Margin="70, 0"
+                                TextColor="White" />
+                    </StackLayout>
                 </Grid>
-            </Frame>-->
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

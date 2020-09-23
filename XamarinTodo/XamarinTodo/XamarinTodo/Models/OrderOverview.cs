@@ -27,6 +27,7 @@ namespace XamarinTodo.Models
         //    get { return _orderStart; }
         //    set { _orderStart.ToString("yyyy-MM-dd hh-mm"); }
         //}
+
         public OrderStatus OrderStatus { get; set; }
 
         public DateTime OrderEnd { get; set; }

@@ -4,16 +4,22 @@
              x:Class="XamarinTodo.Pages.LogInPage">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Orientation="Vertical"
-                         VerticalOptions="CenterAndExpand">
-                <Entry x:Name="EntryUsername" Placeholder="Username" Margin="60, 10" />
-                <Entry x:Name="EntryPassword" Placeholder="Password" Margin="60, 10" IsPassword="True" />
-                <Button Text="Log In" Margin="60, 10" CornerRadius="15"
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0, 0, 0, 70" VerticalOptions="StartAndExpand">
+                    <Label Text="MAAD" FontSize="40" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
+                    <Label Text="- Tekniker App -" FontSize="20" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical">
+                    <Entry x:Name="EntryUsername" Placeholder="Username" Margin="60, 10" />
+                    <Entry x:Name="EntryPassword" Placeholder="Password" Margin="60, 10" IsPassword="True" />
+                    <Button Text="Log In" Margin="60, 10" CornerRadius="15"
                         Clicked="LogIn_Clicked"
                         BackgroundColor="#53dc98"
                         TextColor="White"
                         FontAttributes="Bold" />
+                </StackLayout>
             </StackLayout>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
