@@ -30,5 +30,10 @@ namespace DataAccess.Services
         {
             return await _orderOverViewRepository.GetOrderOverViews();
         }
+
+        public async Task<IEnumerable<OrderOverView>> SearchByName(string name)
+        {
+            return await _orderOverViewRepository.SearchByName(name);
+        }
     }
 }

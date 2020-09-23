@@ -6,6 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Order\Orders_Done\**" />
+    <Compile Remove="Pages\Order\Orders_Not_Accepted\**" />
+    <Content Remove="Pages\Order\Orders_Done\**" />
+    <Content Remove="Pages\Order\Orders_Not_Accepted\**" />
+    <EmbeddedResource Remove="Pages\Order\Orders_Done\**" />
+    <EmbeddedResource Remove="Pages\Order\Orders_Not_Accepted\**" />
+    <None Remove="Pages\Order\Orders_Done\**" />
+    <None Remove="Pages\Order\Orders_Not_Accepted\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Build" Version="3.2.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="3.2.0" PrivateAssets="all" />
@@ -14,11 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\NewBlazorTodo.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Order\Orders_Not_Accepted\" />
-    <Folder Include="Pages\Order\Orders_Done\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,134 @@
+﻿@page "/"
+@layout LoginLayout
+
+@inject HttpClient client
+@inject NavigationManager uriHelper
+@inject IJSRuntime js
+
+<style>
+    body {
+        
+    }
+
+    .title {
+        text-align: center;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+    }
+
+    form {
+        border: 3px solid #f1f1f1;
+        display: inline-block;
+        margin-left: 30%;
+        margin-right: 30%;
+        margin-top: 50px;
+    }
+
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+    }
+
+    img.avatar {
+        width: 40%;
+        border-radius: 50%;
+    }
+
+    .container {
+        padding: 16px;
+
+    }
+
+    span.psw {
+        float: right;
+        padding-top: 16px;
+    }
+</style>
+
+
+<div class="title">
+    <h1>MAAD Control Center</h1>
+</div>
+
+<form>
+    <div class="imgcontainer">
+            <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+    <div class="container">
+        <label for="uname"><b>Användarnamn</b></label>
+        <input @bind-value="@uname" type="text" placeholder="Ange användarnamn" required>
+
+        <label for="psw"><b>Lösenord</b></label>
+        <input @bind-value="@password" type="password" placeholder="Ange lösenord" required>
+
+        <button @onclick="@checkAuth">Login</button>
+    </div>
+
+</form>
+
+@code {
+
+    public string uname { get; set; }
+    public string password { get; set; }
+
+    List<Admins> admins { get; set; } = new List<Admins>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        admins = await client.GetFromJsonAsync<List<Admins>>("https://webapitodo20200919020315.azurewebsites.net/api/admins");
+    }
+
+    async void checkAuth()
+    {
+        foreach (var admin in admins)
+        {
+
+
+            if (admin.UserName == uname && admin.Password == password)
+            {
+                SetCurrentUser.Id = admin.Id;
+                SetCurrentUser.FirstName = admin.FirstName;
+                SetCurrentUser.LastName = admin.LastName;
+                SetCurrentUser.UserName = uname;
+                SetCurrentUser.Password = password;
+                SetCurrentUser.Phone = admin.Phone;
+
+                await js.InvokeVoidAsync("alert", $"Välkommen {SetCurrentUser.FirstName}!");
+                uriHelper.NavigateTo("/start");
+            }
+
+            if(admin.UserName != uname && admin.Password != password)
+
+            {
+                await js.InvokeVoidAsync("alert", $"Fel lösenord eller användarnamn");
+                return;
+            }
+
+        }
+    }
+
+}

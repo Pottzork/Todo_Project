@@ -1,15 +1,34 @@
 ﻿@inherits LayoutComponentBase
-
+@inject NavigationManager uriHelper
 <div class="sidebar">
     <NavMenu />
 </div>
 
 <div class="main">
-    <div class="top-row px-4">
-        <a href="/" class="ml-md-auto">Home</a>
-    </div>
 
+    <div class="top-row px-4">
+        <label>Inloggad med ID: @SetCurrentUser.Id som @SetCurrentUser.FirstName @SetCurrentUser.LastName </label>
+        <br />
+        
+        <a class="btn btn-success" @onclick="@LogoutCurrentUser">Logga ut @SetCurrentUser.FirstName</a>
+
+    </div>
+    
     <div class="content px-4 container">
         @Body
     </div>
 </div>
+
+@code{
+    public void LogoutCurrentUser()
+    {
+        SetCurrentUser.Id = 0;
+        SetCurrentUser.UserName = "";
+        SetCurrentUser.Password = "";
+        SetCurrentUser.FirstName = "";
+        SetCurrentUser.LastName = "";
+        SetCurrentUser.Phone = "";
+
+        uriHelper.NavigateTo("/");
+    }
+}

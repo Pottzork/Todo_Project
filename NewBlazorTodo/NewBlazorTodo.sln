@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewBlazorTodo.Server", "NewBlazorTodo\Server\NewBlazorTodo.Server.csproj", "{9538B37B-3AF5-4FC7-8021-94A34B5A832B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewBlazorTodo.Client", "NewBlazorTodo\Client\NewBlazorTodo.Client.csproj", "{C1FC6A46-994E-4D8F-A75D-02C71810EEA5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewBlazorTodo.Shared", "NewBlazorTodo\Shared\NewBlazorTodo.Shared.csproj", "{6A1372DB-A21A-45E8-B598-4FD0E1289D34}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9538B37B-3AF5-4FC7-8021-94A34B5A832B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9538B37B-3AF5-4FC7-8021-94A34B5A832B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9538B37B-3AF5-4FC7-8021-94A34B5A832B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9538B37B-3AF5-4FC7-8021-94A34B5A832B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C1FC6A46-994E-4D8F-A75D-02C71810EEA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C1FC6A46-994E-4D8F-A75D-02C71810EEA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1FC6A46-994E-4D8F-A75D-02C71810EEA5}.Release|Any CPU.ActiveCfg = Release|Any CPU

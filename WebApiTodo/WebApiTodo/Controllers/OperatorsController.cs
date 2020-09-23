@@ -34,6 +34,7 @@ namespace WebApiTodo.Controllers
             return Ok(await _operatorService.GetOperator(id));
         }
 
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

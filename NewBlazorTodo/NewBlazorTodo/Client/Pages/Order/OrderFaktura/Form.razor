@@ -1,93 +1,100 @@
 ﻿@inject HttpClient client
 @inject NavigationManager uriHelper
-<EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
-    <DataAnnotationsValidator />
+    <EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
+        <DataAnnotationsValidator />
 
-    <div class="form-group">
-        <label>Arbetsbeskrivning :</label>
-        <div>
-            <InputText @bind-Value="@order.orderDescription" />
-            <ValidationMessage For="@(() => order.orderDescription)" />
+        <div class="form-group">
+            <label>Arbetsbeskrivning :</label>
+            <div>
+                <InputText @bind-Value="@order.orderDescription" />
+                <ValidationMessage For="@(() => order.orderDescription)" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>Arbetsorder beställdes :</label>
-        <div>
-            <InputDate @bind-Value="@order.orderDate" />
-            <ValidationMessage For="@(() => order.orderDate)" />
+        @*<div class="form-group">
+            <label>Arbetsorder beställdes :</label>
+            <div>
+                <InputDate @bind-Value="@order.orderDate" />
+                <ValidationMessage For="@(() => order.orderDate)" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>Arbetsorder startades :</label>
-        <div>
-            <InputDate @bind-Value="@order.orderStart" />
-            <ValidationMessage For="@(() => order.orderStart)" />
+        <div class="form-group">
+            <label>Arbetsorder startades :</label>
+            <div>
+                <InputDate @bind-Value="@order.orderStart" />
+                <ValidationMessage For="@(() => order.orderStart)" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>Arbetsorder slutfördes :</label>
-        <div>
-            <InputDate @bind-Value="@order.orderEnd" />
-            <ValidationMessage For="@(() => order.orderEnd)" />
+        <div class="form-group">
+            <label>Arbetsorder slutfördes :</label>
+            <div>
+                <InputDate @bind-Value="@order.orderEnd" />
+                <ValidationMessage For="@(() => order.orderEnd)" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>Ange TotalSumma :</label>
-        <div>
-            <InputNumber @bind-Value="@order.orderPrice" />
-            <ValidationMessage For="@(() => order.orderPrice)" />
+        <div class="form-group">
+            <label>Ange TotalSumma :</label>
+            <div>
+                <InputNumber @bind-Value="@order.orderPrice" />
+                <ValidationMessage For="@(() => order.orderPrice)" />
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <label>Övrig Info om order :</label>
+            <div>
+                <InputText @bind-Value="@order.orderInfo" />
+                <ValidationMessage For="@(() => order.orderInfo)" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>Övrig Info om order :</label>
-        <div>
-            <InputText @bind-Value="@order.orderInfo" />
-            <ValidationMessage For="@(() => order.orderInfo)" />
+        <div class="form-group">
+            <label>Företagskunds ID :</label>
+            <div>
+                <InputNumber @bind-Value="@order.customerId" />
+                <ValidationMessage For="@(() => order.customerId)" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>Företagskunds ID :</label>
-        <div>
-            <InputNumber @bind-Value="@order.customerId" />
-            <ValidationMessage For="@(() => order.customerId)" />
+        <div class="form-group">
+            <label>Operatörs ID :</label>
+            <div>
+                <InputNumber @bind-Value="@order.OperatorID" />
+                <ValidationMessage For="@(() => order.OperatorID)" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>Operatörs ID :</label>
-        <div>
-            <InputNumber @bind-Value="@order.OperatorID" />
-            <ValidationMessage For="@(() => order.OperatorID)" />
+        <div class="form-group">
+            <div class="col-sm-3">
+                <InputSelect @bind-Value="order.OrderStatus" class="form-control">
+                    @foreach (var orderStatus in Enum.GetValues(typeof(OrderStatus)))
+                    {
+                        <option value="@orderStatus">@orderStatus</option>
+                    }
+                </InputSelect>
+            </div>
         </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-sm-3">
-            <InputSelect  @bind-Value="order.OrderStatus" class="form-control">
-                @foreach (var orderStatus in Enum.GetValues(typeof(OrderStatus)))
-                {
-                    <option value="@orderStatus">@orderStatus</option>
-                }
-            </InputSelect>
-        </div>
-    </div>
 
 
+        <table id="priceInfo" class="table table-bordered table-danger">
+            <tr id="testing"></tr>
+            <tr><th>Order beställd: @order.orderDate</th></tr>
+            <tr><th>Order påbörjad: @order.orderStart</th></tr>
+            <tr><th>Order färdigställd: @order.orderEnd</th></tr>
+            <tr><th>Arbetstimmar: @CalculateTime()</th></tr>
+            <tr><th>Timpris: 900 SEK</th></tr>
+            <tr><th>Totalpris: @CalculateCost() SEK</th></tr>
+        </table>
 
 
+        <button type="submit" class="btn btn-success">
+            @ButtonText
+        </button>
 
-
-    <button type="submit" class="btn btn-success">
-        @ButtonText
-    </button>
-
-</EditForm>
+    </EditForm>
 
 @code{
     [Parameter] public Orders order { get; set; }
@@ -96,10 +103,22 @@
 
     public List<Orders> orderStatusList { get; set; } = new List<Orders>();
     public string OperatorTempId { get; set; }
+    public int workHours { get; set; }
 
+    public string CalculateTime()
+    {
+        var hourWorked = order.orderEnd.Subtract(order.orderStart);
+        return hourWorked.Hours.ToString();
+    }
 
     public void GoToPage()
     {
         uriHelper.NavigateTo("/orderhistory");
+    }
+
+    public decimal CalculateCost()
+    {
+        decimal fastpris = 900;
+        return fastpris * Convert.ToDecimal(CalculateTime());
     }
 }

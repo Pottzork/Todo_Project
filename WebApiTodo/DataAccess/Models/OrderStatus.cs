@@ -6,11 +6,10 @@ namespace DataAccess.Models
 {
     public enum OrderStatus
     {
-        SCHEMALAGD, //Operatör har lagt order i sitt schema.
-        ACCEPTERAD, //Operatör har tagit emot och skall börja
-        NEKAD, //Operatör har nekat arbetsorder
-        EJ_ACCEPTERAD, //Operatör har inte "sett" arbetsordern
-        KLAR, // Operatör har gjort klart order
-        FAKTURA_SKICKAD // Admin har skickat faktura och order visas endast i history tabellen
+        EJ_ACCEPTERAD, // (0) Operatör har inte "sett" arbetsordern
+        ACCEPTERAD, // (1) Operatör har accepterat ordern
+        NEKAD, // (2) Operatör har nekat ordern
+        KLAR, // (3) Operatör har gjort klart order
+        FAKTURA_SKICKAD // (4) Admin har skickat faktura och order visas endast i history tabellen
     }
 }

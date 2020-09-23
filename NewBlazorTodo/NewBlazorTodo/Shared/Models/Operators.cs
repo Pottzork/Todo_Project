@@ -29,6 +29,7 @@ namespace NewBlazorTodo.Shared.Models
 
         [Required(ErrorMessage = "Location is required.")]
         public string Location { get; set; }
+
     }
 
     
