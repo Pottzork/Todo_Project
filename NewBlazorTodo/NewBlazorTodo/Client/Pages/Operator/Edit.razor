@@ -2,9 +2,19 @@
 @inject HttpClient http
 @inject NavigationManager uriHelper
 @inject IJSRuntime js
-<h3>Edit</h3>
-<Form ButtonText="Update" o="o"
-      OnValidSubmit="@EditOperator" />
+
+@if (SetCurrentUser.IsAuthenticated == true)
+{
+    <h3>Edit</h3>
+    <Form ButtonText="Update" o="o"
+          OnValidSubmit="@EditOperator" />
+}
+else
+{
+    <h3>User authentication token not found. Please log in..</h3>
+
+}
+
 @code {
     [Parameter] public int Id { get; set; }
     Operators o = new Operators();

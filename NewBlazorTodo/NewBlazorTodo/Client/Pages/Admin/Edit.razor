@@ -2,9 +2,17 @@
 @inject HttpClient http
 @inject NavigationManager uriHelper
 @inject IJSRuntime js
-<h3>Edit</h3>
-<Form ButtonText="Update" admin="admin"
-      OnValidSubmit="@EditAdmin" />
+
+@if (SetCurrentUser.IsAuthenticated == true)
+{
+    <h3>Edit</h3>
+    <Form ButtonText="Update" admin="admin"
+          OnValidSubmit="@EditAdmin" />
+}
+else
+{
+    <h3>User authentication not found. Please log in..</h3>
+}
 @code {
     [Parameter] public int adminId { get; set; }
     Admins admin = new Admins();

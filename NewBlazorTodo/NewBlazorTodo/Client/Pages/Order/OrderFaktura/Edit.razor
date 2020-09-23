@@ -3,20 +3,29 @@
 @inject NavigationManager uriHelper
 @inject IJSRuntime js
 
-<h3>Detaljer om faktura Nr @order.orderId</h3>
-<Form ButtonText="Update" order="order"
-      OnValidSubmit="@Editorder" />
-      @code {
-          [Parameter] public int OrderId { get; set; }
-          Orders order = new Orders();
-          protected async override Task OnParametersSetAsync()
-          {
-              order=await http.GetFromJsonAsync<Orders>($"https://webapitodo20200919020315.azurewebsites.net/api/orders/ {OrderId}");
-          }
-          async Task Editorder()
-          {
-              await http.PutAsJsonAsync("https://webapitodo20200919020315.azurewebsites.net/api/orders", order);
-              await js.InvokeVoidAsync("alert", $"Order med ID: {order.orderId} Uppdaterades perfekt!");
-              uriHelper.NavigateTo("/ordershistory");
-          }
+@if (SetCurrentUser.IsAuthenticated == true)
+{
+    <h3>Detaljer om faktura Nr @order.orderId</h3>
+    <Form ButtonText="Update" order="order"
+          OnValidSubmit="@Editorder" />
+}
+else
+{
+    <h3>User authentication token not found. Please log in..</h3>
+
+}
+
+@code {
+    [Parameter] public int OrderId { get; set; }
+    Orders order = new Orders();
+    protected async override Task OnParametersSetAsync()
+    {
+        order = await http.GetFromJsonAsync<Orders>($"https://webapitodo20200919020315.azurewebsites.net/api/orders/ {OrderId}");
+    }
+    async Task Editorder()
+    {
+        await http.PutAsJsonAsync("https://webapitodo20200919020315.azurewebsites.net/api/orders", order);
+        await js.InvokeVoidAsync("alert", $"Order med ID: {order.orderId} Uppdaterades perfekt!");
+        uriHelper.NavigateTo("/ordershistory");
+    }
 }

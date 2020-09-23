@@ -2,11 +2,19 @@
 @inject HttpClient client
 @inject IJSRuntime js
 
-<h3>Företagskunder</h3>
 
-<div class="form-group">
-    <a class="btn btn-success" href="customer/create"><i class="oi oi-plus"></i> Lägg till ny kund</a>
-</div>
+@if (SetCurrentUser.IsAuthenticated == true)
+{<h3>Företagskunder</h3>
+
+    <div class="form-group">
+        <a class="btn btn-success" href="customer/create"><i class="oi oi-plus"></i> Lägg till ny kund</a>
+    </div>
+}
+else
+{
+    <h3>User authentication token not found. Please log in..</h3>
+}
+
 <br>
 
 @if (customers == null)
@@ -17,39 +25,42 @@ else if (customers.Count == 0)
 {
     <div class="spinner"></div>
 }
-else
+else if (SetCurrentUser.IsAuthenticated == true)
 {
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Företagskund</th>
-                <th>KontaktPerson</th>
-                <th>Telefonnummer</th>
-                <th>Stad</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Customers customer in customers)
-            {
-                @if (customer.City != "DONT") //IF sats pga <InputSelect> tar inte första ID.
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Företagskund</th>
+                    <th>KontaktPerson</th>
+                    <th>Telefonnummer</th>
+                    <th>Stad</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Customers customer in customers)
                 {
-                    <tr>
-                        <td>@customer.Company</td>
-                        <td>@customer.Name</td>
-                        <td>@customer.Phone</td>
-                        <td>@customer.City</td>
-                        <td>
-                            <a class="btn btn-success" href="customer/details/@customer.Id">Mer Info</a>
-                            @*<button class="btn btn-danger" @onclick="@(() => Delete(customer.Id))">Delete</button>*@
-                        </td>
-                    </tr>
+                    @if (customer.City != "DONT") //IF sats pga <InputSelect> tar inte första ID.
+                    {
+                        <tr>
+                            <td>@customer.Company</td>
+                            <td>@customer.Name</td>
+                            <td>@customer.Phone</td>
+                            <td>@customer.City</td>
+                            <td>
+                                <a class="btn btn-success" href="customer/details/@customer.Id">Mer Info</a>
+                                @*<button class="btn btn-danger" @onclick="@(() => Delete(customer.Id))">Delete</button>*@
+                            </td>
+                        </tr>
+                    }
+
                 }
 
-            }
-
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    }
 }
+
 @code {
     List<Customers> customers { get; set; }
     protected override async Task OnInitializedAsync()

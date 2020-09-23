@@ -13,5 +13,6 @@ namespace NewBlazorTodo.Shared.Models
         public static string FirstName { get; set; }
         public static string LastName { get; set; }
         public static string Phone { get; set; }
+        public static bool IsAuthenticated { get; set; } = false;
     }
 }

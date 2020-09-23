@@ -3,10 +3,19 @@
 @inject NavigationManager uriHelper
 @inject IJSRuntime js
 
-<h3>Lägg till ny operatör</h3>
+@if (SetCurrentUser.IsAuthenticated == true)
+{
+    <h3>Lägg till ny operatör</h3>
 
-<Form ButtonText="Lägg till Operatör" o="@o"
-      OnValidSubmit="@CreateOperator" />
+    <Form ButtonText="Lägg till Operatör" o="@o"
+          OnValidSubmit="@CreateOperator" />
+
+}
+else
+{
+    <h3>User authentication token not found. Please log in..</h3>
+
+}
 
 @code {
     Operators o = new Operators();

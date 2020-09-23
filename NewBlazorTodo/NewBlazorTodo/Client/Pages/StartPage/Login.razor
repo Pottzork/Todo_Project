@@ -2,37 +2,38 @@
 @inject HttpClient client
 @inject NavigationManager uriHelper
 
-    
-    <!DOCTYPE html>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<!DOCTYPE html>
 
-    <style>
-        body, h1, h2, h3, h4, h5 {
-            font-family: "Raleway", sans-serif
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 
-    @if (activeOrderView == null)
-    {
-        <div class="spinner"></div>
+<style>
+    body, h1, h2, h3, h4, h5 {
+        font-family: "Raleway", sans-serif
     }
-    else
-    {
+</style>
 
-    @if(tempList == null)
-    {
-        <div class="spinner"></div>
-    }
+@if (activeOrderView == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
 
-    @if(nekadeOrdersList == null)
+    @if (tempList == null)
     {
         <div class="spinner"></div>
     }
 
+    @if (nekadeOrdersList == null)
+    {
+        <div class="spinner"></div>
+    }
+    @if (SetCurrentUser.IsAuthenticated == true)
+    {
         <html>
 
 
@@ -96,9 +97,9 @@
                             }
 
                         </div>
-                        
-                            
-                       
+
+
+
                         <hr>
 
                     </div>
@@ -135,47 +136,53 @@
 
         </body>
     </html>
+    }
+    else
+    {
+        <h3>User authentication not found. Please log in..</h3>
+    }
+
 }
 
 
-    @code{
+@code{
 
-        public DateTime DagensDatum { get; set; } = DateTime.Now;
-        public List<Orders> activeOrderView { get; set; } = new List<Orders>();
-        public List<Orders> tempList { get; set; } = new List<Orders>();
-        public List<Orders> nekadeOrdersList { get; set; } = new List<Orders>();
+    public DateTime DagensDatum { get; set; } = DateTime.Now;
+    public List<Orders> activeOrderView { get; set; } = new List<Orders>();
+    public List<Orders> tempList { get; set; } = new List<Orders>();
+    public List<Orders> nekadeOrdersList { get; set; } = new List<Orders>();
 
-        protected async override Task OnInitializedAsync()
+    protected async override Task OnInitializedAsync()
+    {
+        activeOrderView = await client.GetFromJsonAsync<List<Orders>>("https://webapitodo20200919020315.azurewebsites.net/api/Orders");
+        foreach (var tempItem in activeOrderView)
         {
-            activeOrderView = await client.GetFromJsonAsync<List<Orders>>("https://webapitodo20200919020315.azurewebsites.net/api/Orders");
-            foreach (var tempItem in activeOrderView)
+            if (tempItem.OrderStatus == OrderStatus.KLAR)
             {
-                if (tempItem.OrderStatus == OrderStatus.KLAR)
-                {
-                    tempList.Add(tempItem);
-                }
-
-
-                if(tempItem.OrderStatus == OrderStatus.NEKAD)
-                {
-                    nekadeOrdersList.Add(tempItem);
-                }
+                tempList.Add(tempItem);
             }
 
 
-        }
-        public void GetBackOnePage()
-        {
-            uriHelper.NavigateTo("ordershistory");
-        }
-
-        public void SkapaKund()
-        {
-            uriHelper.NavigateTo("/customer/create");
+            if (tempItem.OrderStatus == OrderStatus.NEKAD)
+            {
+                nekadeOrdersList.Add(tempItem);
+            }
         }
 
-        public void SkapaOrder()
-        {
-            uriHelper.NavigateTo("/order/create/");
-        }
+
     }
+    public void GetBackOnePage()
+    {
+        uriHelper.NavigateTo("ordershistory");
+    }
+
+    public void SkapaKund()
+    {
+        uriHelper.NavigateTo("/customer/create");
+    }
+
+    public void SkapaOrder()
+    {
+        uriHelper.NavigateTo("/order/create/");
+    }
+}

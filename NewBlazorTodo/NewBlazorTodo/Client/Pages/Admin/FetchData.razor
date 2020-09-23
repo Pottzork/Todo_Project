@@ -2,10 +2,18 @@
 @inject HttpClient client
 @inject IJSRuntime js
 
-<h3>Admins</h3>
-<div class="form-group">
-    <a class="btn btn-success" href="admin/create"><i class="oi oi-plus"></i> Lägg till ny admin</a>
-</div>
+@if (SetCurrentUser.IsAuthenticated == true)
+{
+    <h3>Admins</h3>
+    <div class="form-group">
+        <a class="btn btn-success" href="admin/create"><i class="oi oi-plus"></i> Lägg till ny admin</a>
+    </div>
+
+}
+else
+{
+    <h3>User authentication token not found. Please log in..</h3>
+}
 <br>
 
 @if (admins == null)
@@ -16,36 +24,40 @@ else if (admins.Count == 0)
 {
     <text>No Records Found.</text>
 }
-else
+else if (SetCurrentUser.IsAuthenticated == true)
 {
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Förnamn</th>
-                <th>Efternamn</th>
-                <th>Telefonnummer</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Admins admin in admins)
-            {
-            <tr>
-                <td>@admin.FirstName</td>
-                <td>@admin.LastName</td>
-                <td>@admin.Phone</td>
-                <td>
-                    <a class="btn btn-success" href="admin/details/@admin.Id">Mer Info</a>
-                    @*<a class="btn btn-success" href="admin/edit/@admin.Id">Edit</a>*@
-                    @*<button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>*@
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Förnamn</th>
+                    <th>Efternamn</th>
+                    <th>Telefonnummer</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Admins admin in admins)
+                {
+                    <tr>
+                        <td>@admin.FirstName</td>
+                        <td>@admin.LastName</td>
+                        <td>@admin.Phone</td>
+                        <td>
+                            <a class="btn btn-success" href="admin/details/@admin.Id">Mer Info</a>
+                            @*<a class="btn btn-success" href="admin/edit/@admin.Id">Edit</a>*@
+                            @*<button class="btn btn-danger" @onclick="@(() => Delete(admin.Id))">Delete</button>*@
 
-                </td>
-            </tr>
-            }
+                        </td>
+                    </tr>
+                }
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    }
 }
+
+
 @code {
     List<Admins> admins { get; set; } = new List<Admins>();
     protected override async Task OnInitializedAsync()

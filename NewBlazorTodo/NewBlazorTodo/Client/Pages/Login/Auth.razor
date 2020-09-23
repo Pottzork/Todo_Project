@@ -116,6 +116,7 @@
                 SetCurrentUser.UserName = uname;
                 SetCurrentUser.Password = password;
                 SetCurrentUser.Phone = admin.Phone;
+                SetCurrentUser.IsAuthenticated = true;
 
                 await js.InvokeVoidAsync("alert", $"Välkommen {SetCurrentUser.FirstName}!");
                 uriHelper.NavigateTo("/start");

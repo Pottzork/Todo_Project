@@ -2,10 +2,19 @@
 @inject HttpClient client
 @inject IJSRuntime js
 
-<h3>Operatör</h3>
-<div class="form-group">
-    <a class="btn btn-success" href="operator/create"><i class="oi oi-plus"></i> Skapa ny Operatör</a>
-</div>
+@if (SetCurrentUser.IsAuthenticated == true)
+{
+    <h3>Operatör</h3>
+    <div class="form-group">
+        <a class="btn btn-success" href="operator/create"><i class="oi oi-plus"></i> Skapa ny Operatör</a>
+    </div>
+}
+else
+{
+    <h3>User authentication token not found. Please log in..</h3>
+
+}
+
 <br>
 
 @if (techOp == null)
@@ -16,39 +25,42 @@ else if (techOp.Count == 0)
 {
     <div class="spinner"></div>
 }
-else
+else if (SetCurrentUser.IsAuthenticated == true)
 {
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Förnamn</th>
-                <th>Efternamn</th>
-                <th>Epost</th>
-                <th>Telefonnummer</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Operators _operator in techOp)
-            {
-                @if (_operator.Location != "DONT")//IF sats pga <InputSelect> tar inte första ID.
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Förnamn</th>
+                    <th>Efternamn</th>
+                    <th>Epost</th>
+                    <th>Telefonnummer</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Operators _operator in techOp)
                 {
-                    <tr>
-                        <td>@_operator.FirstName</td>
-                        <td>@_operator.LastName</td>
-                        <td>@_operator.Email</td>
-                        <td>@_operator.Phone</td>
-                        <td>
-                            <a class="btn btn-success" href="operator/details/@_operator.Id">Mer Info</a>
+                    @if (_operator.Location != "DONT")//IF sats pga <InputSelect> tar inte första ID.
+                    {
+                        <tr>
+                            <td>@_operator.FirstName</td>
+                            <td>@_operator.LastName</td>
+                            <td>@_operator.Email</td>
+                            <td>@_operator.Phone</td>
+                            <td>
+                                <a class="btn btn-success" href="operator/details/@_operator.Id">Mer Info</a>
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    }
+
                 }
 
-            }
-
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    }
 }
+
 @code {
     List<Operators> techOp { get; set; } = new List<Operators>();
     protected override async Task OnInitializedAsync()

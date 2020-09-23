@@ -22,7 +22,7 @@
 
 
 
-<br>
+
 
 @if (activeOrderView == null)
 {
@@ -32,94 +32,102 @@ else if (activeOrderView.Count == 0)
 {
     <div class="spinner"></div>
 }
-else
+else if (SetCurrentUser.IsAuthenticated == true)
 {
-
-    @foreach (var item in new string[] { "Accepterade", "Inte Accepterade", "Visa allt" })
     {
-        <div>
-            <input type="radio" name="tables" id="@item" value="@item" @onchange="RadioSelection" checked=@(tableValue.Equals(item,StringComparison.OrdinalIgnoreCase)) />
-            <label for="@item">@item</label>
-        </div>
-    }
 
-    
-<div class="form-group @vis">
-    <h3>Accepterade Ordrar</h3>
-    <small>Alla orders som operatörer jobbar med just nu.</small>
-    <table id="acceptedTable" class="table table-striped">
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>Arbetsbeskrivning </th>
-                <th>Arbete startar</th>
-                <th>Övrig information</th>
-                <th>Operatörs ID</th>
-                <th>OrderStatus</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Orders order in activeOrderView)
-            {
-                if (order.OrderStatus == OrderStatus.ACCEPTERAD)
-                {
+        @foreach (var item in new string[] { "Accepterade", "Inte Accepterade", "Visa allt" })
+        {
+            <div>
+                <input type="radio" name="tables" id="@item" value="@item" @onchange="RadioSelection" checked=@(tableValue.Equals(item,StringComparison.OrdinalIgnoreCase)) />
+                <label for="@item">@item</label>
+            </div>
+        }
+
+
+        <div class="form-group @vis">
+            <h3>Accepterade Ordrar</h3>
+            <small>Alla orders som operatörer jobbar med just nu.</small>
+            <table id="acceptedTable" class="table table-striped">
+                <thead>
                     <tr>
-                        <td>@order.orderId</td>
-                        <td>@order.orderDescription</td>
-                        <td>@order.orderStart</td>
-                        <td>@order.orderInfo</td>
-                        <td><a class="btn btn-success" href="operator/details/@order.OperatorID">@order.OperatorID</a></td>
-                        <td>@order.OrderStatus</td>
-                        <td>
-                        </td>
+                        <th>Order ID</th>
+                        <th>Arbetsbeskrivning </th>
+                        <th>Arbete startar</th>
+                        <th>Övrig information</th>
+                        <th>Operatörs ID</th>
+                        <th>OrderStatus</th>
                     </tr>
-                }
-            }
-
-        </tbody>
-    </table>
-</div>
-    <p></p>
-    <hr />
-    <p></p>
-    
-    <div id="notAcceptedTable" class="form-group @vis2">
-        <h3>Ej accepterade ordrar</h3>
-        <small>Här visas alla ordrar som ej hunnit accepterats.</small>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Arbetsbeskrivning </th>
-                    <th>Arbete startar</th>
-                    <th>Övrig information</th>
-                    <th>Operatörs ID</th>
-                    <th>OrderStatus</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (Orders order in activeOrderView)
-                {
-                    if (order.OrderStatus == OrderStatus.EJ_ACCEPTERAD)
+                </thead>
+                <tbody>
+                    @foreach (Orders order in activeOrderView)
                     {
-                        <tr>
-                            <td>@order.orderId</td>
-                            <td>@order.orderDescription</td>
-                            <td>@order.orderStart</td>
-                            <td>@order.orderInfo</td>
-                            <td><a class="btn btn-success" href="operator/details/@order.OperatorID">@order.OperatorID</a></td>
-                            <td>@order.OrderStatus</td>
-                            <td>
-                            </td>
-                        </tr>
+                        if (order.OrderStatus == OrderStatus.ACCEPTERAD)
+                        {
+                            <tr>
+                                <td>@order.orderId</td>
+                                <td>@order.orderDescription</td>
+                                <td>@order.orderStart</td>
+                                <td>@order.orderInfo</td>
+                                <td><a class="btn btn-success" href="operator/details/@order.OperatorID">@order.OperatorID</a></td>
+                                <td>@order.OrderStatus</td>
+                                <td>
+                                </td>
+                            </tr>
+                        }
                     }
 
-                }
+                </tbody>
+            </table>
+        </div>
+        <p></p>
+        <hr />
+        <p></p>
 
-            </tbody>
-        </table>
-    </div>
+        <div id="notAcceptedTable" class="form-group @vis2">
+            <h3>Ej accepterade ordrar</h3>
+            <small>Här visas alla ordrar som ej hunnit accepterats.</small>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Arbetsbeskrivning </th>
+                        <th>Arbete startar</th>
+                        <th>Övrig information</th>
+                        <th>Operatörs ID</th>
+                        <th>OrderStatus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Orders order in activeOrderView)
+                    {
+                        if (order.OrderStatus == OrderStatus.EJ_ACCEPTERAD)
+                        {
+                            <tr>
+                                <td>@order.orderId</td>
+                                <td>@order.orderDescription</td>
+                                <td>@order.orderStart</td>
+                                <td>@order.orderInfo</td>
+                                <td><a class="btn btn-success" href="operator/details/@order.OperatorID">@order.OperatorID</a></td>
+                                <td>@order.OrderStatus</td>
+                                <td>
+                                </td>
+                            </tr>
+                        }
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    }
 }
+else
+{
+    <h3>User authentication token not found. Please log in..</h3>
+
+}
+
 @code {
 
     List<Orders> activeOrderView { get; set; } = new List<Orders>();

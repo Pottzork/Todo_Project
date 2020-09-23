@@ -2,18 +2,25 @@
 @inject HttpClient http
 @inject NavigationManager uriHelper
 @inject IJSRuntime js
- 
 
-<h3>Skapa en Order</h3>
+@if (SetCurrentUser.IsAuthenticated == true)
+{
+    <h3>Skapa en Order</h3>
 
-<Form ButtonText="Lägg till ny order" order="@order"
-      OnValidSubmit="@CreateOrder" />
+    <Form ButtonText="Lägg till ny order" order="@order"
+          OnValidSubmit="@CreateOrder" />
+}
+else
+{
+    <h3>User authentication token not found. Please log in..</h3>
+
+}
 
 @code {
     Orders order = new Orders();
     async Task CreateOrder()
     {
-        
+
         await http.PostAsJsonAsync("https://webapitodo20200919020315.azurewebsites.net/api/orders", order);
         await js.InvokeVoidAsync("alert", $"Grymt jobbat! Ny Arbetsorder skapad!");
         uriHelper.NavigateTo("activeorders");
