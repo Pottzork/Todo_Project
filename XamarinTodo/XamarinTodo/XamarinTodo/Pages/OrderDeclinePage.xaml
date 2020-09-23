@@ -18,9 +18,10 @@
                         </Grid.RowDefinitions>
                         <StackLayout Grid.Row="2">
                             <Editor x:Name="txtOrderDeclineReason"
-                            Placeholder="Varför avböjdes ordern?"
-                            AutoSize="TextChanges"
-                            VerticalOptions="StartAndExpand" />
+                                    Placeholder="Varför avböjdes ordern?"
+                                    AutoSize="TextChanges"
+                                    VerticalOptions="StartAndExpand"
+                                    MaxLength="60" />
                         </StackLayout>
                         <StackLayout Grid.Row="3" VerticalOptions="EndAndExpand">
                             <Button Text="Skicka"

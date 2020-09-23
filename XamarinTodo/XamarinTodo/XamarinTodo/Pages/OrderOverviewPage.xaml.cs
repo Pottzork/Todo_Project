@@ -30,8 +30,11 @@ namespace XamarinTodo.Pages
             GetOrders();
             orderOverviewList.ItemsSource = _orderOverViewList;
             SetBgColor();
+            OnBackButtonPressed();
             //SetTextColor();
         }
+
+        protected override bool OnBackButtonPressed() => false;
 
         private async void GetOrders()
         {
